@@ -1,0 +1,127 @@
+<ion-header>
+  <ion-toolbar class="header">
+    <ion-buttons slot="start">
+      <ion-back-button mode="md"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+  <div class="container-login100">
+    <div class="wrap-login100">
+      <form [formGroup]="form" class="login100-form">
+
+        <div class="wrap-input100">
+          <ion-item>
+            <ion-label position="floating">Nombre</ion-label>
+            <ion-input placeholder="Nombre completo" formControlName="nombre"></ion-input>
+            <ion-icon class="icon" name="person" color="primary" slot="end"></ion-icon>
+          </ion-item>
+          <ion-label color="danger" class="novalid"
+            *ngIf="form.controls['nombre'].hasError('required') && (form.controls['nombre'].dirty || form.controls['nombre'].touched)">
+            Nombre requerido</ion-label>
+        </div>
+
+        
+        <div class="wrap-input100">
+            <ion-item>
+              <ion-label position="floating">Apellido</ion-label>
+              <ion-input placeholder="Apellido completo" formControlName="apellido"></ion-input>
+              <ion-icon class="icon" name="person" color="primary" slot="end"></ion-icon>
+            </ion-item>
+            <ion-label color="danger" class="novalid"
+              *ngIf="form.controls['apellido'].hasError('required') && (form.controls['apellido'].dirty || form.controls['apellido'].touched)">
+              Apellido requerido</ion-label>
+          </div>
+
+        <div class="wrap-input100">
+          <ion-item>
+            <ion-label position="floating">Celular</ion-label>
+            <ion-input maxlength="10" type="number" placeholder="ingresa tu celular" formControlName="celular"></ion-input>
+            <ion-icon class="icon" name="phone-portrait" color="primary" slot="end"></ion-icon>
+          </ion-item>
+          <ion-label color="danger" class="novalid"
+            *ngIf="form.controls['celular'].hasError('required') && (form.controls['celular'].dirty || form.controls['celular'].touched)">
+            Celular requerido</ion-label>
+            <ion-label color="danger" class="novalid"
+            *ngIf="form.controls['celular'].hasError('pattern') && (form.controls['celular'].dirty || form.controls['celular'].touched)">
+            Celular no valido</ion-label>
+        </div>
+
+        <div class="wrap-input100">
+          <ion-item>
+            <ion-label position="floating">Correo</ion-label>
+            <ion-input placeholder="ingresa tu correo" formControlName="email"></ion-input>
+            <ion-icon class="icon" name="mail" color="primary" slot="end"></ion-icon>
+          </ion-item>
+          <ion-label color="danger" class="novalid"
+            *ngIf="form.controls['email'].hasError('required') && (form.controls['email'].dirty || form.controls['email'].touched)">
+            Correo requerido</ion-label>
+          <ion-label color="danger" class="novalid"
+            *ngIf="form.controls['email'].hasError('pattern') && (form.controls['email'].dirty || form.controls['email'].touched)">
+            Correo no valido</ion-label>
+        </div>
+
+        <div class="wrap-input100">
+          <ion-item>
+            <ion-label position="floating">Documento</ion-label>
+            <ion-input type="number" placeholder="ingresa tu documento" formControlName="documento"></ion-input>
+            <ion-icon class="icon" name="list-box" color="primary" slot="end"></ion-icon>
+          </ion-item>
+          <ion-label color="danger" class="novalid"
+            *ngIf="form.controls['documento'].hasError('required') && (form.controls['documento'].dirty || form.controls['documento'].touched)">
+            Documento requerido</ion-label>
+        </div>
+
+        <!-- <div class="wrap-input100">
+          <ion-item>
+            <ion-label position="floating">Confirmar Documento</ion-label>
+            <ion-input type="number" placeholder="Confirma tu documento" formControlName="confdocumento">
+            </ion-input>
+            <ion-icon class="icon" name="list-box" color="primary" slot="end"></ion-icon>
+          </ion-item>
+          <ion-label color="danger" class="novalid"
+            *ngIf="form.controls['confdocumento'].hasError('required') && (form.controls['confdocumento'].dirty || form.controls['confdocumento'].touched)">
+            Documento requerido</ion-label>
+        </div> -->
+
+        <div class="wrap-input100">
+          <ion-item>
+            <ion-label position="floating">Contraseña</ion-label>
+            <ion-input  [type]="typeinput"  clearOnEdit="false" placeholder="Ingresa tu contraseña" formControlName="password"></ion-input>
+            <ion-icon (click)="password1()" class="icon" [name]="nameicon" color="primary" slot="end"></ion-icon>
+          </ion-item>
+          <ion-label color="danger" class="novalid"
+            *ngIf="form.controls['password'].hasError('required') && (form.controls['password'].dirty || form.controls['password'].touched)">
+            Contraseña requerida</ion-label>
+            <ion-label color="danger" class="novalid"
+            *ngIf="form.controls['password'].hasError('pattern') && (form.controls['password'].dirty || form.controls['password'].touched)">
+            La Contraseña no es segura <span><strong>(Ejemplo: Password7!)</strong></span></ion-label>
+        </div>
+
+        <div class="wrap-input100">
+          <ion-item>
+            <ion-label position="floating">Confirmar Contraseña</ion-label>
+            <ion-input [type]="typeinput2"  clearOnEdit="false" placeholder="Confirma tu contraseña" formControlName="confpassword"></ion-input>
+            <ion-icon (click)="password2()" class="icon" [name]="nameicon2" color="primary" slot="end"></ion-icon>
+          </ion-item>
+          <ion-label color="danger" class="novalid"
+            *ngIf="form.controls['confpassword'].hasError('required') && (form.controls['confpassword'].dirty || form.controls['confpassword'].touched)">
+            Contraseña requerida</ion-label>
+            <ion-label color="danger" class="novalid"
+            *ngIf="form.hasError('notSame')">
+            Las contraseñas no son iguales</ion-label>
+        </div>
+
+        <div class="container-login100-form-btn">
+          <div class="wrap-login100-form-btn">
+            <div class="login100-form-bgbtn"></div>
+            <ion-button [disabled]="!form.valid" class="login" (click)="register()" expand="block">Registrarse</ion-button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</ion-content>

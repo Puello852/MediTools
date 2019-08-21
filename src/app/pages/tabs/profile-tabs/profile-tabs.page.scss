@@ -1,0 +1,40 @@
+.img{
+    margin-top: 7%;
+    display: flex;
+    justify-content: center;
+}
+
+.edit{
+    // --background: transparent;
+    --box-shadow: none;
+    --border-radius: 50%;
+    --background-color: #3880ff;
+    width: 57px;
+    height: 52px;
+}
+
+.pad10{
+    padding: 10px 0px 10px 0px;
+}
+
+.buttonEdit{
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    position: relative;
+    bottom: 38px;
+    left: 40px;
+}
+
+
+.buttonEdit1{
+    --box-shadow: none;
+    --background: transparent;
+}
+
+
+.im{
+    width: 150px;
+    border-radius: 50%;
+    height: 150px;
+}

@@ -1,14 +1,59 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
+
+<div class="container-login100">
+  <div class="wrap-login100">
+    <form [formGroup]="form" class="login100-form" type="submit">
+      <span class="login100-form-title p-b-26">
+        MediTools
+      </span>
+      <span class="login100-form-title p-b-48">
+        <i class="zmdi zmdi-font"></i>
+      </span>
+
+      <div class="wrap-input100">
+        <ion-item>
+          <ion-label position="floating">Correo</ion-label>
+          <ion-input formControlName="email"></ion-input>
+        </ion-item>
+        <ion-label color="danger" class="novalid" *ngIf="form.controls['email'].hasError('required') && (form.controls['email'].dirty || form.controls['email'].touched)">Correo requerido</ion-label>
+        <ion-label color="danger" class="novalid" *ngIf="email">Este campo es obligatorio</ion-label>
+        <ion-label color="danger" class="novalid" *ngIf="form.controls['email'].hasError('pattern') && (form.controls['email'].dirty || form.controls['email'].touched)">Correo no valido</ion-label>
+      </div>
+
+      <div class="wrap-input100">
+        <ion-item>
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input clearOnEdit="false" [type]="typeinput" formControlName="password"></ion-input>
+          <ion-icon (click)="onClick()" class="icon" [name]="nameicon" color="primary" slot="end"></ion-icon>
+        </ion-item>
+        <ion-label color="danger" class="novalid" *ngIf="form.controls['password'].hasError('required') && (form.controls['password'].dirty || form.controls['password'].touched)">Contraseña requerido</ion-label>
+      </div>
+
+      <div class="forgot">
+        <span class="txt1" (click)="forgotpassword()">
+         ¿Olvidaste la contraseña?
+        </span>
+      </div>
+
+      <div class="container-login100-form-btn">
+        <div class="wrap-login100-form-btn">
+          <div class="login100-form-bgbtn"></div>
+          <ion-button type="submit" [disabled]="!form.valid" (click)="login()" class="login" expand="block">Iniciar sesión</ion-button>
+        </div> 
+      </div>
+
+      <div class="text-center p-t-115">
+        <div routerLink="/registrar"  class="noneout">
+          <span class="txt1">
+            ¿No tienes una cuenta?
+          </span>
+
+          <a class="txt2" href="#">
+            Registrate
+          </a>
+        </div>
+      </div>
+    </form>
   </div>
+</div>
 </ion-content>
