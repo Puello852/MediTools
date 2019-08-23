@@ -11,58 +11,58 @@
 
   <ion-list>
 
-    <ion-item class="pad10">
+    <ion-item class="pad10" (click)="editName(datos.PrimerNombre)">
       <ion-icon style="color:#3880ff" slot="start" name="md-person"></ion-icon>
       <ion-label>
         <h2 style="color: gray">Nombre</h2>
-        <h3> <span style="font-weight: 500">{{datos.nombre}}</span></h3>
+        <h3> <span style="font-weight: 500">{{datos.PrimerNombre}}</span></h3>
       </ion-label>
-      <ion-button class="buttonEdit1" (click)="editName(datos.nombre)">
+      <ion-button class="buttonEdit1">
         <ion-icon style="color:gray" slot="end" name="md-create"></ion-icon>
       </ion-button>
     </ion-item>
 
-    <ion-item class="pad10">
+    <ion-item class="pad10" (click)="editApellido(datos.primerApellido)">
         <ion-icon style="color:#3880ff" slot="start" name="md-person"></ion-icon>
         <ion-label>
           <h2 style="color: gray">Apellido</h2>
-          <h3> <span style="font-weight: 500">{{datos.apellido}}</span></h3>
+          <h3> <span style="font-weight: 500">{{datos.primerApellido}}</span></h3>
         </ion-label>
-        <ion-button class="buttonEdit1" (click)="editApellido(datos.apellido)">
+        <ion-button class="buttonEdit1" >
           <ion-icon style="color:gray" slot="end" name="md-create"></ion-icon>
         </ion-button>
       </ion-item>
 
-    <ion-item class="pad10">
+    <ion-item class="pad10" (click)="editDocumento(datos.documento)">
         <ion-icon style="color:#3880ff" slot="start" name="md-list-box"></ion-icon>
       <ion-label>
         <h2  style="color: gray">Documento</h2>
-        <h3>{{datos.documento}}</h3>
+        <h3 style="font-weight: 500">{{datos.documento}}</h3>
       </ion-label>
-      <ion-button class="buttonEdit1" (click)="editDocumento(datos.documento)">
+      <ion-button class="buttonEdit1" >
           <ion-icon style="color:gray" slot="end" name="md-create"></ion-icon>
         </ion-button>
     </ion-item>
 
-    <ion-item class="pad10">
+    <ion-item class="pad10" (click)="editMail(datosProfile.email)">
         <ion-icon style="color:#3880ff" slot="start" name="md-at" ></ion-icon>
       <ion-label>
         <h2  style="color: gray">Correo</h2>
-        <h3>{{datosProfile.email}}</h3>
+        <h3 style="font-weight: 500">{{datosProfile.email}}</h3>
       </ion-label>
-      <ion-button class="buttonEdit1" (click)="editMail(datosProfile.email)">
+      <ion-button class="buttonEdit1" >
           <ion-icon style="color:gray" slot="end" name="md-create"></ion-icon>
         </ion-button>
     </ion-item>
 
     
-    <ion-item class="pad10">
+    <ion-item class="pad10" (click)="editKey(datosProfile.email)">
         <ion-icon style="color:#3880ff" slot="start" name="md-key" ></ion-icon>
       <ion-label>
         <h2  style="color: gray">Restablecer contraseña</h2>
-        <h3>***********</h3>
+        <h3 style="font-weight: 500">***********</h3>
       </ion-label>
-      <ion-button class="buttonEdit1" (click)="editKey(datosProfile.email)">
+      <ion-button class="buttonEdit1" >
           <ion-icon style="color:gray" slot="end" name="md-create"></ion-icon>
         </ion-button>
     </ion-item>

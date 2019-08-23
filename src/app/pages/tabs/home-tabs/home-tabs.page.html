@@ -5,5 +5,162 @@
 </ion-header> -->
 
 <ion-content>
-<h1>Home TABS</h1>
+  <div class="header">
+
+
+    <ion-grid fixed class="t30">
+      <ion-row>
+        <ion-col size="6">
+          <span class="dash">
+            Dashboard
+          </span>
+        </ion-col>
+        <ion-col size="6" class="fend">
+          <img [routerLink]="['/dashboard/profile']" class="img" [src]="foto" alt="">
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <div class="marl40">
+              <span class="subtitle">
+                  {{datos.PrimerNombre}} {{datos.segundoNombre}} {{datos.primerApellido}} {{datos.segundoApellido}}
+                </span>
+          </div>
+          <br>
+          <span class="subtitle2">
+            {{data.email}}
+          </span><br>
+          <span class="subtitle2">
+            (+57) {{datos.celular}}
+          </span>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div class="left23 mt4">
+    <span class="equipo">Equipo</span>
+  </div>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="6">
+        <ion-item>
+          <img class="img1" slot="start" src="./assets/img/Grupo2.png" alt="">
+          <ion-row>
+            <ion-col size="12">
+              <span class="bold">
+                Hoy
+              </span>
+            </ion-col>
+            <ion-col size="12">
+              <span class="gray">
+                18 pacientes
+              </span>
+            </ion-col>
+          </ion-row>
+        </ion-item>
+      </ion-col>
+      <ion-col size="6">
+        <div class="right23">
+          <ion-item>
+            <img class="img1" style="    width: 32px;" slot="start" src="./assets/img/Grupo4.png" alt="">
+            <ion-row>
+              <ion-col size="12">
+                <span class="bold">
+                  Cancelados
+                </span>
+              </ion-col>
+              <ion-col size="12">
+                <span class="gray">
+                  7 pacientes
+                </span>
+              </ion-col>
+            </ion-row>
+          </ion-item>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="margin-top: 4%">
+      <ion-col size="8">
+        <div class="caja1">
+            <img class="logoCard" src="./assets/img/gota.png" alt="">
+            <div class="title1">
+              <span style="color: white">
+                Historias Clinicas
+              </span>
+            </div>
+            <div class="title2">
+              <span style="color: white">
+                1200
+              </span>
+            </div>
+        </div>
+      </ion-col>
+      <ion-col size="4">
+        <div class="caja2">
+            <img class="logoCard" src="./assets/img/capsul.png" alt="">
+            <div class="title1">
+                <span style="color: white">
+                  Admitidos
+                </span>
+              </div>
+              <div class="title2">
+                <span style="color: white">
+                  857
+                </span>
+              </div>
+        </div>
+      </ion-col>
+
+      <ion-col size="4">
+        <div class="caja3">
+            <img class="logoCard" src="./assets/img/heart.png" alt="">
+            <div class="title1">
+                <span style="color: white">
+                  Descargados
+                </span>
+              </div>
+              <div class="title2">
+                <span style="color: white">
+                  864
+                </span>
+              </div>
+        </div>
+      </ion-col>
+
+      <ion-col size="4">
+        <div class="caja1">
+            <img class="logoCard" src="./assets/img/gota.png" alt="">
+            <div class="title1" style="    margin-top: 8px;">
+                <span style="color: white">
+                  Pacientes
+                </span>
+              </div>
+              <div class="title2">
+                <span style="color: white">
+                  564
+                </span>
+              </div>
+        </div>
+      </ion-col>
+
+      <ion-col size="4">
+        <div class="caja3">
+            <img class="logoCard" src="./assets/img/heart.png" alt="">
+
+            <div class="title1">
+                <span style="color: white">
+                  LLegado
+                </span>
+              </div>
+              <div class="title2">
+                <span style="color: white">
+                  698
+                </span>
+              </div>
+        </div>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
 </ion-content>

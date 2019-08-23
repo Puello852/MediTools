@@ -136,9 +136,17 @@ export class AuthenticationService {
      const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${res.user.uid}`)
      const datos = {
        id: res.user.uid,
-       nombre: data.nombre,
+       PrimerNombre: data.primerNombre,
+       segundoNombre: data.segundoNombre,
+       primerApellido: data.primerApellido,
+       segundoApellido: data.segundoApellido,
+       tipoDocumento: data.tipoDocumento,
+       documento: data.documento,
+       fechaNacimiento: data.fechaNacimiento,
+       estadoCivil: data.estadoCivil,
+       genero: data.genero,
        celular: data.celular,
-       documento: data.documento
+       
      }
      return userRef.set(datos,{merge:true})
    }

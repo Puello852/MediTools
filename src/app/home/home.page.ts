@@ -90,11 +90,11 @@ export class HomePage implements OnInit {
         });
         toast.present();
        let data:any = this.authService.userDetails()
-        // alert(JSON.stringify(data))
+      
         this.authService.getInfoUser(data.uid).subscribe(data=>{
          console.log(data)
        })
-       this.navCtrl.navigateRoot('/dashboard/profile')
+       this.navCtrl.navigateRoot('/dashboard/home')
       })
   }
 

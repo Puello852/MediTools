@@ -60,11 +60,17 @@ export class ProfileTabsPage implements OnInit {
           text: 'GUARDAR',
           handler: (e) => {
             let data = {
-              celular: this.datos.celular,
-              apellido: this.datos.apellido,
-              documento: this.datos.documento,
               id: this.datos.id,
-              nombre: e.nombre,
+              PrimerNombre: e.nombre,
+              segundoNombre: this.datos.segundoNombre,
+              primerApellido: this.datos.primerApellido,
+              segundoApellido: this.datos.segundoApellido,
+              tipoDocumento: this.datos.tipoDocumento,
+              documento: this.datos.documento,
+              fechaNacimiento: this.datos.fechaNacimiento,
+              estadoCivil: this.datos.estadoCivil,
+              genero: this.datos.genero,
+              celular: this.datos.celular,
             }
             this.auth.updateInfoUser(data).then(async ()=>{
               const toast = await this.toastController.create({
@@ -73,6 +79,7 @@ export class ProfileTabsPage implements OnInit {
               });
               toast.present();
             })
+            alert.dismiss()
             console.log('Confirm Ok', e);
           }
         }
@@ -99,11 +106,17 @@ export class ProfileTabsPage implements OnInit {
           text: 'GUARDAR',
           handler: (e) => {
             let data = {
-              celular: this.datos.celular,
-              apellido: this.datos.apellido,
-              documento: e.documento,
               id: this.datos.id,
-              nombre: this.datos.nombre,
+              PrimerNombre: this.datos.PrimerNombre,
+              segundoNombre: this.datos.segundoNombre,
+              primerApellido: this.datos.primerApellido,
+              segundoApellido: this.datos.segundoApellido,
+              tipoDocumento: this.datos.tipoDocumento,
+              documento: e.documento,
+              fechaNacimiento: this.datos.fechaNacimiento,
+              estadoCivil: this.datos.estadoCivil,
+              genero: this.datos.genero,
+              celular: this.datos.celular,
             }
             this.auth.updateInfoUser(data).then(async ()=>{
               const toast = await this.toastController.create({
@@ -138,11 +151,17 @@ export class ProfileTabsPage implements OnInit {
           text: 'GUARDAR',
           handler: (e) => {
             let data = {
-              celular: this.datos.celular,
-              apellido: e.apellido,
-              documento: this.datos.documento,
               id: this.datos.id,
-              nombre: this.datos.nombre,
+              PrimerNombre: this.datos.PrimerNombre,
+              segundoNombre: this.datos.segundoNombre,
+              primerApellido: e.apellido,
+              segundoApellido: this.datos.segundoApellido,
+              tipoDocumento: this.datos.tipoDocumento,
+              documento: this.datos.documento,
+              fechaNacimiento: this.datos.fechaNacimiento,
+              estadoCivil: this.datos.estadoCivil,
+              genero: this.datos.genero,
+              celular: this.datos.celular,
             }
             this.auth.updateInfoUser(data).then(async ()=>{
               const toast = await this.toastController.create({
@@ -162,7 +181,7 @@ export class ProfileTabsPage implements OnInit {
 
   async editMail(e){
     const alert = await this.alertController.create({
-      header: 'Escribe tu apellido',
+      header: 'Escribe tu correo',
       inputs: [
         {name: 'email',type: 'email',value: e,placeholder:'Apellido',label: 'email',},
       ],
@@ -232,23 +251,12 @@ export class ProfileTabsPage implements OnInit {
 
   }
   
-
-  onClick2(){
-    let data = {
-      celular: 3217199814,
-      documento: 1002131297,
-      id: "TF1GJJ4gsXg6X3nGpULoVlGXgLK2",
-      nombre: "Edwin Puello.",
-    }
-    this.auth.updateInfoUser(data)
-  }
-
   loadPerfil() {
 
     let dato: any = this.auth.userDetails()
     console.log(dato)
     this.datosProfile = dato
-    // alert(JSON.stringify(data))
+   
      this.auth.getInfoUser(dato.uid).subscribe(data => {
        console.log(data)
        this.datos = data
@@ -291,8 +299,7 @@ export class ProfileTabsPage implements OnInit {
 
   onClick1() {
     let data: any = this.auth.userDetails()
-    alert(JSON.stringify(data))
-    // alert(this.form.controls.url.value)
+
     // this.auth.updatePhotoProfile(this.form.controls.url.value)
     // this.auth.userDetails()
   }
@@ -354,8 +361,7 @@ export class ProfileTabsPage implements OnInit {
     const uploadInfo = this.uploadToFirebase(blobInfo);
 
 
-    // alert(uploadInfo)
-
+   
     // this.loadingController.dismiss()
 
   }
@@ -436,7 +442,7 @@ export class ProfileTabsPage implements OnInit {
       let uploadTask = fileRef.put(_imageBlobInfo.imgBlob);
       uploadTask.then(() => {
         fileRef.getDownloadURL().then((e) => {
-          alert(e)
+     
           this.base64Image = e
           this.auth.updatePhotoProfile(e)
           //  this.auth.userDetails()
