@@ -10,7 +10,9 @@ const routes: Routes = [
   { path: 'dashboard', 
     component:DashboardHomePage ,children:[
     { path: 'home', children: [ { path: '', loadChildren: './pages/tabs/home-tabs/home-tabs.module#HomeTabsPageModule' }]},
-    { path: 'profile', children: [ {path:'', loadChildren: './pages/tabs/profile-tabs/profile-tabs.module#ProfileTabsPageModule'}]}
+    { path: 'profile', children: [ {path:'', loadChildren: './pages/tabs/profile-tabs/profile-tabs.module#ProfileTabsPageModule'}]},
+    { path: 'history', children:[{ path:'',loadChildren: './pages/tabs/clinical-histories/clinical-histories.module#ClinicalHistoriesPageModule'}]},
+    { path: 'citas', children:[{path:'', loadChildren: './pages/tabs/citastabs/citastabs.module#CitastabsPageModule' }]},
   ]},
   { path: 'edit-profile', loadChildren: './pages/tabs/edit-profile/edit-profile.module#EditProfilePageModule' },
 ];

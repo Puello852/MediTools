@@ -16,6 +16,7 @@ export class AuthenticationService {
 
   
   registerUser(value,datos){
+    
     return new Promise<any>((resolve, reject) => {
       firebase.auth().createUserWithEmailAndPassword(value.email, value.password).then( res => {
         this.updateUserSendInfo(res,datos)

@@ -1,8 +1,18 @@
 <ion-content>
 
+    
 <div class="container-login100">
   <div class="wrap-login100">
     <form [formGroup]="form" class="login100-form" type="submit">
+
+        <ion-item>
+            <ion-label position="floating">Numero</ion-label>
+            <ion-input formControlName="number"></ion-input>
+          </ion-item>
+          <ion-button (click)="executeImportantAction()">
+            send me
+          </ion-button>
+          
       <span class="login100-form-title p-b-26">
         MediTools
       </span>

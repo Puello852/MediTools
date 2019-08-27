@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { faNotesMedical,faHospitalSymbol } from '@fortawesome/free-solid-svg-icons'
 @Component({
   selector: 'app-dashboard-home',
   templateUrl: './dashboard-home.page.html',
@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardHomePage implements OnInit {
 
+  faNotes = faNotesMedical
+  faHospitalSymbo = faHospitalSymbol
   constructor() { }
 
   ngOnInit() {

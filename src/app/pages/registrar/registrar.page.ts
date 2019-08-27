@@ -5,6 +5,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
+import { ApiToolsService } from 'src/app/services/api-tools.service';
 @Component({
   selector: 'app-registrar',
   templateUrl: './registrar.page.html',
@@ -17,16 +18,16 @@ export class RegistrarPage implements OnInit {
   typeinput2:string = 'password'
   case1:boolean=true
   case2:boolean=false
-  minDate = moment().format('YYYY-MM-DD')
+  minDate = moment().subtract(18,'year').format('YYYY-MM-DD')
   monthNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre' ]
   form = new FormGroup({
     nombre: new FormControl('', Validators.required),
-    seugnonombre: new FormControl('', Validators.required),
+    seugnonombre: new FormControl(''),
     apellido: new FormControl('', Validators.required),
     segundoapellido: new FormControl('', Validators.required),
     tipodocumento: new FormControl('', Validators.required),
     confirmardocumento: new FormControl('', Validators.required),
-    documento: new FormControl('', Validators.required),
+    documento: new FormControl('', [Validators.required,Validators.min(5)]),
     fechanacimiento: new FormControl('', Validators.required),
     estadocivil: new FormControl('', Validators.required),
     genero: new FormControl('', Validators.required),
@@ -37,7 +38,7 @@ export class RegistrarPage implements OnInit {
   },{validators:this.checkPasswords})
   nameIcons: string ="arrow-round-forward";
   
-  constructor(private statusBar: StatusBar,private authService:AuthenticationService,public alertController: AlertController,public ruta: Router) {
+  constructor(private api:ApiToolsService,private statusBar: StatusBar,private authService:AuthenticationService,public alertController: AlertController,public ruta: Router) {
     
    }
 
@@ -106,25 +107,32 @@ export class RegistrarPage implements OnInit {
       estadoCivil: this.form.controls.estadocivil.value,
       genero:  this.form.controls.genero.value,
       celular: this.form.controls.celular.value,
+      rol:{
+        personaNatural: true,
+        EntidadDeSalud: false
+      }
     }
-    this.authService.registerUser(data,datos).then(async res=>{
-      const alert = await this.alertController.create({
-        header: 'Exito',
-        message: 'Usuario creado exitosamente',
-        buttons: ['OK']
-      })
-      await alert.present().then(res=>{
-        this.ruta.navigate(['/home'])
-      });
-      // this.authService.sendVerificacion()
-    },async err=>{
-      const alert = await this.alertController.create({
-        header: 'Error',
-        message: 'Ocurrio un error',
-        buttons: ['OK']
-      })
-      alert.present()
-    })
+    // this.api.registerStart(data).subscribe((data:any)=>{
+    //   console.log(data)
+    // })
+     this.authService.registerUser(data,datos).then(async res=>{
+       const alert = await this.alertController.create({
+         header: 'Exito',
+         message: 'Usuario creado exitosamente',
+         buttons: ['OK']
+       })
+       await alert.present().then(res=>{
+         this.ruta.navigate(['/home'])
+       });
+    //   // this.authService.sendVerificacion()
+     },async err=>{
+       const alert = await this.alertController.create({
+         header: 'Error',
+         message: 'Ocurrio un error',
+         buttons: ['OK']
+       })
+       alert.present()
+     })
   }
 
 }

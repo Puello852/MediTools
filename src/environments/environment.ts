@@ -12,7 +12,8 @@ export const environment = {
     storageBucket: "meditools-2cb94.appspot.com",
     messagingSenderId: "1097034076165",
     appId: "1:1097034076165:web:2eac93c4f359784b"
-  }
+  },
+  apiUrl: 'http://192.168.94.12:5000/api/',
 }
 
 /*
