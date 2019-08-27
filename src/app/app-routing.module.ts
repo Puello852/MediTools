@@ -15,6 +15,7 @@ const routes: Routes = [
     { path: 'citas', children:[{path:'', loadChildren: './pages/tabs/citastabs/citastabs.module#CitastabsPageModule' }]},
   ]},
   { path: 'edit-profile', loadChildren: './pages/tabs/edit-profile/edit-profile.module#EditProfilePageModule' },
+  { path: 'agregar-citas-tabs', loadChildren: './pages/tabs/citastabs/agregar-citas-tabs/agregar-citas-tabs.module#AgregarCitasTabsPageModule' },
 ];
 
 @NgModule({

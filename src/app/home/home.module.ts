@@ -5,13 +5,13 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
-import { RecaptchaModule,RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
+// import { RecaptchaModule,RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
 @NgModule({
   imports: [
-    RecaptchaV3Module,
+    // RecaptchaV3Module,
     CommonModule,
     FormsModule,
-    RecaptchaModule.forRoot(),
+    // RecaptchaModule.forRoot(),
     ReactiveFormsModule,
     IonicModule,
     RouterModule.forChild([
@@ -21,7 +21,7 @@ import { RecaptchaModule,RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-rec
       }
     ])
   ],
-  providers:[{provide: RECAPTCHA_V3_SITE_KEY, useValue: '6LcuALUUAAAAAKgEJPPhzTYi0fB5QPocCDSXNeCz'}],
+  // providers:[{provide: RECAPTCHA_V3_SITE_KEY, useValue: '6LcuALUUAAAAAKgEJPPhzTYi0fB5QPocCDSXNeCz'}],
   declarations: [HomePage]
 })
 export class HomePageModule {}

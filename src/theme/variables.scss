@@ -3,6 +3,12 @@
 
 /** Ionic CSS Variables **/
 :root {
+
+  .modals {
+    --width:85%;
+    --height: 51%;
+    --border-radius: 8px;
+ }
   /** primary **/
   --ion-color-primary: #3880ff;
   --ion-color-primary-rgb: 56, 128, 255;

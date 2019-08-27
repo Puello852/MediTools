@@ -12,7 +12,6 @@ import { ReCaptchaV3Service } from 'ng-recaptcha';
 })
 export class HomePage implements OnInit {
 
-
   email:boolean = false
   nameicon:string = 'md-eye'
   typeinput:string = 'password'
@@ -22,17 +21,17 @@ export class HomePage implements OnInit {
     number: new FormControl(''),
   })
 
-  constructor( private recaptchaV3Service: ReCaptchaV3Service, public api:ApiToolsService,public navCtrl: NavController,private statusBar: StatusBar,private authService:AuthenticationService,public toastController: ToastController,public loadingController: LoadingController,public alertController: AlertController) {
+  constructor(public api:ApiToolsService,public navCtrl: NavController,private statusBar: StatusBar,private authService:AuthenticationService,public toastController: ToastController,public loadingController: LoadingController,public alertController: AlertController) {
     this.statusBar.styleLightContent()
   }
 
-  public executeImportantAction(): void {
-    this.recaptchaV3Service.execute('importantAction').subscribe((token) =>{
+  // public executeImportantAction(): void {
+  //   this.recaptchaV3Service.execute('importantAction').subscribe((token) =>{
      
-      console.log(token)
+  //     console.log(token)
 
-    });
-  }
+  //   });
+  // }
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
@@ -114,7 +113,4 @@ export class HomePage implements OnInit {
   }
 
  
-
-  
-
 }
