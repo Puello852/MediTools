@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faCog } from '@fortawesome/free-solid-svg-icons'
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
 @Component({
   selector: 'app-clinical-histories',
   templateUrl: './clinical-histories.page.html',
@@ -7,7 +7,7 @@ import { faCog } from '@fortawesome/free-solid-svg-icons'
 })
 export class ClinicalHistoriesPage implements OnInit {
 
-  cog = faCog
+  cog = faPlusCircle
 
   constructor() { }
 

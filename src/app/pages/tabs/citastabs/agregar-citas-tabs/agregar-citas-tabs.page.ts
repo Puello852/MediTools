@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController, ToastController } from '@ionic/angular';
+import { ModalController, ToastController, AlertController } from '@ionic/angular';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -24,7 +24,7 @@ export class AgregarCitasTabsPage implements OnInit {
     finicial: new FormControl('',Validators.required),
     ffinal: new FormControl('',Validators.required),
   })
-  constructor(private modal:ModalController,private toas:ToastController) { }
+  constructor(private modal:ModalController,private toas:ToastController,public alertController: AlertController) { }
 
   ngOnInit() {
   }
