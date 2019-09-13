@@ -1,6 +1,146 @@
 <ion-content>
 
-  <div class="img">
+
+  <div class="header">
+  </div>
+
+  <div class="container">
+    <div  class="img">
+      <img class="im" src="{{base64Image}}" alt="">
+    </div>
+    <div (click)="editPhoto()" class="buttonEdit">
+      <ion-icon style="top: 7px;color: white;position: relative;" slot="icon-only" name="create" mode="md"></ion-icon>
+    </div>
+    <h3 style="position: relative;bottom: 116px;text-align: center;"> <span style="font-weight: 500">{{datos.nombre1}}
+        {{datos.nombre2}} {{datos.apellido1}} {{datos.apellido2}} <ion-icon style="color: #393f464d;" slot="icon-only" name="create" mode="md"></ion-icon></span></h3>
+
+    <ion-grid fixed class="grid">
+      <ion-row>
+        <ion-col size="4">
+          <ion-row>
+            <ion-col size="12">
+              <span style="color:gray">Género</span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12">
+              <span style="font-weight: 600;font-size: 15px"> Masculino </span>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+        <ion-col size="4">
+          <ion-row>
+            <ion-col size="12">
+              <span style="color:gray">Fecha Nac.</span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12">
+              <span style="font-weight: 600;font-size: 15px"> 15-12-1997 </span>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+        <ion-col size="4">
+          <ion-row>
+            <ion-col size="12">
+              <span style="color:gray">Peso</span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12">
+              <span style="font-weight: 600;font-size: 15px"> 58KG </span>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+        <ion-col size="4">
+          <ion-row>
+            <ion-col size="12">
+              <span style="color:gray">Altura</span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12">
+              <span style="font-weight: 600;font-size: 15px"> 176Cm </span>
+            </ion-col>
+          </ion-row>
+
+        </ion-col>
+        <ion-col size="4">
+          <ion-row>
+            <ion-col size="12">
+              <span style="color:gray">RH</span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12">
+              <span style="font-weight: 600;font-size: 15px"> A+ </span>
+            </ion-col>
+          </ion-row>
+
+        </ion-col>
+        <ion-col size="4">
+          <ion-row>
+            <ion-col size="12">
+              <span style="color:gray">Documento</span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col (click)="editDocumento(datos.cc)" size="12">
+              <span style="font-weight: 600;font-size: 15px"> {{datos.cc}} <ion-icon style="color: #393f464d;" slot="icon-only" name="create" mode="md"></ion-icon> </span>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+      <ion-row style="text-align: initial;margin-left: 20px;">
+        <ion-col size="12">
+          <ion-row>
+            <ion-col size="12">
+              <span style="color:gray">Correo electrónico</span>
+            </ion-col>
+            <ion-col (click)="editMail(datos.email)" size="12">
+                <span style="font-weight: 600;font-size: 17px"> {{datos.email}} <ion-icon style="color: #393f464d;" slot="icon-only" name="create" mode="md"></ion-icon></span>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+
+        <ion-col size="12">
+            <ion-row>
+              <ion-col size="12">
+                <span style="color:gray">Número de télefono</span>
+              </ion-col>
+              <ion-col size="12">
+                  <span style="font-weight: 600;font-size: 17px"> 3217199814 <ion-icon style="color: #393f464d;" slot="icon-only" name="create" mode="md"></ion-icon></span>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+
+        <ion-col size="12">
+            <ion-row>
+              <ion-col size="12">
+                <span style="color:gray">Dirección</span>
+              </ion-col>
+              <ion-col size="12">
+                  <span style="font-weight: 600;font-size: 17px"> Calle 94#7-78 <ion-icon style="color: #393f464d;" slot="icon-only" name="create" mode="md"></ion-icon></span>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+
+          <ion-col size="12">
+              <ion-row>
+                <ion-col size="12">
+                  <span style="color:gray">Contraseña</span>
+                </ion-col>
+                <ion-col (click)="editKey(datos.email)" size="12">
+                    <span style="font-weight: 600;font-size: 17px"> ******** <ion-icon style="color: #393f464d;" slot="icon-only" name="create" mode="md"></ion-icon></span>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <!-- <div class="img">
     <img class="im" src="{{base64Image}}" alt="">
   </div>
   <div class="buttonEdit">
@@ -11,44 +151,66 @@
 
   <ion-list>
 
-    <ion-item class="pad10" (click)="editName(datos.PrimerNombre)">
+    <ion-item class="pad10" (click)="editName(datos.nombre1)">
       <ion-icon style="color:#3880ff" slot="start" name="md-person"></ion-icon>
       <ion-label>
-        <h2 style="color: gray">Nombre</h2>
-        <h3> <span style="font-weight: 500">{{datos.PrimerNombre}}</span></h3>
+        <h2 style="color: gray">Primer nombre</h2>
+        <h3> <span style="font-weight: 500">{{datos.nombre1}}</span></h3>
       </ion-label>
       <ion-button class="buttonEdit1">
         <ion-icon style="color:gray" slot="end" name="md-create"></ion-icon>
       </ion-button>
     </ion-item>
 
-    <ion-item class="pad10" (click)="editApellido(datos.primerApellido)">
+    <ion-item class="pad10" (click)="editName2(datos.nombre2)">
         <ion-icon style="color:#3880ff" slot="start" name="md-person"></ion-icon>
         <ion-label>
-          <h2 style="color: gray">Apellido</h2>
-          <h3> <span style="font-weight: 500">{{datos.primerApellido}}</span></h3>
+          <h2 style="color: gray">Segundo nombre</h2>
+          <h3> <span style="font-weight: 500"> <span *ngIf="datos.nombre2 == ''">No tiene</span> <span *ngIf="datos.nombre2">{{datos.nombre2}}</span></span></h3>
+        </ion-label>
+        <ion-button class="buttonEdit1">
+          <ion-icon style="color:gray" slot="end" name="md-create"></ion-icon>
+        </ion-button>
+      </ion-item>
+
+    <ion-item class="pad10" (click)="editApellido(datos.apellido1)">
+        <ion-icon style="color:#3880ff" slot="start" name="md-person"></ion-icon>
+        <ion-label>
+          <h2 style="color: gray">Primer apellido</h2>
+          <h3> <span style="font-weight: 500">{{datos.apellido1}}</span></h3>
         </ion-label>
         <ion-button class="buttonEdit1" >
           <ion-icon style="color:gray" slot="end" name="md-create"></ion-icon>
         </ion-button>
       </ion-item>
 
-    <ion-item class="pad10" (click)="editDocumento(datos.documento)">
+      <ion-item class="pad10" (click)="editApellido2(datos.apellido2)">
+          <ion-icon style="color:#3880ff" slot="start" name="md-person"></ion-icon>
+          <ion-label>
+            <h2 style="color: gray">Segundo apellido</h2>
+            <h3> <span style="font-weight: 500">{{datos.apellido2}}</span></h3>
+          </ion-label>
+          <ion-button class="buttonEdit1" >
+            <ion-icon style="color:gray" slot="end" name="md-create"></ion-icon>
+          </ion-button>
+        </ion-item>
+
+    <ion-item class="pad10" (click)="editDocumento(datos.cc)">
         <ion-icon style="color:#3880ff" slot="start" name="md-list-box"></ion-icon>
       <ion-label>
         <h2  style="color: gray">Documento</h2>
-        <h3 style="font-weight: 500">{{datos.documento}}</h3>
+        <h3 style="font-weight: 500">{{datos.cc}}</h3>
       </ion-label>
       <ion-button class="buttonEdit1" >
           <ion-icon style="color:gray" slot="end" name="md-create"></ion-icon>
         </ion-button>
     </ion-item>
 
-    <ion-item class="pad10" (click)="editMail(datosProfile.email)">
+    <ion-item class="pad10" (click)="editMail(datos.email)">
         <ion-icon style="color:#3880ff" slot="start" name="md-at" ></ion-icon>
       <ion-label>
         <h2  style="color: gray">Correo</h2>
-        <h3 style="font-weight: 500">{{datosProfile.email}}</h3>
+        <h3 style="font-weight: 500">{{datos.email}}</h3>
       </ion-label>
       <ion-button class="buttonEdit1" >
           <ion-icon style="color:gray" slot="end" name="md-create"></ion-icon>
@@ -56,7 +218,7 @@
     </ion-item>
 
     
-    <ion-item class="pad10" (click)="editKey(datosProfile.email)">
+    <ion-item class="pad10" (click)="editKey(datos.email)">
         <ion-icon style="color:#3880ff" slot="start" name="md-key" ></ion-icon>
       <ion-label>
         <h2  style="color: gray">Restablecer contraseña</h2>
@@ -67,12 +229,12 @@
         </ion-button>
     </ion-item>
 
-  </ion-list>
+  </ion-list> -->
 
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-      <ion-fab-button (click)="onClick()">
-        <ion-icon name="exit"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
+    <ion-fab-button (click)="onClick()">
+      <ion-icon name="exit"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

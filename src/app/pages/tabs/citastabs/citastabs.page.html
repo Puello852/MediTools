@@ -1,36 +1,188 @@
-<ion-header >
+<ion-header *ngIf="!filtro" class="animated fadeInDown">
   <ion-toolbar class="header">
     <ion-title>
-     Citas
+      Citas
     </ion-title>
-    <ion-buttons (click)="openModal()" slot="end">
-      <ion-icon slot="start" name="add"></ion-icon>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content>
- 
+
+
+  <div *ngIf="filtro" class="animated fadeInDown">
+
+    <ion-grid fixed>
+      <ion-row>
+        <ion-col class="dstart" size="4">
+          <ion-button class="cancel" (click)="filter()">
+            Cancelar
+          </ion-button>
+        </ion-col>
+
+        <ion-col size="4">
+          <h3 style="font-size: 12px;font-weight: 700;text-align: center">Filtros</h3>
+        </ion-col>
+
+        <ion-col class="dend" size="4">
+          <ion-button class="save" (click)="filter(1)">
+            Guardar
+          </ion-button>
+        </ion-col>
+        <ion-col style="display: flex;justify-content: center" size="12">
+          <div class="animated bounceInRight delay-0.5s" scrollX="true" style="white-space: nowrap;overflow-x: auto;">
+            <ion-chip>
+              <ion-label>Todas</ion-label>
+            </ion-chip>
+            <ion-chip>
+              <ion-label>Pendientes</ion-label>
+            </ion-chip>
+            <ion-chip>
+              <ion-label>Aceptadas</ion-label>
+            </ion-chip>
+            <ion-chip>
+              <ion-label>Rechazadas</ion-label>
+            </ion-chip>
+            <ion-chip>
+              <ion-label>De mayor a menor</ion-label>
+            </ion-chip>
+            <ion-chip>
+              <ion-label>De menor a mayor</ion-label>
+            </ion-chip>
+          </div>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item lines="none">
+            <ion-label style="font-weight: 600;">Fecha de la cita</ion-label>
+            <ion-datetime style="    color: #0c66b5 ;
+                font-weight: 600 ;" [value]="minDate" [monthNames]="monthNames" doneText="Aceptar"
+              cancelText="Cancelar" displayFormat="DD MMMM YYYY"></ion-datetime>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+
+
+  </div>
+
+
+  <div *ngIf="filtro" class="oscuro">
+
+  </div>
+
+  <ion-segment scrollable (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="citas" checked>
+      <ion-label style="text-transform: initial;    border-radius: 9px; ">Mis citas</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="newcita">
+      <ion-label style="text-transform: initial;    border-radius: 9px; ">Nueva cita</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ion-list *ngIf="segemt == 'citas'" lines="none">
+    <div style="margin-bottom: 42px;" *ngIf="citas.length>0">
+     
+      <ion-button *ngIf="!filtro" style="position: absolute;right: 10px;" class="butt" (click)="filter()">
+        <ion-icon slot="icon-only" name="options"></ion-icon>
+      </ion-button>
+    </div>
+
+    <ion-item-sliding *ngFor="let item of citas">
+      <ion-item class="list">
+        <ion-avatar slot="start">
+          <img src="./assets/img/person1.png" />
+        </ion-avatar>
+        <ion-label>
+          <h2> <strong>{{item.servicio | titlecase}}</strong> 
+            <ion-chip style="position: absolute;
+            right: 9px;" color="success">
+              <ion-label>Pendiente</ion-label>
+            </ion-chip>
+          </h2>
+          <h3>Doctor: <strong>{{item.medico | titlecase}}</strong></h3>
+          <p>Fecha: {{item.createdAt  | date:'medium'}}</p>
+        </ion-label>
+      </ion-item>
+      <ion-item-options class="itemOptions" side="end">
+        <ion-item-option style="text-transform: initial;    border-radius: 9px;" (click)="unread(item)">Detalles
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+
+    <h3 *ngIf="citas.length<1" class="nofound">No hay ninguna cita pendiente</h3>
+
+  </ion-list>
+
+  <div *ngIf="segemt == 'newcita'">
+    <ion-col size="12">
+      <ion-searchbar placeholder="Buscador" (ionChange)="buscador($event)" animated></ion-searchbar>
+    </ion-col>
+   
+    
+    <ion-col size="12">
+      <!-- <ion-item lines="none">
+        <ion-label style="font-weight: 600;">Fecha de la cita</ion-label>
+        <ion-datetime style="    color: #0c66b5 ;
+            font-weight: 600 ;" [value]="minDate" [monthNames]="monthNames" doneText="Aceptar"
+          cancelText="Cancelar" displayFormat="DD MMMM YYYY"></ion-datetime>
+      </ion-item> -->
+      <div class="animated bounceInRight delay-0.5s" scrollX="true" style="white-space: nowrap;overflow-x: auto;">
+        <ion-chip (click)="lisTMedical()">
+          <ion-label>Todos</ion-label>
+        </ion-chip>
+        <ion-chip (click)="goMedicalEspecialidad(item.especialidad)" *ngFor="let item of categorias">
+          <ion-label>{{item.especialidad}}</ion-label>
+        </ion-chip>
+        
+      </div>
+    </ion-col>
+    <ion-col size="12">
+      <div *ngFor="let item of medicos" class="history1">
+        <ion-grid fixed style="margin-top: 7px;margin-bottom: 7px;">
+          <ion-row>
+            <ion-col size="4" class="dcenter">
+              <img class="imghistory" src="{{item.foto}}" alt="">
+            </ion-col>
+            <ion-col size="8">
+              <h3 style="margin: 0px;"> {{item.nombre1}} {{item.nombre2}} {{item.apellido1}} {{item.appelido2}} </h3>
+              <h3 style="    font-size: 18px;
+                  margin: 3px 0px 3px 0px;">{{item.especialidad}}</h3>
+              <span style="color: gray;font-size: 12px">{{item.descripcioncorta}}</span>
+            </ion-col>
+            <ion-col class="dend" size="12">
+              <ion-button (click)="godetail(item.idDoctor)" [routerLink]="['/detalle-nueva-cita']"  class="buttonNextInfo">
+                Detalles
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+
+      <h3 *ngIf="medicos.length<1" class="nofound">No hay medicos con esta categoria</h3>
+      
+    </ion-col>
+  </div>
+
   <!-- 
     <ion-card-header tappable (click)="collapseCard = !collapseCard">
       <ion-card-title>New Event</ion-card-title>
     </ion-card-header>
     <ion-card-content *ngIf="!collapseCard">
  
-      <ion-item>
+      <ion-item class="list">
         <ion-input type="text" placeholder="Title" [(ngModel)]="event.title"></ion-input>
       </ion-item>
-      <ion-item>
+      <ion-item class="list">
         <ion-input type="text" placeholder="Description" [(ngModel)]="event.desc"></ion-input>
       </ion-item>
-      <ion-item>
+      <ion-item class="list">
         <ion-label>Start</ion-label>
         <ion-datetime displayFormat="MM/DD/YYYY HH:mm" pickerFormat="MMM D:HH:mm" [(ngModel)]="event.startTime" [min]="minDate"></ion-datetime>
       </ion-item>
-      <ion-item>
+      <ion-item class="list">
         <ion-label>End</ion-label>
         <ion-datetime displayFormat="MM/DD/YYYY HH:mm" pickerFormat="MMM D:HH:mm" [(ngModel)]="event.endTime" [min]="minDate"></ion-datetime>
       </ion-item>
-      <ion-item>
+      <ion-item class="list">
         <ion-label>All Day?</ion-label>
         <ion-checkbox [(ngModel)]="event.allDay"></ion-checkbox>
       </ion-item>
@@ -64,13 +216,13 @@
       </ion-button>
     </ion-col>
   </ion-row> -->
- 
- <ion-grid fixed>
+
+  <!-- <ion-grid fixed>
    <ion-row>
     <ion-col size="4" text-left>
       <ion-button fill="clear" (click)="back()">
           <fa-icon style="font-size: 20px" [icon]="faChevronLeft"></fa-icon>
-        <!-- <ion-icon name="arrow-back" slot="icon-only"></ion-icon> -->
+     
       </ion-button>
     </ion-col>
 <ion-col size="4">
@@ -133,6 +285,5 @@
       <span class="noeventos" >No hay citas pendientes para este dia</span>
     </div>
 
-  </ng-template>
- 
+  </ng-template> -->
 </ion-content>

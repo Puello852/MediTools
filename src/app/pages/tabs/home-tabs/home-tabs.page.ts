@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { ApiToolsService } from 'src/app/services/api-tools.service';
+import { AlertController, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home-tabs',
@@ -11,25 +13,34 @@ export class HomeTabsPage implements OnInit {
   datos: any = {};
   foto: string = "";
 
-  constructor(private auth:AuthenticationService) { }
+  constructor(private auth:ApiToolsService,public alert:AlertController,public loadingController :LoadingController) { }
 
   ngOnInit() {
     this.getinfo()
   }
 
-  getinfo(){
-    this.data = this.auth.userDetails()
+
+
+  async getinfo(){
+    const loading = await this.loadingController.create({
+      message: 'Por favor espere...',
+      mode: 'md'
+    });
+    await loading.present();
+    this.auth.GetInfoUser().subscribe(async (data:any)=>{
  
-    if (this.data.photoURL == null || !this.data.photoURL) {
-      this.foto = './assets/img/person1.png'
-    } else {
-    console.log("trajo foto")
-      this.foto = this.data.photoURL
-    }
-    this.auth.getInfoUser(this.data.uid).subscribe(data=>{
-      console.log(data)
-      console.log(this.data)
+      // alert(JSON.stringify(data))
       this.datos = data
+      loading.dismiss()
+      if (data.foto == 'None') {
+       this.foto = './assets/img/person1.png'
+     } else {
+    //  alert("trajo foto")
+  //  alert(JSON.stringify(data.foto))
+       this.foto = await data.foto
+     }
+    },erro=>{
+      loading.dismiss()
     })
   }
 

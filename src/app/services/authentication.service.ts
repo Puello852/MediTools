@@ -3,6 +3,7 @@ import * as firebase from 'firebase/app';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore'
 import { AngularFireStorage } from '@angular/fire/storage'
 import { ToastController, LoadingController, AlertController, NavController } from '@ionic/angular';
+import { HTTP } from '@ionic-native/http/ngx';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,7 +13,7 @@ export class AuthenticationService {
       id: this.afs.createId(), image: ''
     }
 
-  constructor(private Storage:AngularFireStorage,public navCtrl: NavController,private afs:AngularFirestore,public toastController: ToastController,public loadingController: LoadingController,public alertController: AlertController) { }
+  constructor(private http: HTTP,private Storage:AngularFireStorage,public navCtrl: NavController,private afs:AngularFirestore,public toastController: ToastController,public loadingController: LoadingController,public alertController: AlertController) { }
 
   
   registerUser(value,datos){
@@ -24,20 +25,29 @@ export class AuthenticationService {
         err => reject(err))
     })
    }
+
+   logi(data){
+    //  alert(JSON.stringify(data))
+     this.http.post('http://192.168.94.12:5000/api/auth/login',{},data).then((data:any)=>{
+      // alert(JSON.stringify(data))
+     },erro=>{
+      //  alert(JSON.stringify(erro))
+     })
+   }
   
    loginUser(value){
     return new Promise<any>((resolve, reject) => {
       firebase.auth().signInWithEmailAndPassword(value.email, value.password).then(res=>{
-        console.log(res)
+      
         // this.updateUserSendInfo(res)
         resolve(res)
       },async erro=>{
-        const toast = await this.toastController.create({
-          message: 'Correo o contraseña no valida.',
-          duration: 4000
-        });
-        this.loadingController.dismiss()
-        toast.present();
+        // const toast = await this.toastController.create({
+        //   message: 'Correo o contraseña no valida.',
+        //   duration: 4000
+        // });
+        // this.loadingController.dismiss()
+        // toast.present();
       })
     })
    }
@@ -64,13 +74,13 @@ export class AuthenticationService {
    }
 
    uploadImageToFirebase(fileraw) {
-    console.log(fileraw)
+   
     const filePath = '/Image/' + this.newImage.id + '/' + 'Image' + (Math.floor(1000 + Math.random() * 9000) + 1);
     const result = this.SaveImageRef(filePath, fileraw);
     const ref = result.ref;
      result.task.then(a => {
        ref.getDownloadURL().subscribe(a => {
-         console.log(a);
+ 
          this.newImage.image = a;
        });
        this.afs.collection('Image').doc(this.newImage.id).set(this.newImage);
@@ -147,7 +157,6 @@ export class AuthenticationService {
        estadoCivil: data.estadoCivil,
        genero: data.genero,
        celular: data.celular,
-       
      }
      return userRef.set(datos,{merge:true})
    }
@@ -164,8 +173,8 @@ export class AuthenticationService {
    updateMail(mail){
     return firebase.auth().currentUser.updateEmail(mail).then(async ()=>{
       const toast = await this.toastController.create({
-        message: 'Correo actualizado exitosamente.',
-        duration: 4000
+        message: 'Correo actualizado exitosamente. Debes inciar sesión con tu nuevo correo ',
+        duration: 5000
       });
       toast.present();
      })

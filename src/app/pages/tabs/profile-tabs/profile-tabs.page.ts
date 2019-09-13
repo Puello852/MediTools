@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActionSheetController, Platform, LoadingController, AlertController, ToastController } from '@ionic/angular';
+import { ActionSheetController, Platform, LoadingController, AlertController, ToastController, NavController } from '@ionic/angular';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { File } from "@ionic-native/file/ngx";
@@ -8,6 +8,7 @@ import * as firebase from 'firebase/app';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { EditProfilePage } from '../edit-profile/edit-profile.page';
+import { ApiToolsService } from 'src/app/services/api-tools.service';
 @Component({
   selector: 'app-profile-tabs',
   templateUrl: './profile-tabs.page.html',
@@ -15,7 +16,7 @@ import { EditProfilePage } from '../edit-profile/edit-profile.page';
 })
 export class ProfileTabsPage implements OnInit {
 
-  base64Image: string = './assets/img/person.png';
+  base64Image: string = './assets/img/person1.png';
   captureDataUrl: string;
   downloadUrl: any;
 
@@ -24,7 +25,7 @@ export class ProfileTabsPage implements OnInit {
   })
   datos: any = {};
   datosProfile: any = {};
-  constructor(public toastController: ToastController,public alertController: AlertController,public modalController: ModalController,public loadingController: LoadingController, private afsStorage: AngularFireStorage, public platform: Platform, public auth: AuthenticationService, public actionSheetController: ActionSheetController, private camera: Camera, private file: File) {
+  constructor(public navctrl: NavController,private api: ApiToolsService, public toastController: ToastController,public alertController: AlertController,public modalController: ModalController,public loadingController: LoadingController, private afsStorage: AngularFireStorage, public platform: Platform, public auth: AuthenticationService, public actionSheetController: ActionSheetController, private camera: Camera, private file: File) {
   }
 
   ngOnInit() {
@@ -54,33 +55,157 @@ export class ProfileTabsPage implements OnInit {
           role: 'cancel',
           cssClass: 'secondary',
           handler: () => {
-            console.log('Confirm Cancel');
+            
           }
         }, {
           text: 'GUARDAR',
           handler: (e) => {
             let data = {
-              id: this.datos.id,
-              PrimerNombre: e.nombre,
-              segundoNombre: this.datos.segundoNombre,
-              primerApellido: this.datos.primerApellido,
-              segundoApellido: this.datos.segundoApellido,
-              tipoDocumento: this.datos.tipoDocumento,
-              documento: this.datos.documento,
-              fechaNacimiento: this.datos.fechaNacimiento,
-              estadoCivil: this.datos.estadoCivil,
-              genero: this.datos.genero,
-              celular: this.datos.celular,
+              primerNombre: e.nombre, 
             }
-            this.auth.updateInfoUser(data).then(async ()=>{
+            this.api.editFirstName(data).subscribe(async ()=>{
+              this.loadPerfil()
               const toast = await this.toastController.create({
                 message: 'Nombre actualizado exitosamente',
                 duration: 2000
               });
               toast.present();
+            },async erro=>{
+              const toast = await this.toastController.create({
+                message: erro.error.message,
+                duration: 2000
+              });
+              toast.present();
             })
             alert.dismiss()
-            console.log('Confirm Ok', e);
+           
+          }
+        }
+      ]
+    })
+    await alert.present();
+  }
+
+  async editName2(e){
+    const alert = await this.alertController.create({
+      header: 'Escribe tu segundo nombre',
+      inputs: [
+        {name: 'nombre',type: 'text',value: e,placeholder:'Segundo nombre',label: 'Nombre',},
+      ],
+      buttons: [
+        {
+          text: 'CANCELAR',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            
+          }
+        }, {
+          text: 'GUARDAR',
+          handler: (e) => {
+            let data = {
+              segundoNombre: e.nombre,
+            }
+            this.api.editsecundtName(data).subscribe(async ()=>{
+              this.loadPerfil()
+              const toast = await this.toastController.create({
+                message: 'Segundo nombre actualizado exitosamente',
+                duration: 2000
+              });
+              toast.present();
+            },async erro=>{
+              const toast = await this.toastController.create({
+                message: erro.error.message,
+                duration: 2000
+              });
+              toast.present();
+            })
+            alert.dismiss()
+           
+          }
+        }
+      ]
+    })
+    await alert.present();
+  }
+  
+  async editApellido(e){
+    const alert = await this.alertController.create({
+      header: 'Escribe tu apellido',
+      inputs: [
+        {name: 'apellido',type: 'text',value: e,placeholder:'Apellido',label: 'apellido',},
+      ],
+      buttons: [
+        {
+          text: 'CANCELAR',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            
+          }
+        }, {
+          text: 'GUARDAR',
+          handler: (e) => {
+            let data = {
+              primerApellido: e.apellido,             
+            }
+            this.api.editPrimerApellido(data).subscribe(async ()=>{
+              this.loadPerfil()
+              const toast = await this.toastController.create({
+                message: 'Apellido actualizado exitosamente',
+                duration: 2000
+              });
+              toast.present();
+            },async erro=>{
+              const toast = await this.toastController.create({
+                message: erro.error.message,
+                duration: 2000
+              });
+              toast.present();
+            })
+           
+          }
+        }
+      ]
+    })
+    await alert.present();
+  }
+
+   async editApellido2(e){
+    const alert = await this.alertController.create({
+      header: 'Escribe tu segundo apellido',
+      inputs: [
+        {name: 'apellido',type: 'text',value: e,placeholder:'Apellido',label: 'apellido',},
+      ],
+      buttons: [
+        {
+          text: 'CANCELAR',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            
+          }
+        }, {
+          text: 'GUARDAR',
+          handler: (e) => {
+            let data = {
+              segundoApellido: e.apellido,
+            }
+            this.api.editSegundoApellido(data).subscribe(async ()=>{
+              this.loadPerfil()
+              const toast = await this.toastController.create({
+                message: 'Segundo apellido actualizado exitosamente',
+                duration: 2000
+              });
+              toast.present();
+            },async erro=>{
+              const toast = await this.toastController.create({
+                message: erro.error.message,
+                duration: 2000
+              });
+              toast.present();
+            })
+           
           }
         }
       ]
@@ -100,32 +225,29 @@ export class ProfileTabsPage implements OnInit {
           role: 'cancel',
           cssClass: 'secondary',
           handler: () => {
-            console.log('Confirm Cancel');
+            
           }
         }, {
           text: 'GUARDAR',
           handler: (e) => {
             let data = {
-              id: this.datos.id,
-              PrimerNombre: this.datos.PrimerNombre,
-              segundoNombre: this.datos.segundoNombre,
-              primerApellido: this.datos.primerApellido,
-              segundoApellido: this.datos.segundoApellido,
-              tipoDocumento: this.datos.tipoDocumento,
               documento: e.documento,
-              fechaNacimiento: this.datos.fechaNacimiento,
-              estadoCivil: this.datos.estadoCivil,
-              genero: this.datos.genero,
-              celular: this.datos.celular,
             }
-            this.auth.updateInfoUser(data).then(async ()=>{
+            this.api.editDocumento(data).subscribe(async ()=>{
+              this.loadPerfil()
               const toast = await this.toastController.create({
                 message: 'Documento actualizado exitosamente',
                 duration: 2000
               });
               toast.present();
+            },async erro=>{
+              const toast = await this.toastController.create({
+                message: erro.error.message,
+                duration: 2000
+              });
+              toast.present();
             })
-            console.log('Confirm Ok', e);
+           
           }
         }
       ]
@@ -133,57 +255,13 @@ export class ProfileTabsPage implements OnInit {
     await alert.present();
   }
 
-  async editApellido(e){
-    const alert = await this.alertController.create({
-      header: 'Escribe tu apellido',
-      inputs: [
-        {name: 'apellido',type: 'text',value: e,placeholder:'Apellido',label: 'apellido',},
-      ],
-      buttons: [
-        {
-          text: 'CANCELAR',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: () => {
-            console.log('Confirm Cancel');
-          }
-        }, {
-          text: 'GUARDAR',
-          handler: (e) => {
-            let data = {
-              id: this.datos.id,
-              PrimerNombre: this.datos.PrimerNombre,
-              segundoNombre: this.datos.segundoNombre,
-              primerApellido: e.apellido,
-              segundoApellido: this.datos.segundoApellido,
-              tipoDocumento: this.datos.tipoDocumento,
-              documento: this.datos.documento,
-              fechaNacimiento: this.datos.fechaNacimiento,
-              estadoCivil: this.datos.estadoCivil,
-              genero: this.datos.genero,
-              celular: this.datos.celular,
-            }
-            this.auth.updateInfoUser(data).then(async ()=>{
-              const toast = await this.toastController.create({
-                message: 'Apellido actualizado exitosamente',
-                duration: 2000
-              });
-              toast.present();
-            })
-            console.log('Confirm Ok', e);
-          }
-        }
-      ]
-    })
-    await alert.present();
-  }
 
 
   async editMail(e){
     const alert = await this.alertController.create({
       header: 'Escribe tu correo',
       inputs: [
-        {name: 'email',type: 'email',value: e,placeholder:'Apellido',label: 'email',},
+        {name: 'email',type: 'email',value: e,placeholder:'example@mail.co',label: 'email',},
       ],
       buttons: [
         {
@@ -191,7 +269,7 @@ export class ProfileTabsPage implements OnInit {
           role: 'cancel',
           cssClass: 'secondary',
           handler: () => {
-            console.log('Confirm Cancel');
+            
           }
         }, {
           text: 'GUARDAR',
@@ -207,13 +285,16 @@ export class ProfileTabsPage implements OnInit {
                   role: 'cancel',
                   cssClass: 'secondary',
                   handler: (blah) => {
-                    console.log('Confirm Cancel: blah');
+                   
                   }
                 }, {
                   text: 'ACEPTAR',
                   handler: async () => {
-                    this.auth.updateMail(e.email)
-                    console.log('Confirm Okay');
+                    this.auth.updateMail(e.email).then(()=>{
+                      
+                      this.navctrl.navigateRoot('/home')
+                    })
+                   
                   }
                 }
               ]
@@ -236,13 +317,28 @@ export class ProfileTabsPage implements OnInit {
           role: 'cancel',
           cssClass: 'secondary',
           handler: (blah) => {
-            console.log('Confirm Cancel: blah');
+           
           }
         }, {
           text: 'ENVIAR',
           handler: async () => {
-            this.auth.forgotPassword(e)
-            console.log('Confirm Okay');
+           this.api.restablecerPass().subscribe(async ()=>{
+            const alert = await this.alertController.create({
+              header: 'Instrucciones enviadas',
+              mode: "md",
+              message: 'Hemos enviado instrucciones para cambiar tu contraseña a <strong>'+ e + '.</strong> Revisa la bandeja de entrada y la de spam',
+              buttons: ['OK']
+            });
+            await alert.present();
+           },async erro=>{
+            const toast = await this.toastController.create({
+              message: erro.error.message,
+              duration: 2000,
+              position: 'bottom',
+            });
+            toast.present()
+           })
+           
           }
         }
       ]
@@ -251,25 +347,37 @@ export class ProfileTabsPage implements OnInit {
 
   }
   
-  loadPerfil() {
+  async loadPerfil() {
+    const loading = await this.loadingController.create({
+      message: 'Por favor espere...',
+      mode: 'md'
+    });
+    await loading.present();
+    this.api.GetInfoUser().subscribe(((data:any)=>{
+      this.datos = data
+      console.log(this.datos)
+      if(data.foto==null){
+        this.base64Image = "./assets/img/person1.png"
+      }else{
+        this.base64Image = data.foto
+      }
+      loading.dismiss()
+    }),erro=>{
+      loading.dismiss()
+    })
+    // let dato: any = this.auth.userDetails()
 
-    let dato: any = this.auth.userDetails()
-    console.log(dato)
-    this.datosProfile = dato
-   
-     this.auth.getInfoUser(dato.uid).subscribe(data => {
-       console.log(data)
-       this.datos = data
-     })
+    // this.datosProfile = dato
+  
 
-    let data: any = this.auth.userDetails()
-    this.base64Image = data.photoURL
-    if (data.photoURL == null || !data.photoURL) {
-      this.base64Image = './assets/img/person.png'
-    } else {
-      this.base64Image = data.photoURL
-      this.downloadUrl = data.photoURL
-    }
+    // let data: any = this.auth.userDetails()
+    // this.base64Image = data.photoURL
+    // if (data.photoURL == null || !data.photoURL) {
+    //   this.base64Image = './assets/img/person.png'
+    // } else {
+    //   this.base64Image = data.photoURL
+    //   this.downloadUrl = data.photoURL
+    // }
   }
 
   async onClick() {
@@ -282,13 +390,14 @@ export class ProfileTabsPage implements OnInit {
           role: 'cancel',
           cssClass: 'secondary',
           handler: (blah) => {
-            console.log('Confirm Cancel: blah');
+           
           }
         }, {
           text: 'OK',
           handler: async () => {
-            this.auth.logoutUser()
-            console.log('Confirm Okay');
+            // this.auth.logoutUser()
+            this.navctrl.navigateRoot('/home')
+           
           }
         }
       ]
@@ -317,7 +426,16 @@ export class ProfileTabsPage implements OnInit {
     task.then(() => {
       ref.getDownloadURL().subscribe((e) => {
         this.base64Image = e
-        this.auth.updatePhotoProfile(e)
+        let data = {
+          url : e
+        }
+     
+        this.api.UploadPhoto(data).subscribe((a)=>{
+          alert("Subida con exito")
+        },erro=>{
+          // alert(erro.error.message)
+        })
+        // this.auth.updatePhotoProfile(e)
         loading.dismiss()
       })
     }).catch(() => { loading.dismiss() })
@@ -407,8 +525,7 @@ export class ProfileTabsPage implements OnInit {
 
           // get the path..
           let path = nativeURL.substring(0, nativeURL.lastIndexOf("/"));
-          console.log("path", path);
-          console.log("fileName", name);
+       
 
           fileName = name;
 
@@ -421,7 +538,7 @@ export class ProfileTabsPage implements OnInit {
           let imgBlob = new Blob([buffer], {
             type: "image/jpeg"
           });
-          console.log(imgBlob.type, imgBlob.size);
+      
           resolve({
             fileName,
             imgBlob
@@ -444,7 +561,16 @@ export class ProfileTabsPage implements OnInit {
         fileRef.getDownloadURL().then((e) => {
      
           this.base64Image = e
-          this.auth.updatePhotoProfile(e)
+          let data = {
+            url : e
+          }
+          // alert(e)
+          // this.auth.updatePhotoProfile(e)
+          this.api.UploadPhoto(data).subscribe((a)=>{
+                alert("foto subida")
+          },erro=>{
+            // alert(erro.error.message)
+          })
           //  this.auth.userDetails()
           //  this.loadPerfil()
           loading.dismiss()
@@ -454,13 +580,10 @@ export class ProfileTabsPage implements OnInit {
       uploadTask.on(
         "state_changed",
         (_snapshot: any) => {
-          console.log(
-            "snapshot progess " +
-            (_snapshot.bytesTransferred / _snapshot.totalBytes) * 100
-          );
+
         },
         _error => {
-          console.log(_error);
+    
           reject(_error);
         },
         () => {

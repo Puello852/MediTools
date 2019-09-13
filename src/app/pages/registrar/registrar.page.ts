@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { ApiToolsService } from 'src/app/services/api-tools.service';
@@ -21,10 +21,10 @@ export class RegistrarPage implements OnInit {
   minDate = moment().subtract(18,'year').format('YYYY-MM-DD')
   monthNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre' ]
   form = new FormGroup({
-    nombre: new FormControl('', Validators.required),
-    seugnonombre: new FormControl(''),
-    apellido: new FormControl('', Validators.required),
-    segundoapellido: new FormControl('', Validators.required),
+    nombre: new FormControl('', [Validators.required,Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*$/)]),
+    seugnonombre: new FormControl('',Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*$/)),
+    apellido: new FormControl('', [Validators.required,Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*$/)]),
+    segundoapellido: new FormControl('', [Validators.required,Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*$/)]),
     tipodocumento: new FormControl('', Validators.required),
     confirmardocumento: new FormControl('', Validators.required),
     documento: new FormControl('', [Validators.required,Validators.min(5)]),
@@ -38,7 +38,7 @@ export class RegistrarPage implements OnInit {
   },{validators:this.checkPasswords})
   nameIcons: string ="arrow-round-forward";
   
-  constructor(private api:ApiToolsService,private statusBar: StatusBar,private authService:AuthenticationService,public alertController: AlertController,public ruta: Router) {
+  constructor(public loadingController: LoadingController,private api:ApiToolsService,private statusBar: StatusBar,private authService:AuthenticationService,public alertController: AlertController,public ruta: Router) {
     
    }
 
@@ -77,6 +77,8 @@ export class RegistrarPage implements OnInit {
     }
   }
 
+  
+
    checkPasswords(group: FormGroup) { // here we have the 'passwords' group
   let pass = group.controls.password.value;
   let confirmPass = group.controls.confpassword.value;
@@ -91,7 +93,12 @@ export class RegistrarPage implements OnInit {
     this.statusBar.backgroundColorByHexString('#003c8f');
   }
 
-  register(){
+  async register(){
+    const loading = await this.loadingController.create({
+      message: 'Por favor espere...',
+      mode: 'md'
+    });
+    await loading.present();
     let data = {
       email : this.form.controls.email.value,
       password: this.form.controls.password.value,
@@ -103,36 +110,56 @@ export class RegistrarPage implements OnInit {
       segundoApellido: this.form.controls.segundoapellido.value,
       tipoDocumento: this.form.controls.tipodocumento.value,
       documento: this.form.controls.documento.value,
-      fechaNacimiento: moment(this.form.controls.fechanacimiento.value).format('DD MMMM YYYY') ,
+      fechaNacimiento: moment(this.form.controls.fechanacimiento.value).locale('es').format('DD MMMM YYYY'),
       estadoCivil: this.form.controls.estadocivil.value,
       genero:  this.form.controls.genero.value,
       celular: this.form.controls.celular.value,
+      verificado: false,
       rol:{
         personaNatural: true,
-        EntidadDeSalud: false
+        entidadDeSalud: false
       }
     }
-    // this.api.registerStart(data).subscribe((data:any)=>{
-    //   console.log(data)
-    // })
-     this.authService.registerUser(data,datos).then(async res=>{
-       const alert = await this.alertController.create({
-         header: 'Exito',
-         message: 'Usuario creado exitosamente',
-         buttons: ['OK']
-       })
-       await alert.present().then(res=>{
-         this.ruta.navigate(['/home'])
-       });
-    //   // this.authService.sendVerificacion()
-     },async err=>{
-       const alert = await this.alertController.create({
-         header: 'Error',
-         message: 'Ocurrio un error',
-         buttons: ['OK']
-       })
-       alert.present()
+     this.api.registerStart(data).subscribe((data:any)=>{
+       loading.dismiss()
+       this.api.guardarToken(data.Acesstoken,data.Refreshtoken,null )
+       this.api.nuevapersonaNatural(datos).subscribe((async a => {
+         const alert = await this.alertController.create({
+           header: 'Exito',
+           message: 'Usuario creado exitosamente',
+           buttons: ['OK']
+         })
+         await alert.present().then(res=>{
+            this.ruta.navigate(['/home'])
+          });
+       }))
+     },async erro=>{
+      const alert = await this.alertController.create({
+        header: 'Exito',
+        message: erro.error.message,
+        buttons: ['OK']
+      })
+      await alert.present()
+      loading.dismiss()
      })
+    //  this.authService.registerUser(data,datos).then(async res=>{
+    //    const alert = await this.alertController.create({
+    //      header: 'Exito',
+    //      message: 'Usuario creado exitosamente',
+    //      buttons: ['OK']
+    //    })
+    //    await alert.present().then(res=>{
+    //      this.ruta.navigate(['/home'])
+    //    });
+    // //   // this.authService.sendVerificacion()
+    //  },async err=>{
+    //    const alert = await this.alertController.create({
+    //      header: 'Error',
+    //      message: 'Ocurrio un error',
+    //      buttons: ['OK']
+    //    })
+    //    alert.present()
+    //  })
   }
 
 }

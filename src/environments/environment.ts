@@ -5,15 +5,15 @@
 export const environment = {
   production: false,
   firebaseConfig: {
-    apiKey: "AIzaSyB2SvBpTRGf_LSOrI-LH_RL8wLhtNtm3Eg",
-    authDomain: "meditools-2cb94.firebaseapp.com",
-    databaseURL: "https://meditools-2cb94.firebaseio.com",
-    projectId: "meditools-2cb94",
-    storageBucket: "meditools-2cb94.appspot.com",
-    messagingSenderId: "1097034076165",
-    appId: "1:1097034076165:web:2eac93c4f359784b"
+    apiKey: "AIzaSyDYk6pRv7aFmIsYgurrDq4RXqDawi7Mmew",
+    authDomain: "meditoolsprueba.firebaseapp.com",
+    databaseURL: "https://meditoolsprueba.firebaseio.com",
+    projectId: "meditoolsprueba",
+    storageBucket: "meditoolsprueba.appspot.com",
+    messagingSenderId: "324844423085",
+    appId: "1:324844423085:web:0e750106a6cd94ae"
   },
-  apiUrl: 'http://192.168.94.12:5000/api/',
+  apiUrl: 'http://192.168.94.4:5000/api/',
 }
 
 /*

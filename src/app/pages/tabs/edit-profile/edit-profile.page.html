@@ -1,38 +1,29 @@
-<ion-header>
-  <ion-toolbar class="header">
-    <ion-title >Editar Perfil</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="dismissModal()">Cerrar</ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
 
+<ion-grid style="margin-top: 6%">
+    <ion-row>
+        <ion-col size="12">
+          <img class="imgemail" src="./assets/img/email.png" alt="">
+          <h3 style="text-align: center">
+          Confirmacion de correo
+        </h3>
+        <span class="text1">Estamos esperando a que verifiques tu correo ya hemos enviado recientemente un correo a <span style="color: #0074FF;    text-decoration: underline;">{{emails}}</span> para confirmar que el correo es valido. Sigue las instrucciones para completar tu registro</span>
+        <ion-item-divider>
+        </ion-item-divider>
+        <span (click)="resendCode()" style="margin-top: 6px" class="text1">
+            Si no recibiste ningún correo
+            <span style="color: #0074FF">
+                Reenviar confirmación de correo
+            </span>
+        </span>
+        <span style="margin-top: 10px" class="text1">
+            Si no tienes acceso a ese correo
+            <span style="color: #0074FF">
+                Cambiar correo electronico 
+              </span>
+        </span> 
+      </ion-col>
+      </ion-row>
+</ion-grid>
 
-  <div class="container-login100">
-    <div class="wrap-login100">
-      <form [formGroup]="form">
-        <div class="wrap-input100">
-          <ion-item>
-            <ion-label position="floating">Nombre</ion-label>
-            <ion-input></ion-input>
-          </ion-item>
-
-        </div>
-        <div class="wrap-input100">
-          <ion-item>
-            <ion-label position="floating">Celular</ion-label>
-            <ion-input></ion-input>
-          </ion-item>
-        </div>
-        <div class="wrap-input100">
-          <ion-item>
-            <ion-label position="floating">Documento</ion-label>
-            <ion-input></ion-input>
-          </ion-item>
-        </div>
-      </form>
-    </div>
-  </div>
 </ion-content>

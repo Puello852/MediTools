@@ -1,0 +1,49 @@
+.img{
+    width: 250px;
+    height: 250px;
+    margin: auto;
+    display: block;
+}
+
+.exit{
+    --background: transparent;
+    --color: #259ce4;
+    --box-shadow: none !important;
+}
+
+.favorite{
+    position: absolute;
+    right: 5px;
+    --background: transparent;
+    --color: #259ce4;
+    --box-shadow: none !important;
+}
+
+.footer{
+    height: 78px;
+    // border-radius: 14px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    // background-color: #259ce4;
+}
+
+.fecha{
+    font-size: 17px;
+    text-align: center;
+    color: #259ce4;
+    font-weight: 600;
+}
+
+.pedir{
+    color: white;
+    text-align: center;
+    }
+
+.arrow{
+    font-size: 24px;
+    color: #ffffff;
+    top: 2px;
+    margin-left: 2px;
+    position: relative;
+}

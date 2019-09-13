@@ -19,20 +19,26 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RecaptchaModule } from 'ng-recaptcha';
+import { IonicStorageModule } from '@ionic/storage';
+import { EditProfilePage } from './pages/tabs/edit-profile/edit-profile.page';
+import { HTTP } from '@ionic-native/http/ngx';
+import { FiltroCitasPipe } from './Pipes/filtro-citas.pipe';
 @NgModule({
-  declarations: [AppComponent,DashboardHomePage],
-  entryComponents: [],
+  declarations: [AppComponent,DashboardHomePage,EditProfilePage, FiltroCitasPipe],
+  entryComponents: [EditProfilePage],
   imports: [
     RecaptchaModule.forRoot(),
+    IonicStorageModule.forRoot(),
     FontAwesomeModule,
     HttpClientModule,
+    
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     BrowserModule, AngularFireAuthModule, IonicModule.forRoot(), AppRoutingModule],
   providers: [
     AngularFireStorage,
     File,
-    
+    HTTP,
     Camera,
     ApiToolsService,
     AuthenticationService,

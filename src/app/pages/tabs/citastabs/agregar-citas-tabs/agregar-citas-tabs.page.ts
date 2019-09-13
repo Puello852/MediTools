@@ -51,7 +51,7 @@ export class AgregarCitasTabsPage implements OnInit {
     }
  
     // this.eventSource.push(eventCopy);
-    console.log(eventCopy)
+
     const toast = await this.toas.create({
       message: 'Cita creada exitosamente',
       duration: 2000

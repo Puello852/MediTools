@@ -16,6 +16,7 @@ const routes: Routes = [
   ]},
   { path: 'edit-profile', loadChildren: './pages/tabs/edit-profile/edit-profile.module#EditProfilePageModule' },
   { path: 'agregar-citas-tabs', loadChildren: './pages/tabs/citastabs/agregar-citas-tabs/agregar-citas-tabs.module#AgregarCitasTabsPageModule' },
+  { path: 'detalle-nueva-cita/:id', loadChildren: './pages/tabs/citastabs/detalle-nueva-cita/detalle-nueva-cita.module#DetalleNuevaCitaPageModule' },
 ];
 
 @NgModule({

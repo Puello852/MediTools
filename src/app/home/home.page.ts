@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AuthenticationService } from '../services/authentication.service';
-import { AlertController, ToastController, LoadingController, NavController } from '@ionic/angular';
+import { AlertController, ToastController, LoadingController, NavController, Platform } from '@ionic/angular';
 import { ApiToolsService } from '../services/api-tools.service';
 import { ReCaptchaV3Service } from 'ng-recaptcha';
 @Component({
@@ -21,14 +21,14 @@ export class HomePage implements OnInit {
     number: new FormControl(''),
   })
 
-  constructor(public api:ApiToolsService,public navCtrl: NavController,private statusBar: StatusBar,private authService:AuthenticationService,public toastController: ToastController,public loadingController: LoadingController,public alertController: AlertController) {
+  constructor(private plat:Platform,public api:ApiToolsService,public navCtrl: NavController,private statusBar: StatusBar,private authService:AuthenticationService,public toastController: ToastController,public loadingController: LoadingController,public alertController: AlertController) {
     this.statusBar.styleLightContent()
   }
 
   // public executeImportantAction(): void {
   //   this.recaptchaV3Service.execute('importantAction').subscribe((token) =>{
      
-  //     console.log(token)
+
 
   //   });
   // }
@@ -59,7 +59,7 @@ export class HomePage implements OnInit {
           {
             text: 'Cancelar',
             handler: (blah) => {
-              console.log('Confirm Cancel: blah');
+           
             }
           }, {
             text: 'Aceptar',
@@ -81,35 +81,78 @@ export class HomePage implements OnInit {
   }
 
 
-  async login(){
-      const loading = await this.loadingController.create({
-        message: 'Por favor espere...',
-        mode:'md'
-      });
-      await loading.present();
-      let data ={
-        email: this.form.controls.email.value,
-        password:this.form.controls.password.value,
-      }
-      //   this.api.login(data).subscribe((data:any)=>{
-      //     console.log(data)
-      //  })
-         this.authService.loginUser(data).then(async res=>{
-           loading.dismiss()
-           const toast = await this.toastController.create({
-             message: 'Bienvenido.',
-             duration: 2000,
-             position: 'bottom',
-   
-           });
-           toast.present();
-          let data:any = this.authService.userDetails()
-      
-           this.authService.getInfoUser(data.uid).subscribe(data=>{
-            console.log(data)
+  async login() {
+    // const loading = await this.loadingController.create({
+    //   message: 'Por favor espere...',
+    //   mode: 'md'
+    // });
+    // await loading.present();
+    let data = {
+      email: this.form.controls.email.value,
+      password: this.form.controls.password.value,
+    }
+     this.authService.loginUser(data)
+    // if(this.plat.is('cordova')){
+    //   this.authService.logi(data)
+    // }else{
+     const loading = await this.loadingController.create({
+           message: 'Por favor espere...',
+           mode: 'md'
+         });
+         await loading.present();
+      this.api.login(data).subscribe(async (data: any) => {
+        this.navCtrl.navigateRoot('/dashboard/home')
+        loading.dismiss()
+        let datauid: any = this.authService.userDetails()
+     
+        this.api.recibido(data.token)
+        //  alert("Token desde login"+data.token)
+        this.api.guardarToken(data.token, data.Refreshtoken, datauid.uid)
+        const toast = await this.toastController.create({
+          message: 'Bienvenido.',
+          duration: 2000,
+          position: 'bottom',
+        });
+        toast.present();
+  
+      }, async erro => {
+        this.api.guardarToken(null, null, null)
+        loading.dismiss()
+
+        if (erro.error.code == -1) {
+          const alert = await this.alertController.create({
+            header: 'Hola',
+            message: 'Para poder iniciar sesión debes primero validar tu correo electrónico, por favor verifica tu bandeja de entrada o spam',
+            buttons: ['OK']
           })
-          this.navCtrl.navigateRoot('/dashboard/home')
-         })
+          await alert.present()
+        } else {
+          // alert(await JSON.stringify(erro))
+          const toast = await this.toastController.create({
+            message: erro.error.message,
+            duration: 2000,
+            position: 'bottom',
+          });
+          toast.present()
+        }
+      })
+    // }
+        //  this.authService.loginUser(data).then(async res=>{
+        //    loading.dismiss()
+        //    const toast = await this.toastController.create({
+        //      message: 'Bienvenido.',
+        //      duration: 2000,
+        //      position: 'bottom',
+   
+        //    });
+        //    toast.present();
+        //   let data:any = this.authService.userDetails()
+      
+        //    this.authService.getInfoUser(data.uid).subscribe(data=>{
+
+        //   })
+        //   this.navCtrl.navigateRoot('/dashboard/home')
+        //  })
   }
 
  

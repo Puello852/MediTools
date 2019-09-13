@@ -1,0 +1,67 @@
+<!-- <ion-header>
+  <ion-toolbar> 
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>DetalleNuevaCita</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+
+  <ion-grid fixed>
+
+    <ion-button class="exit" (click)="back()">
+      <ion-icon slot="icon-only" name="close-circle"></ion-icon>
+    </ion-button>
+
+    <!-- <ion-button class="favorite" (click)="onClick()">
+      <ion-icon slot="icon-only" name="bookmark"></ion-icon>
+    </ion-button> -->
+    <ion-row>
+      <ion-col size="12">
+        <img class="img" src="{{medico.foto}}" alt="">
+      </ion-col>
+      <ion-col size="12" padding>
+        <h2 style="font-weight: 600;">{{medico.nombre1}} {{medico.nombre2}} {{medico.apellido1}} {{medico.apellido2}}</h2>
+        <span style="color: gray">{{medico.descripcioncorta}}</span>
+        <div style="margin-top: 3px">
+          <fa-icon style="font-size: 15px;color:#f79312; margin-right: 3px;" [icon]="cog"></fa-icon>
+          <fa-icon style="font-size: 15px;color:#f79312; margin-right: 3px;" [icon]="cog"></fa-icon>
+          <fa-icon style="font-size: 15px;color:#f79312; margin-right: 3px;" [icon]="cog"></fa-icon>
+          <fa-icon style="font-size: 15px;color:#f79312; margin-right: 3px;" [icon]="cog"></fa-icon>
+          <fa-icon style="font-size: 15px;color:#f79312; margin-right: 3px;" [icon]="cog"></fa-icon> <span
+            style="color: gray;font-size: 12px">
+            (15 Opiniones)
+          </span>
+        </div>
+
+        <div>
+          <h5 style="line-height: 0.8; font-size: 16px;font-weight: 600">
+            {{medico.direccion}}, {{medico.ciudad}}
+          </h5>
+          <h5 style="line-height: 0.8; font-size: 16px;font-weight: 600">
+           {{medico.especialidad}}
+          </h5>
+          <span style="color: gray;padding-bottom: 29%;">
+            {{medico.descripcionprofecional}}
+            </span>
+        </div>
+
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div (click)="pedirCita()" class="footer">
+    <ion-grid  fixed style="padding: 0">
+      <ion-row>
+        
+        <ion-col size="12" style="height: 100vh;background-color: #259ce4;">
+          <h3 class="pedir">Pedir cita <fa-icon class="arrow" [icon]="arrow"></fa-icon>
+          </h3>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+</ion-content>
