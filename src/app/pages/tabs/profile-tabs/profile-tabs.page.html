@@ -2,6 +2,7 @@
 
 
   <div class="header">
+      <ion-icon style="color: #393f464d;" slot="icon-only" name="create" mode="md"></ion-icon>
   </div>
 
   <div class="container">
@@ -11,7 +12,7 @@
     <div (click)="editPhoto()" class="buttonEdit">
       <ion-icon style="top: 7px;color: white;position: relative;" slot="icon-only" name="create" mode="md"></ion-icon>
     </div>
-    <h3 style="position: relative;bottom: 116px;text-align: center;"> <span style="font-weight: 500">{{datos.nombre1}}
+    <h3 (click)="editNames()" style="position: relative;bottom: 116px;text-align: center;"> <span style="font-weight: 500">{{datos.nombre1}}
         {{datos.nombre2}} {{datos.apellido1}} {{datos.apellido2}} <ion-icon style="color: #393f464d;" slot="icon-only" name="create" mode="md"></ion-icon></span></h3>
 
     <ion-grid fixed class="grid">
@@ -24,7 +25,7 @@
           </ion-row>
           <ion-row>
             <ion-col size="12">
-              <span style="font-weight: 600;font-size: 15px"> Masculino </span>
+              <span style="font-weight: 600;font-size: 15px"> {{datos.genero}} </span>
             </ion-col>
           </ion-row>
         </ion-col>
@@ -36,7 +37,7 @@
           </ion-row>
           <ion-row>
             <ion-col size="12">
-              <span style="font-weight: 600;font-size: 15px"> 15-12-1997 </span>
+              <span style="font-weight: 600;font-size: 15px"> {{datos.fechanacimiento}} </span>
             </ion-col>
           </ion-row>
         </ion-col>
@@ -109,7 +110,7 @@
                 <span style="color:gray">Número de télefono</span>
               </ion-col>
               <ion-col size="12">
-                  <span style="font-weight: 600;font-size: 17px"> 3217199814 <ion-icon style="color: #393f464d;" slot="icon-only" name="create" mode="md"></ion-icon></span>
+                  <span style="font-weight: 600;font-size: 17px">(+57) {{datos.celular}} <ion-icon style="color: #393f464d;" slot="icon-only" name="create" mode="md"></ion-icon></span>
               </ion-col>
             </ion-row>
           </ion-col>
@@ -120,7 +121,7 @@
                 <span style="color:gray">Dirección</span>
               </ion-col>
               <ion-col size="12">
-                  <span style="font-weight: 600;font-size: 17px"> Calle 94#7-78 <ion-icon style="color: #393f464d;" slot="icon-only" name="create" mode="md"></ion-icon></span>
+                  <span style="font-weight: 600;font-size: 17px"> calee 94# 6 </span>
               </ion-col>
             </ion-row>
           </ion-col>
@@ -134,7 +135,13 @@
                     <span style="font-weight: 600;font-size: 17px"> ******** <ion-icon style="color: #393f464d;" slot="icon-only" name="create" mode="md"></ion-icon></span>
                 </ion-col>
               </ion-row>
-            </ion-col>
+          </ion-col>
+
+          <ion-col size="12">
+            <ion-row>
+              <ion-button (click)="onClick()" style="font-style: initial" color="primary">Cerrar sesión</ion-button>
+            </ion-row>
+        </ion-col>
 
       </ion-row>
     </ion-grid>

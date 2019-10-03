@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { RegistrarPage } from './registrar.page';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { RecaptchaModule } from 'ng-recaptcha';
 
 const routes: Routes = [
   {
@@ -20,6 +21,7 @@ const routes: Routes = [
   imports: [
     AngularFireAuthModule,
     CommonModule,
+    RecaptchaModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
     IonicModule,

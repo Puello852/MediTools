@@ -25,17 +25,7 @@ export class HomePage implements OnInit {
     this.statusBar.styleLightContent()
   }
 
-  // public executeImportantAction(): void {
-  //   this.recaptchaV3Service.execute('importantAction').subscribe((token) =>{
-     
-
-
-  //   });
-  // }
-
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
     this.statusBar.styleLightContent()
   }
 
@@ -82,19 +72,11 @@ export class HomePage implements OnInit {
 
 
   async login() {
-    // const loading = await this.loadingController.create({
-    //   message: 'Por favor espere...',
-    //   mode: 'md'
-    // });
-    // await loading.present();
     let data = {
       email: this.form.controls.email.value,
       password: this.form.controls.password.value,
     }
      this.authService.loginUser(data)
-    // if(this.plat.is('cordova')){
-    //   this.authService.logi(data)
-    // }else{
      const loading = await this.loadingController.create({
            message: 'Por favor espere...',
            mode: 'md'
@@ -104,9 +86,7 @@ export class HomePage implements OnInit {
         this.navCtrl.navigateRoot('/dashboard/home')
         loading.dismiss()
         let datauid: any = this.authService.userDetails()
-     
         this.api.recibido(data.token)
-        //  alert("Token desde login"+data.token)
         this.api.guardarToken(data.token, data.Refreshtoken, datauid.uid)
         const toast = await this.toastController.create({
           message: 'Bienvenido.',
@@ -127,7 +107,6 @@ export class HomePage implements OnInit {
           })
           await alert.present()
         } else {
-          // alert(await JSON.stringify(erro))
           const toast = await this.toastController.create({
             message: erro.error.message,
             duration: 2000,
@@ -136,23 +115,7 @@ export class HomePage implements OnInit {
           toast.present()
         }
       })
-    // }
-        //  this.authService.loginUser(data).then(async res=>{
-        //    loading.dismiss()
-        //    const toast = await this.toastController.create({
-        //      message: 'Bienvenido.',
-        //      duration: 2000,
-        //      position: 'bottom',
-   
-        //    });
-        //    toast.present();
-        //   let data:any = this.authService.userDetails()
-      
-        //    this.authService.getInfoUser(data.uid).subscribe(data=>{
 
-        //   })
-        //   this.navCtrl.navigateRoot('/dashboard/home')
-        //  })
   }
 
  

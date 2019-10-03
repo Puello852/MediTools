@@ -1,0 +1,7 @@
+{
+  "appId": "com.meditool.es",
+  "appName": "MediTools",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www"
+}

@@ -23,7 +23,10 @@ export class DetalleNuevaCitaPage implements OnInit {
   }
 
   obtenerMedico(e){
-    this.api.obetenerMedicoId(e).subscribe((data:any)=>{
+    let data = {
+      idDoctor: e
+    }
+    this.api.obetenerMedicoId(data).subscribe((data:any)=>{
         this.medico = data[0]
     })
   }
@@ -50,7 +53,7 @@ export class DetalleNuevaCitaPage implements OnInit {
             await loading.present();
             let data = {
               servicio: this.medico.especialidad,
-              idDoctor: this.medico.idDoctor,
+              idDoctor: this.medico.id,
               estado: 'Pendiente', 
             }
             this.api.pedircita(data).subscribe(async ()=>{

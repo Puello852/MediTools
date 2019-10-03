@@ -1,8 +1,9 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { ModalController, NavParams, AlertController, ToastController, LoadingController } from '@ionic/angular';
+import { ModalController, NavParams, AlertController, ToastController, LoadingController, NavController } from '@ionic/angular';
 import { FormGroup } from '@angular/forms';
 import { ApiToolsService } from 'src/app/services/api-tools.service';
 import { Observable, Subscription } from 'rxjs';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -17,7 +18,7 @@ export class EditProfilePage implements OnInit,OnDestroy {
   emails: any;
   privatedatos:Subscription
   interval:any
-  constructor(public loadingController: LoadingController,public toastController: ToastController,private modal:ModalController,navParams: NavParams,private auth:ApiToolsService,public alert:AlertController) { 
+  constructor(public navctrl: NavController,public loadingController: LoadingController,public toastController: ToastController,private modal:ModalController,navParams: NavParams,private auth:ApiToolsService,public alert:AlertController,private auth2:AuthenticationService) { 
     this.emails = navParams.get('email')
     this.procesoVerificacion()
  }
@@ -37,6 +38,58 @@ export class EditProfilePage implements OnInit,OnDestroy {
     this.privatedatos.unsubscribe()
     clearInterval(this.interval)
 
+  }
+
+  async changeMail(){
+  
+      const alert = await this.alert.create({
+        header: 'Escribe tu nuevo correo',
+        inputs: [
+          {name: 'email',type: 'email',value: this.emails,placeholder:'example@mail.co',label: 'email',},
+        ],
+        buttons: [
+          {
+            text: 'CANCELAR',
+            role: 'cancel',
+            cssClass: 'secondary',
+            handler: () => {
+              
+            }
+          }, {
+            text: 'GUARDAR',
+            handler: async (e) => {
+  
+  
+              const alert = await this.alert.create({
+                header: '¿Estas seguro?',
+                message: 'Estas seguro que cambiar el correo, recuerda que una vez se hayan realizados los cambios iniciaras sesión con el nuevo correo ingresado',
+                buttons: [
+                  {
+                    text: 'CANCELAR',
+                    role: 'cancel',
+                    cssClass: 'secondary',
+                    handler: (blah) => {
+                     
+                    }
+                  }, {
+                    text: 'ACEPTAR',
+                    handler: async () => {
+                      this.auth2.updateMail(e.email).then(()=>{
+                        
+                        this.navctrl.navigateRoot('/home')
+                      })
+                     
+                    }
+                  }
+                ]
+              });
+              await alert.present();
+            }
+          }
+        ]
+      })
+      await alert.present();
+    
   }
 
   procesoVerificacion(){

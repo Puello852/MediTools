@@ -3,7 +3,7 @@ import { Component, ViewChild, OnInit, Inject, LOCALE_ID } from '@angular/core';
 import { AlertController,ModalController, ToastController, LoadingController } from '@ionic/angular';
 import { faChevronLeft, faChevronRight,faNotesMedical } from '@fortawesome/free-solid-svg-icons'
 import { AgregarCitasTabsPage } from './agregar-citas-tabs/agregar-citas-tabs.page';
-import * as moment from 'moment';
+import moment from 'moment';
 import { ApiToolsService } from 'src/app/services/api-tools.service';
 import { Router } from '@angular/router';
 
@@ -64,9 +64,11 @@ export class CitastabsPage implements OnInit {
   mes: any;
   filtro: boolean;
   segemt: any;
-  medicos: any = [];
+  medicos: Array<any> = [];
   categorias: any;
   citas: any =[];
+  newLength: any = 1;
+  newmedicos: Array<any> = [];
  
   constructor(private router:Router,public loadingController: LoadingController,private api:ApiToolsService,public toastController: ToastController,public modalController: ModalController,private alertCtrl: AlertController, @Inject(LOCALE_ID) private locale: string) {
      
@@ -98,6 +100,7 @@ export class CitastabsPage implements OnInit {
     this.api.ListMedical().subscribe((data:any)=>{
       
       loading.dismiss()
+      this.newmedicos = data
       this.medicos = data
     })
   }
@@ -123,24 +126,51 @@ export class CitastabsPage implements OnInit {
     this.router.navigate(['detalle-nueva-cita/'+e])
   }
 
+
   async buscador(e){
-    console.log(e.detail.value)
+    let lengthfirst = e.detail.value.length
+    if(this.newLength == e.detail.value.length){
+      this.newLength++
+      console.log("es igual")
+    }else if(this.newLength != e.detail.value.length){
+      this.newLength--
+      this.api.ListMedical().subscribe((data:any)=>{
+        this.newmedicos = data
+      })
+      console.log("no es igual")
+    }
+
+    console.log(lengthfirst)
+    let busqueda = e.detail.value.toLowerCase()
+    // console.log(busqueda)
     if(e.detail.value == null || e.detail.value == ''){
+      this.newLength = 1
       this.lisTMedical()
     }else{
-     await this.api.buscadorMedical(e.detail.value).subscribe((data:any)=>{
+
+     let result = this.newmedicos.filter((data:any)=>{
+        console.log(data)
+       return data ? data.especialidad.includes(busqueda) || data.nombre.includes(busqueda) || data.apellido.includes(busqueda) : ""
+     })
+
+     console.log(result)
+     this.medicos = result
+
+
+    //  await this.api.buscadorMedical(e.detail.value).subscribe((data:any)=>{
        
-      if(data.code == -1){
-        this.medicos = []
-      }else{
-        this.medicos = data
-      }
-      if(e.detail.value == null || e.detail.value == ''){
-        this.lisTMedical()
-      }
-      },erro=>{
-        this.medicos = []
-      })
+    //   if(data.code == -1){
+    //     this.medicos = []
+    //   }else{
+    //     this.medicos = data
+    //   }
+    //   if(e.detail.value == null || e.detail.value == ''){
+    //     this.lisTMedical()
+    //   }
+    //   },erro=>{
+    //     this.medicos = []
+    //   })
+
     }
   }
   
@@ -149,9 +179,7 @@ export class CitastabsPage implements OnInit {
     this.resetEvent();
   }
 
-  async openalert(e){
-    moment
-  
+  async openalert(e){  
     const alert = await this.alertCtrl.create({
       header: e.title,
       message: e.desc+' <br> <br> El dia ' + moment(e.startTime).locale('es').format('DD MMMM YYYY HH:mm'),
@@ -170,6 +198,74 @@ export class CitastabsPage implements OnInit {
     };
   }
 
+  async all(){
+    const loading = await this.loadingController.create({
+      message: 'Por favor espere...',
+    });
+    await loading.present();
+      this.api.listarcitas().subscribe((data:any)=>{
+        this.filter(1)
+        if(data.code == -1){
+          loading.dismiss()
+          this.citas = []
+        }else{
+          loading.dismiss()
+          this.citas = data
+        }
+      })
+  }
+
+  async pendingCites(){
+    const loading = await this.loadingController.create({
+      message: 'Por favor espere...',
+    });
+    await loading.present();
+      this.api.listarcistasPendients().subscribe((data:any)=>{
+        this.filter(1)
+        if(data.code == -1){
+          loading.dismiss()
+          this.citas = []
+        }else{
+          loading.dismiss()
+          this.citas = data
+        }
+      })
+  }
+
+  async acceptCites(){
+    const loading = await this.loadingController.create({
+      message: 'Por favor espere...',
+    });
+    await loading.present();
+      this.api.listarcitasAceptada().subscribe((data:any)=>{
+        this.filter(1)
+        if(data.code == -1){
+          loading.dismiss()
+          this.citas = []
+        }else{
+          loading.dismiss()
+          this.citas = data
+        }
+      })
+  }
+
+  async cancelCites(){
+    const loading = await this.loadingController.create({
+      message: 'Por favor espere...',
+    });
+    await loading.present();
+      this.api.listarcitasCanceladas().subscribe((data:any)=>{
+        this.filter(1)
+        if(data.code == -1){
+          loading.dismiss()
+          this.citas = []
+        }else{
+         
+          loading.dismiss()
+          this.citas = data
+        }
+      })
+  }
    // Create the right event format and reload source
    addEvent() {
     let eventCopy = {
@@ -218,6 +314,10 @@ export class CitastabsPage implements OnInit {
     this.calendar.currentDate = new Date();
   }
 
+  unread(e){
+    console.log(e)
+  }
+
   async filter(e){
     if(e){
       const toast = await this.toastController.create({
@@ -227,6 +327,7 @@ export class CitastabsPage implements OnInit {
       toast.present();
     }
   if(this.filtro){
+    console.log("entro aqui :v")
     this.filtro = false
   }else{
     this.filtro = true

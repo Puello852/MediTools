@@ -16,6 +16,7 @@ export class HomeTabsPage implements OnInit {
   constructor(private auth:ApiToolsService,public alert:AlertController,public loadingController :LoadingController) { }
 
   ngOnInit() {
+    console.log("xdd")
     this.getinfo()
   }
 
@@ -35,8 +36,6 @@ export class HomeTabsPage implements OnInit {
       if (data.foto == 'None') {
        this.foto = './assets/img/person1.png'
      } else {
-    //  alert("trajo foto")
-  //  alert(JSON.stringify(data.foto))
        this.foto = await data.foto
      }
     },erro=>{

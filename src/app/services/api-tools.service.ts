@@ -14,6 +14,7 @@ export class ApiToolsService {
 
   getQuery( query: string, type: string,  authorization: boolean, body?: any ) {
 		const url = environment.apiUrl+query;
+		console.log(url)
 		let headers:any = new HttpHeaders({ 'Content-Type': 'application/json', 'Accept': 'application/json' });
 		
 		if (authorization)
@@ -99,7 +100,7 @@ export class ApiToolsService {
 	}
 
 	obetenerMedicoId(data){
-		return	this.getQuery('profesional/detalles/'+data, 'get', true)
+		return	this.getQuery('profesional/detalles', 'post', true,data)
 	}
 
 	pedircita(data){
@@ -121,6 +122,21 @@ export class ApiToolsService {
 	listarcitas(){
 		return this.getQuery('citas/miscitas', 'get',true)
 	}
+
+	listarcitasAceptada(){
+		return this.getQuery('citas/miscitasaceptadas', 'get',true)
+	}
+
+	listarcitasCanceladas(){
+		return this.getQuery('citas/miscitascanceladas', 'get',true)
+	}
+
+	listarcistasPendients(){
+		return this.getQuery('citas/miscitaspendientes', 'get',true)
+	}
+
+
+
 
 	recibido(token){
 		

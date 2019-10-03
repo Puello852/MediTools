@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
-import * as moment from 'moment';
+import moment from 'moment';
+import example from '../../../assets/departamentos.json';
+import municipio from '../../../assets/municipios.json';
 import { ApiToolsService } from 'src/app/services/api-tools.service';
 @Component({
   selector: 'app-registrar',
@@ -26,6 +28,8 @@ export class RegistrarPage implements OnInit {
     apellido: new FormControl('', [Validators.required,Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*$/)]),
     segundoapellido: new FormControl('', [Validators.required,Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*$/)]),
     tipodocumento: new FormControl('', Validators.required),
+    departamento: new FormControl('', Validators.required),
+    municipio: new FormControl('', Validators.required),
     confirmardocumento: new FormControl('', Validators.required),
     documento: new FormControl('', [Validators.required,Validators.min(5)]),
     fechanacimiento: new FormControl('', Validators.required),
@@ -37,11 +41,27 @@ export class RegistrarPage implements OnInit {
     confpassword: new FormControl('', Validators.required),
   },{validators:this.checkPasswords})
   nameIcons: string ="arrow-round-forward";
+  departamento: any;
+  municipios: any;
+  newmuni: any;
+  captchaPassed: boolean;
+  captchaResponse: string;
   
-  constructor(public loadingController: LoadingController,private api:ApiToolsService,private statusBar: StatusBar,private authService:AuthenticationService,public alertController: AlertController,public ruta: Router) {
-    
+  constructor(private zone: NgZone,public loadingController: LoadingController,private api:ApiToolsService,private statusBar: StatusBar,private authService:AuthenticationService,public alertController: AlertController,public ruta: Router) {
+    console.log(example)
+    this.departamento = example
+    this.municipios = municipio
    }
 
+   captchaResolved(response: string): void {
+
+    this.zone.run(() => {
+        this.captchaPassed = true;
+        this.captchaResponse = response;
+        console.log(response)
+    });
+
+}
    nextCase(){
      if(this.nameIcons == "arrow-round-back"){
        this.case1 = true
@@ -56,6 +76,24 @@ export class RegistrarPage implements OnInit {
        this.nameIcons = "arrow-round-forward"
      }
    }
+
+    numberOnly(event){
+
+        const charCode = (event.which) ? event.which : event.keyCode;
+        //  alert(charCode)
+        if (charCode > 47 && charCode < 58) {
+          return false;
+        }
+   }
+
+   numberOnlys(event): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
+
+  }
 
    password1(){  
     if(this.nameicon == 'eye'){
@@ -93,6 +131,25 @@ export class RegistrarPage implements OnInit {
     this.statusBar.backgroundColorByHexString('#003c8f');
   }
 
+
+  setDepartamento(e){
+    console.log(e.detail.value)
+
+    let found:any = this.departamento.find((data:any)=>{
+    //  console.log(data)
+     return data ? data.nombre == e.detail.value : ''
+    })
+
+    console.log(found)
+
+    this.newmuni = this.municipios.filter((data:any)=>{
+      return data ? data.id == found.id : []
+    })
+
+    console.log(this.newmuni)
+    
+    
+  }
   async register(){
     const loading = await this.loadingController.create({
       message: 'Por favor espere...',
@@ -102,17 +159,21 @@ export class RegistrarPage implements OnInit {
     let data = {
       email : this.form.controls.email.value,
       password: this.form.controls.password.value,
+      captcha: this.captchaResponse
     }
     let datos = {
       primerNombre: this.form.controls.nombre.value,
       segundoNombre: this.form.controls.seugnonombre.value,
+      departamento: this.form.controls.departamento.value,
+      municipio: this.form.controls.municipio.value,
       primerApellido: this.form.controls.apellido.value,
       segundoApellido: this.form.controls.segundoapellido.value,
       tipoDocumento: this.form.controls.tipodocumento.value,
       documento: this.form.controls.documento.value,
-      fechaNacimiento: moment(this.form.controls.fechanacimiento.value).locale('es').format('DD MMMM YYYY'),
+      repetirDocumento: this.form.controls.confirmardocumento.value,
+      fechaNacimiento: moment(this.form.controls.fechanacimiento.value).format('DD-MM-YYYY'),
       estadoCivil: this.form.controls.estadocivil.value,
-      genero:  this.form.controls.genero.value,
+      genero:  this.form.controls.genero.value, 
       celular: this.form.controls.celular.value,
       verificado: false,
       rol:{
@@ -132,7 +193,15 @@ export class RegistrarPage implements OnInit {
          await alert.present().then(res=>{
             this.ruta.navigate(['/home'])
           });
-       }))
+       }),async erro=>{
+        const alert = await this.alertController.create({
+          header: 'Error',
+          message: erro.error.message,
+          buttons: ['OK']
+        })
+        await alert.present()
+        loading.dismiss()
+       })
      },async erro=>{
       const alert = await this.alertController.create({
         header: 'Exito',

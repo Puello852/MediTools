@@ -18,9 +18,21 @@
       "es2018",
       "dom"
     ]
+    ,
+  "paths": {
+   "virtual-receipt-lib": [
+    "dist/virtual-receipt-lib"
+   ],
+   "virtual-receipt-lib/*": [
+   "dist/virtual-receipt-lib/*"
+   ]
+  },
+  "resolveJsonModule": true,
+  "esModuleInterop": true
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
     "strictInjectionParameters": true
   }
+  
 }

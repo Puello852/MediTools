@@ -31,7 +31,7 @@
             <div class="wrap-input100">
               <ion-item>
                 <ion-label position="floating">Primer Nombre</ion-label>
-                <ion-input placeholder="Primer nombre" formControlName="nombre"></ion-input>
+                <ion-input type="text" (ionChange)="numberOnly($event)" placeholder="Primer nombre" formControlName="nombre"></ion-input>
                 <ion-icon class="icon" name="person" color="primary" slot="end"></ion-icon>
               </ion-item>
               <ion-label color="danger" class="novalid"
@@ -45,7 +45,7 @@
             <div class="wrap-input100">
               <ion-item>
                 <ion-label position="floating">Segundo Nombre</ion-label>
-                <ion-input placeholder="Segundo nombre" formControlName="seugnonombre"></ion-input>
+                <ion-input type="text" (keypress)="numberOnly($event)" placeholder="Segundo nombre" formControlName="seugnonombre"></ion-input>
                 <ion-icon class="icon" name="person" color="primary" slot="end"></ion-icon>
               </ion-item>
                 <ion-label color="danger" class="novalid"
@@ -56,7 +56,7 @@
             <div class="wrap-input100">
                 <ion-item>
                   <ion-label position="floating">Primer Apellido</ion-label>
-                  <ion-input placeholder="Primer apellido" formControlName="apellido"></ion-input>
+                  <ion-input type="text" (keypress)="numberOnly($event)" placeholder="Primer apellido" formControlName="apellido"></ion-input>
                   <ion-icon class="icon" name="person" color="primary" slot="end"></ion-icon>
                 </ion-item>
                 <ion-label color="danger" class="novalid"
@@ -66,11 +66,12 @@
                 *ngIf="form.controls['apellido'].hasError('pattern') && (form.controls['apellido'].dirty || form.controls['apellido'].touched)">
                 Apéllido no válido </ion-label>
             </div>
-    
+  
+
             <div class="wrap-input100">
                 <ion-item>
                   <ion-label position="floating">Segundo Apellido</ion-label>
-                  <ion-input placeholder="Segundo apellido" formControlName="segundoapellido"></ion-input>
+                  <ion-input type="text" (keypress)="numberOnly($event)" placeholder="Segundo apellido" formControlName="segundoapellido"></ion-input>
                   <ion-icon class="icon" name="person" color="primary" slot="end"></ion-icon>
                 </ion-item>
                 <ion-label color="danger" class="novalid"
@@ -80,6 +81,30 @@
                 *ngIf="form.controls['segundoapellido'].hasError('pattern') && (form.controls['segundoapellido'].dirty || form.controls['segundoapellido'].touched)">
                 Apellido no válido </ion-label>
             </div>
+
+            <div class="wrap-input100">
+              <ion-item>
+                  <ion-label>Departamento</ion-label>
+                  <ion-select formControlName="departamento" (ionChange)="setDepartamento($event)" interface="action-sheet" cancelText="Cancelar">
+                    <ion-select-option *ngFor="let item of departamento" value="{{item.nombre}}">{{item.nombre}}</ion-select-option>
+                  </ion-select>
+                </ion-item>
+             <ion-label color="danger" class="novalid"
+                  *ngIf="form.controls['departamento'].hasError('required') && (form.controls['departamento'].dirty || form.controls['departamento'].touched)">
+                  Departamento requerido</ion-label> 
+          </div>
+
+          <div class="wrap-input100">
+            <ion-item>
+                <ion-label>Municipio</ion-label>
+                <ion-select formControlName="municipio"  interface="action-sheet" cancelText="Cancelar">
+                  <ion-select-option *ngFor="let item of newmuni" value="{{item.nombre}}">{{item.nombre}}</ion-select-option>
+                </ion-select>
+              </ion-item>
+               <ion-label color="danger" class="novalid"
+                *ngIf="form.controls['municipio'].hasError('required') && (form.controls['municipio'].dirty || form.controls['municipio'].touched)">
+                Municipio requerido</ion-label> 
+        </div>
     
             <div class="wrap-input100">
                 <ion-item>
@@ -98,7 +123,7 @@
             <div class="wrap-input100">
                 <ion-item>
                   <ion-label position="floating">Documento</ion-label>
-                  <ion-input type="number" placeholder="ingresa tu documento" formControlName="documento"></ion-input>
+                  <ion-input type="number" (keypress)="numberOnlys($event)" placeholder="ingresa tu documento" formControlName="documento"></ion-input>
                   <ion-icon class="icon" name="list-box" color="primary" slot="end"></ion-icon>
                 </ion-item>
                 <ion-label color="danger" class="novalid"
@@ -109,7 +134,7 @@
             <div class="wrap-input100">
                 <ion-item>
                   <ion-label position="floating">Confirmar documento</ion-label>
-                  <ion-input type="number" placeholder="ingresa tu documento" formControlName="confirmardocumento"></ion-input>
+                  <ion-input (keypress)="numberOnlys($event)" type="number" placeholder="ingresa tu documento" formControlName="confirmardocumento"></ion-input>
                   <ion-icon class="icon" name="list-box" color="primary" slot="end"></ion-icon>
                 </ion-item>
                 <ion-label color="danger" class="novalid"
@@ -163,11 +188,13 @@
                       *ngIf="form.controls['genero'].hasError('required') && (form.controls['genero'].dirty || form.controls['genero'].touched)">
                       Género requerido</ion-label>
               </div>
+
+            
   
             <div class="wrap-input100">
               <ion-item>
                 <ion-label position="floating">Celular</ion-label>
-                <ion-input maxlength="10" type="number" placeholder="ingresa tu celular" formControlName="celular"></ion-input>
+                <ion-input (keypress)="numberOnlys($event)" maxlength="10" type="number" placeholder="ingresa tu celular" formControlName="celular"></ion-input>
                 <ion-icon class="icon" name="phone-portrait" color="primary" slot="end"></ion-icon>
               </ion-item>
               <ion-label color="danger" class="novalid"
@@ -219,13 +246,17 @@
                 *ngIf="form.hasError('notSame')">
                 Las contraseñas no son iguales</ion-label>
             </div>
+
+ <div class="wrap-input100">
+   <re-captcha (resolved)="captchaResolved($event)" siteKey="6LeIG7sUAAAAAJ8wa8GF9vge0jAjd2sXegFDj-Sa"></re-captcha>
+  </div>
   
           </div>
 
           <div class="container-login100-form-btn">
             <div class="wrap-login100-form-btn">
               <div class="login100-form-bgbtn"></div>
-              <ion-button [disabled]="!form.controls['nombre'].valid || !form.controls['seugnonombre'].valid || !form.controls['apellido'].valid || !form.controls['segundoapellido'].valid || !form.controls['tipodocumento'].valid || !form.controls['documento'].valid || !form.controls['confirmardocumento'].valid || form.hasError('notSame')" (click)="nextCase()" expand="block" class="login">
+              <ion-button [disabled]="!form.controls['municipio'].valid || !form.controls['departamento'].valid || !form.controls['nombre'].valid || !form.controls['seugnonombre'].valid || !form.controls['apellido'].valid || !form.controls['segundoapellido'].valid || !form.controls['tipodocumento'].valid || !form.controls['documento'].valid || !form.controls['confirmardocumento'].valid || form.hasError('notSame')" (click)="nextCase()" expand="block" class="login">
                 <ion-icon [name]="nameIcons"></ion-icon>
               </ion-button>
             </div>
@@ -236,7 +267,7 @@
         <div class="container-login100-form-btn">
           <div class="wrap-login100-form-btn">
             <div class="login100-form-bgbtn"></div>
-            <ion-button *ngIf="case2" [disabled]="!form.valid" class="login" (click)="register()" expand="block">Registrarse</ion-button>
+            <ion-button *ngIf="case2" [disabled]="!captchaPassed || !form.valid" class="login" (click)="register()" expand="block">Registrarse</ion-button>
           </div>
         </div>
       </form>

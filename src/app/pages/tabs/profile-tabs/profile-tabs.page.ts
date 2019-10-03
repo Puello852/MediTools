@@ -346,6 +346,41 @@ export class ProfileTabsPage implements OnInit {
     await alert.present();
 
   }
+
+  async editNames(){
+    const actionSheet = await this.actionSheetController.create({
+      header: 'Editar',
+      buttons: [{
+        text: 'Editar primer nombre',
+        handler: () => {
+          this.editName(this.datos.nombre1)
+        }
+      }, {
+        text: 'Editar segundo nombre',
+        handler: () => {
+          this.editName2(this.datos.nombre2)
+        }
+      }, {
+        text: 'Editar primer apellido',
+        handler: () => {
+          this.editApellido(this.datos.apellido1)
+        }
+      }, {
+        text: 'Editar segundo apellido',
+        handler: () => {
+          this.editApellido2(this.datos.apellido2)
+        }
+      }, {
+        text: 'Cancelar',
+        role: 'cancel',
+        handler: () => {
+          actionSheet.dismiss()
+        }
+      }]
+    });
+    await actionSheet.present();
+  
+  }
   
   async loadPerfil() {
     const loading = await this.loadingController.create({
@@ -356,7 +391,7 @@ export class ProfileTabsPage implements OnInit {
     this.api.GetInfoUser().subscribe(((data:any)=>{
       this.datos = data
       console.log(this.datos)
-      if(data.foto==null){
+      if(data.foto== 'None'){
         this.base64Image = "./assets/img/person1.png"
       }else{
         this.base64Image = data.foto

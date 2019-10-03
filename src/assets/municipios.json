@@ -1,0 +1,3301 @@
+[
+    {"nombre":"Abriaquí",
+    "id":5},
+    
+    {"nombre":"Acacías",
+    "id":50},
+    
+    {"nombre":"Acandí",
+    "id":27},
+    
+    {"nombre":"Acevedo",
+    "id":41},
+    
+    {"nombre":"Achí",
+    "id":13},
+    
+    {"nombre":"Agrado",
+    "id":41},
+    
+    {"nombre":"Agua de Dios",
+    "id":25},
+    
+    {"nombre":"Aguachica",
+    "id":20},
+    
+    {"nombre":"Aguada",
+    "id":68},
+    
+    {"nombre":"Aguadas",
+    "id":17},
+    
+    {"nombre":"Aguazul",
+    "id":85},
+    
+    {"nombre":"Agustín Codazzi",
+    "id":20},
+    
+    {"nombre":"Aipe",
+    "id":41},
+    
+    {"nombre":"Albania",
+    "id":18},
+    
+    {"nombre":"Albania",
+    "id":44},
+    
+    {"nombre":"Albania",
+    "id":68},
+    
+    {"nombre":"Albán",
+    "id":25},
+    
+    {"nombre":"Albán (San José)",
+    "id":52},
+    
+    {"nombre":"Alcalá",
+    "id":76},
+    
+    {"nombre":"Alejandria",
+    "id":5},
+    
+    {"nombre":"Algarrobo",
+    "id":47},
+    
+    {"nombre":"Algeciras",
+    "id":41},
+    
+    {"nombre":"Almaguer",
+    "id":19},
+    
+    {"nombre":"Almeida",
+    "id":15},
+    
+    {"nombre":"Alpujarra",
+    "id":73},
+    
+    {"nombre":"Altamira",
+    "id":41},
+    
+    {"nombre":"Alto Baudó (Pie de Pato)",
+    "id":27},
+    
+    {"nombre":"Altos del Rosario",
+    "id":13},
+    
+    {"nombre":"Alvarado",
+    "id":73},
+    
+    {"nombre":"Amagá",
+    "id":5},
+    
+    {"nombre":"Amalfi",
+    "id":5},
+    
+    {"nombre":"Ambalema",
+    "id":73},
+    
+    {"nombre":"Anapoima",
+    "id":25},
+    
+    {"nombre":"Ancuya",
+    "id":52},
+    
+    {"nombre":"Andalucía",
+    "id":76},
+    
+    {"nombre":"Andes",
+    "id":5},
+    
+    {"nombre":"Angelópolis",
+    "id":5},
+    
+    {"nombre":"Angostura",
+    "id":5},
+    
+    {"nombre":"Anolaima",
+    "id":25},
+    
+    {"nombre":"Anorí",
+    "id":5},
+    
+    {"nombre":"Anserma",
+    "id":17},
+    
+    {"nombre":"Ansermanuevo",
+    "id":76},
+    
+    {"nombre":"Anzoátegui",
+    "id":73},
+    
+    {"nombre":"Anzá",
+    "id":5},
+    
+    {"nombre":"Apartadó",
+    "id":5},
+    
+    {"nombre":"Apulo",
+    "id":25},
+    
+    {"nombre":"Apía",
+    "id":66},
+    
+    {"nombre":"Aquitania",
+    "id":15},
+    
+    {"nombre":"Aracataca",
+    "id":47},
+    
+    {"nombre":"Aranzazu",
+    "id":17},
+    
+    {"nombre":"Aratoca",
+    "id":68},
+    
+    {"nombre":"Arauca",
+    "id":81},
+    
+    {"nombre":"Arauquita",
+    "id":81},
+    
+    {"nombre":"Arbeláez",
+    "id":25},
+    
+    {"nombre":"Arboleda (Berruecos)",
+    "id":52},
+    
+    {"nombre":"Arboledas",
+    "id":54},
+    
+    {"nombre":"Arboletes",
+    "id":5},
+    
+    {"nombre":"Arcabuco",
+    "id":15},
+    
+    {"nombre":"Arenal",
+    "id":13},
+    
+    {"nombre":"Argelia",
+    "id":5},
+    
+    {"nombre":"Argelia",
+    "id":19},
+    
+    {"nombre":"Argelia",
+    "id":76},
+    
+    {"nombre":"Ariguaní (El Difícil)",
+    "id":47},
+    
+    {"nombre":"Arjona",
+    "id":13},
+    
+    {"nombre":"Armenia",
+    "id":5},
+    
+    {"nombre":"Armenia",
+    "id":63},
+    
+    {"nombre":"Armero (Guayabal)",
+    "id":73},
+    
+    {"nombre":"Arroyohondo",
+    "id":13},
+    
+    {"nombre":"Astrea",
+    "id":20},
+    
+    {"nombre":"Ataco",
+    "id":73},
+    
+    {"nombre":"Atrato (Yuto)",
+    "id":27},
+    
+    {"nombre":"Ayapel",
+    "id":23},
+    
+    {"nombre":"Bagadó",
+    "id":27},
+    
+    {"nombre":"Bahía Solano (Mútis)",
+    "id":27},
+    
+    {"nombre":"Bajo Baudó (Pizarro)",
+    "id":27},
+    
+    {"nombre":"Balboa",
+    "id":19},
+    
+    {"nombre":"Balboa",
+    "id":66},
+    
+    {"nombre":"Baranoa",
+    "id":8},
+    
+    {"nombre":"Baraya",
+    "id":41},
+    
+    {"nombre":"Barbacoas",
+    "id":52},
+    
+    {"nombre":"Barbosa",
+    "id":5},
+    
+    {"nombre":"Barbosa",
+    "id":68},
+    
+    {"nombre":"Barichara",
+    "id":68},
+    
+    {"nombre":"Barranca de Upía",
+    "id":50},
+    
+    {"nombre":"Barrancabermeja",
+    "id":68},
+    
+    {"nombre":"Barrancas",
+    "id":44},
+    
+    {"nombre":"Barranco de Loba",
+    "id":13},
+    
+    {"nombre":"Barranquilla",
+    "id":8},
+    
+    {"nombre":"Becerríl",
+    "id":20},
+    
+    {"nombre":"Belalcázar",
+    "id":17},
+    
+    {"nombre":"Bello",
+    "id":5},
+    
+    {"nombre":"Belmira",
+    "id":5},
+    
+    {"nombre":"Beltrán",
+    "id":25},
+    
+    {"nombre":"Belén",
+    "id":15},
+    
+    {"nombre":"Belén",
+    "id":52},
+    
+    {"nombre":"Belén de Bajirá",
+    "id":27},
+    
+    {"nombre":"Belén de Umbría",
+    "id":66},
+    
+    {"nombre":"Belén de los Andaquíes",
+    "id":18},
+    
+    {"nombre":"Berbeo",
+    "id":15},
+    
+    {"nombre":"Betania",
+    "id":5},
+    
+    {"nombre":"Beteitiva",
+    "id":15},
+    
+    {"nombre":"Betulia",
+    "id":5},
+    
+    {"nombre":"Betulia",
+    "id":68},
+    
+    {"nombre":"Bituima",
+    "id":25},
+    
+    {"nombre":"Boavita",
+    "id":15},
+    
+    {"nombre":"Bochalema",
+    "id":54},
+    
+    {"nombre":"Bogotá D.C.",
+    "id":11},
+    
+    {"nombre":"Bojacá",
+    "id":25},
+    
+    {"nombre":"Bojayá (Bellavista)",
+    "id":27},
+    
+    {"nombre":"Bolívar",
+    "id":5},
+    
+    {"nombre":"Bolívar",
+    "id":19},
+    
+    {"nombre":"Bolívar",
+    "id":68},
+    
+    {"nombre":"Bolívar",
+    "id":76},
+    
+    {"nombre":"Bosconia",
+    "id":20},
+    
+    {"nombre":"Boyacá",
+    "id":15},
+    
+    {"nombre":"Briceño",
+    "id":5},
+    
+    {"nombre":"Briceño",
+    "id":15},
+    
+    {"nombre":"Bucaramanga",
+    "id":68},
+    
+    {"nombre":"Bucarasica",
+    "id":54},
+    
+    {"nombre":"Buenaventura",
+    "id":76},
+    
+    {"nombre":"Buenavista",
+    "id":15},
+    
+    {"nombre":"Buenavista",
+    "id":23},
+    
+    {"nombre":"Buenavista",
+    "id":63},
+    
+    {"nombre":"Buenavista",
+    "id":70},
+    
+    {"nombre":"Buenos Aires",
+    "id":19},
+    
+    {"nombre":"Buesaco",
+    "id":52},
+    
+    {"nombre":"Buga",
+    "id":76},
+    
+    {"nombre":"Bugalagrande",
+    "id":76},
+    
+    {"nombre":"Burítica",
+    "id":5},
+    
+    {"nombre":"Busbanza",
+    "id":15},
+    
+    {"nombre":"Cabrera",
+    "id":25},
+    
+    {"nombre":"Cabrera",
+    "id":68},
+    
+    {"nombre":"Cabuyaro",
+    "id":50},
+    
+    {"nombre":"Cachipay",
+    "id":25},
+    
+    {"nombre":"Caicedo",
+    "id":5},
+    
+    {"nombre":"Caicedonia",
+    "id":76},
+    
+    {"nombre":"Caimito",
+    "id":70},
+    
+    {"nombre":"Cajamarca",
+    "id":73},
+    
+    {"nombre":"Cajibío",
+    "id":19},
+    
+    {"nombre":"Cajicá",
+    "id":25},
+    
+    {"nombre":"Calamar",
+    "id":13},
+    
+    {"nombre":"Calamar",
+    "id":95},
+    
+    {"nombre":"Calarcá",
+    "id":63},
+    
+    {"nombre":"Caldas",
+    "id":5},
+    
+    {"nombre":"Caldas",
+    "id":15},
+    
+    {"nombre":"Caldono",
+    "id":19},
+    
+    {"nombre":"California",
+    "id":68},
+    
+    {"nombre":"Calima (Darién)",
+    "id":76},
+    
+    {"nombre":"Caloto",
+    "id":19},
+    
+    {"nombre":"Calí",
+    "id":76},
+    
+    {"nombre":"Campamento",
+    "id":5},
+    
+    {"nombre":"Campo de la Cruz",
+    "id":8},
+    
+    {"nombre":"Campoalegre",
+    "id":41},
+    
+    {"nombre":"Campohermoso",
+    "id":15},
+    
+    {"nombre":"Canalete",
+    "id":23},
+    
+    {"nombre":"Candelaria",
+    "id":8},
+    
+    {"nombre":"Candelaria",
+    "id":76},
+    
+    {"nombre":"Cantagallo",
+    "id":13},
+    
+    {"nombre":"Cantón de San Pablo",
+    "id":27},
+    
+    {"nombre":"Caparrapí",
+    "id":25},
+    
+    {"nombre":"Capitanejo",
+    "id":68},
+    
+    {"nombre":"Caracolí",
+    "id":5},
+    
+    {"nombre":"Caramanta",
+    "id":5},
+    
+    {"nombre":"Carcasí",
+    "id":68},
+    
+    {"nombre":"Carepa",
+    "id":5},
+    
+    {"nombre":"Carmen de Apicalá",
+    "id":73},
+    
+    {"nombre":"Carmen de Carupa",
+    "id":25},
+    
+    {"nombre":"Carmen de Viboral",
+    "id":5},
+    
+    {"nombre":"Carmen del Darién (CURBARADÓ)",
+    "id":27},
+    
+    {"nombre":"Carolina",
+    "id":5},
+    
+    {"nombre":"Cartagena",
+    "id":13},
+    
+    {"nombre":"Cartagena del Chairá",
+    "id":18},
+    
+    {"nombre":"Cartago",
+    "id":76},
+    
+    {"nombre":"Carurú",
+    "id":97},
+    
+    {"nombre":"Casabianca",
+    "id":73},
+    
+    {"nombre":"Castilla la Nueva",
+    "id":50},
+    
+    {"nombre":"Caucasia",
+    "id":5},
+    
+    {"nombre":"Cañasgordas",
+    "id":5},
+    
+    {"nombre":"Cepita",
+    "id":68},
+    
+    {"nombre":"Cereté",
+    "id":23},
+    
+    {"nombre":"Cerinza",
+    "id":15},
+    
+    {"nombre":"Cerrito",
+    "id":68},
+    
+    {"nombre":"Cerro San Antonio",
+    "id":47},
+    
+    {"nombre":"Chachaguí",
+    "id":52},
+    
+    {"nombre":"Chaguaní",
+    "id":25},
+    
+    {"nombre":"Chalán",
+    "id":70},
+    
+    {"nombre":"Chaparral",
+    "id":73},
+    
+    {"nombre":"Charalá",
+    "id":68},
+    
+    {"nombre":"Charta",
+    "id":68},
+    
+    {"nombre":"Chigorodó",
+    "id":5},
+    
+    {"nombre":"Chima",
+    "id":68},
+    
+    {"nombre":"Chimichagua",
+    "id":20},
+    
+    {"nombre":"Chimá",
+    "id":23},
+    
+    {"nombre":"Chinavita",
+    "id":15},
+    
+    {"nombre":"Chinchiná",
+    "id":17},
+    
+    {"nombre":"Chinácota",
+    "id":54},
+    
+    {"nombre":"Chinú",
+    "id":23},
+    
+    {"nombre":"Chipaque",
+    "id":25},
+    
+    {"nombre":"Chipatá",
+    "id":68},
+    
+    {"nombre":"Chiquinquirá",
+    "id":15},
+    
+    {"nombre":"Chiriguaná",
+    "id":20},
+    
+    {"nombre":"Chiscas",
+    "id":15},
+    
+    {"nombre":"Chita",
+    "id":15},
+    
+    {"nombre":"Chitagá",
+    "id":54},
+    
+    {"nombre":"Chitaraque",
+    "id":15},
+    
+    {"nombre":"Chivatá",
+    "id":15},
+    
+    {"nombre":"Chivolo",
+    "id":47},
+    
+    {"nombre":"Choachí",
+    "id":25},
+    
+    {"nombre":"Chocontá",
+    "id":25},
+    
+    {"nombre":"Chámeza",
+    "id":85},
+    
+    {"nombre":"Chía",
+    "id":25},
+    
+    {"nombre":"Chíquiza",
+    "id":15},
+    
+    {"nombre":"Chívor",
+    "id":15},
+    
+    {"nombre":"Cicuco",
+    "id":13},
+    
+    {"nombre":"Cimitarra",
+    "id":68},
+    
+    {"nombre":"Circasia",
+    "id":63},
+    
+    {"nombre":"Cisneros",
+    "id":5},
+    
+    {"nombre":"Ciénaga",
+    "id":15},
+    
+    {"nombre":"Ciénaga",
+    "id":47},
+    
+    {"nombre":"Ciénaga de Oro",
+    "id":23},
+    
+    {"nombre":"Clemencia",
+    "id":13},
+    
+    {"nombre":"Cocorná",
+    "id":5},
+    
+    {"nombre":"Coello",
+    "id":73},
+    
+    {"nombre":"Cogua",
+    "id":25},
+    
+    {"nombre":"Colombia",
+    "id":41},
+    
+    {"nombre":"Colosó (Ricaurte)",
+    "id":70},
+    
+    {"nombre":"Colón",
+    "id":86},
+    
+    {"nombre":"Colón (Génova)",
+    "id":52},
+    
+    {"nombre":"Concepción",
+    "id":5},
+    
+    {"nombre":"Concepción",
+    "id":68},
+    
+    {"nombre":"Concordia",
+    "id":5},
+    
+    {"nombre":"Concordia",
+    "id":47},
+    
+    {"nombre":"Condoto",
+    "id":27},
+    
+    {"nombre":"Confines",
+    "id":68},
+    
+    {"nombre":"Consaca",
+    "id":52},
+    
+    {"nombre":"Contadero",
+    "id":52},
+    
+    {"nombre":"Contratación",
+    "id":68},
+    
+    {"nombre":"Convención",
+    "id":54},
+    
+    {"nombre":"Copacabana",
+    "id":5},
+    
+    {"nombre":"Coper",
+    "id":15},
+    
+    {"nombre":"Cordobá",
+    "id":63},
+    
+    {"nombre":"Corinto",
+    "id":19},
+    
+    {"nombre":"Coromoro",
+    "id":68},
+    
+    {"nombre":"Corozal",
+    "id":70},
+    
+    {"nombre":"Corrales",
+    "id":15},
+    
+    {"nombre":"Cota",
+    "id":25},
+    
+    {"nombre":"Cotorra",
+    "id":23},
+    
+    {"nombre":"Covarachía",
+    "id":15},
+    
+    {"nombre":"Coveñas",
+    "id":70},
+    
+    {"nombre":"Coyaima",
+    "id":73},
+    
+    {"nombre":"Cravo Norte",
+    "id":81},
+    
+    {"nombre":"Cuaspud (Carlosama)",
+    "id":52},
+    
+    {"nombre":"Cubarral",
+    "id":50},
+    
+    {"nombre":"Cubará",
+    "id":15},
+    
+    {"nombre":"Cucaita",
+    "id":15},
+    
+    {"nombre":"Cucunubá",
+    "id":25},
+    
+    {"nombre":"Cucutilla",
+    "id":54},
+    
+    {"nombre":"Cuitiva",
+    "id":15},
+    
+    {"nombre":"Cumaral",
+    "id":50},
+    
+    {"nombre":"Cumaribo",
+    "id":99},
+    
+    {"nombre":"Cumbal",
+    "id":52},
+    
+    {"nombre":"Cumbitara",
+    "id":52},
+    
+    {"nombre":"Cunday",
+    "id":73},
+    
+    {"nombre":"Curillo",
+    "id":18},
+    
+    {"nombre":"Curití",
+    "id":68},
+    
+    {"nombre":"Curumaní",
+    "id":20},
+    
+    {"nombre":"Cáceres",
+    "id":5},
+    
+    {"nombre":"Cáchira",
+    "id":54},
+    
+    {"nombre":"Cácota",
+    "id":54},
+    
+    {"nombre":"Cáqueza",
+    "id":25},
+    
+    {"nombre":"Cértegui",
+    "id":27},
+    
+    {"nombre":"Cómbita",
+    "id":15},
+    
+    {"nombre":"Córdoba",
+    "id":13},
+    
+    {"nombre":"Córdoba",
+    "id":52},
+    
+    {"nombre":"Cúcuta",
+    "id":54},
+    
+    {"nombre":"Dabeiba",
+    "id":5},
+    
+    {"nombre":"Dagua",
+    "id":76},
+    
+    {"nombre":"Dibulla",
+    "id":44},
+    
+    {"nombre":"Distracción",
+    "id":44},
+    
+    {"nombre":"Dolores",
+    "id":73},
+    
+    {"nombre":"Don Matías",
+    "id":5},
+    
+    {"nombre":"Dos Quebradas",
+    "id":66},
+    
+    {"nombre":"Duitama",
+    "id":15},
+    
+    {"nombre":"Durania",
+    "id":54},
+    
+    {"nombre":"Ebéjico",
+    "id":5},
+    
+    {"nombre":"El Bagre",
+    "id":5},
+    
+    {"nombre":"El Banco",
+    "id":47},
+    
+    {"nombre":"El Cairo",
+    "id":76},
+    
+    {"nombre":"El Calvario",
+    "id":50},
+    
+    {"nombre":"El Carmen",
+    "id":54},
+    
+    {"nombre":"El Carmen",
+    "id":68},
+    
+    {"nombre":"El Carmen de Atrato",
+    "id":27},
+    
+    {"nombre":"El Carmen de Bolívar",
+    "id":13},
+    
+    {"nombre":"El Castillo",
+    "id":50},
+    
+    {"nombre":"El Cerrito",
+    "id":76},
+    
+    {"nombre":"El Charco",
+    "id":52},
+    
+    {"nombre":"El Cocuy",
+    "id":15},
+    
+    {"nombre":"El Colegio",
+    "id":25},
+    
+    {"nombre":"El Copey",
+    "id":20},
+    
+    {"nombre":"El Doncello",
+    "id":18},
+    
+    {"nombre":"El Dorado",
+    "id":50},
+    
+    {"nombre":"El Dovio",
+    "id":76},
+    
+    {"nombre":"El Espino",
+    "id":15},
+    
+    {"nombre":"El Guacamayo",
+    "id":68},
+    
+    {"nombre":"El Guamo",
+    "id":13},
+    
+    {"nombre":"El Molino",
+    "id":44},
+    
+    {"nombre":"El Paso",
+    "id":20},
+    
+    {"nombre":"El Paujil",
+    "id":18},
+    
+    {"nombre":"El Peñol",
+    "id":52},
+    
+    {"nombre":"El Peñon",
+    "id":13},
+    
+    {"nombre":"El Peñon",
+    "id":68},
+    
+    {"nombre":"El Peñón",
+    "id":25},
+    
+    {"nombre":"El Piñon",
+    "id":47},
+    
+    {"nombre":"El Playón",
+    "id":68},
+    
+    {"nombre":"El Retorno",
+    "id":95},
+    
+    {"nombre":"El Retén",
+    "id":47},
+    
+    {"nombre":"El Roble",
+    "id":70},
+    
+    {"nombre":"El Rosal",
+    "id":25},
+    
+    {"nombre":"El Rosario",
+    "id":52},
+    
+    {"nombre":"El Tablón de Gómez",
+    "id":52},
+    
+    {"nombre":"El Tambo",
+    "id":19},
+    
+    {"nombre":"El Tambo",
+    "id":52},
+    
+    {"nombre":"El Tarra",
+    "id":54},
+    
+    {"nombre":"El Zulia",
+    "id":54},
+    
+    {"nombre":"El Águila",
+    "id":76},
+    
+    {"nombre":"Elías",
+    "id":41},
+    
+    {"nombre":"Encino",
+    "id":68},
+    
+    {"nombre":"Enciso",
+    "id":68},
+    
+    {"nombre":"Entrerríos",
+    "id":5},
+    
+    {"nombre":"Envigado",
+    "id":5},
+    
+    {"nombre":"Espinal",
+    "id":73},
+    
+    {"nombre":"Facatativá",
+    "id":25},
+    
+    {"nombre":"Falan",
+    "id":73},
+    
+    {"nombre":"Filadelfia",
+    "id":17},
+    
+    {"nombre":"Filandia",
+    "id":63},
+    
+    {"nombre":"Firavitoba",
+    "id":15},
+    
+    {"nombre":"Flandes",
+    "id":73},
+    
+    {"nombre":"Florencia",
+    "id":18},
+    
+    {"nombre":"Florencia",
+    "id":19},
+    
+    {"nombre":"Floresta",
+    "id":15},
+    
+    {"nombre":"Florida",
+    "id":76},
+    
+    {"nombre":"Floridablanca",
+    "id":68},
+    
+    {"nombre":"Florián",
+    "id":68},
+    
+    {"nombre":"Fonseca",
+    "id":44},
+    
+    {"nombre":"Fortúl",
+    "id":81},
+    
+    {"nombre":"Fosca",
+    "id":25},
+    
+    {"nombre":"Francisco Pizarro",
+    "id":52},
+    
+    {"nombre":"Fredonia",
+    "id":5},
+    
+    {"nombre":"Fresno",
+    "id":73},
+    
+    {"nombre":"Frontino",
+    "id":5},
+    
+    {"nombre":"Fuente de Oro",
+    "id":50},
+    
+    {"nombre":"Fundación",
+    "id":47},
+    
+    {"nombre":"Funes",
+    "id":52},
+    
+    {"nombre":"Funza",
+    "id":25},
+    
+    {"nombre":"Fusagasugá",
+    "id":25},
+    
+    {"nombre":"Fómeque",
+    "id":25},
+    
+    {"nombre":"Fúquene",
+    "id":25},
+    
+    {"nombre":"Gachalá",
+    "id":25},
+    
+    {"nombre":"Gachancipá",
+    "id":25},
+    
+    {"nombre":"Gachantivá",
+    "id":15},
+    
+    {"nombre":"Gachetá",
+    "id":25},
+    
+    {"nombre":"Galapa",
+    "id":8},
+    
+    {"nombre":"Galeras (Nueva Granada)",
+    "id":70},
+    
+    {"nombre":"Galán",
+    "id":68},
+    
+    {"nombre":"Gama",
+    "id":25},
+    
+    {"nombre":"Gamarra",
+    "id":20},
+    
+    {"nombre":"Garagoa",
+    "id":15},
+    
+    {"nombre":"Garzón",
+    "id":41},
+    
+    {"nombre":"Gigante",
+    "id":41},
+    
+    {"nombre":"Ginebra",
+    "id":76},
+    
+    {"nombre":"Giraldo",
+    "id":5},
+    
+    {"nombre":"Girardot",
+    "id":25},
+    
+    {"nombre":"Girardota",
+    "id":5},
+    
+    {"nombre":"Girón",
+    "id":68},
+    
+    {"nombre":"Gonzalez",
+    "id":20},
+    
+    {"nombre":"Gramalote",
+    "id":54},
+    
+    {"nombre":"Granada",
+    "id":5},
+    
+    {"nombre":"Granada",
+    "id":25},
+    
+    {"nombre":"Granada",
+    "id":50},
+    
+    {"nombre":"Guaca",
+    "id":68},
+    
+    {"nombre":"Guacamayas",
+    "id":15},
+    
+    {"nombre":"Guacarí",
+    "id":76},
+    
+    {"nombre":"Guachavés",
+    "id":52},
+    
+    {"nombre":"Guachené",
+    "id":19},
+    
+    {"nombre":"Guachetá",
+    "id":25},
+    
+    {"nombre":"Guachucal",
+    "id":52},
+    
+    {"nombre":"Guadalupe",
+    "id":5},
+    
+    {"nombre":"Guadalupe",
+    "id":41},
+    
+    {"nombre":"Guadalupe",
+    "id":68},
+    
+    {"nombre":"Guaduas",
+    "id":25},
+    
+    {"nombre":"Guaitarilla",
+    "id":52},
+    
+    {"nombre":"Gualmatán",
+    "id":52},
+    
+    {"nombre":"Guamal",
+    "id":47},
+    
+    {"nombre":"Guamal",
+    "id":50},
+    
+    {"nombre":"Guamo",
+    "id":73},
+    
+    {"nombre":"Guapota",
+    "id":68},
+    
+    {"nombre":"Guapí",
+    "id":19},
+    
+    {"nombre":"Guaranda",
+    "id":70},
+    
+    {"nombre":"Guarne",
+    "id":5},
+    
+    {"nombre":"Guasca",
+    "id":25},
+    
+    {"nombre":"Guatapé",
+    "id":5},
+    
+    {"nombre":"Guataquí",
+    "id":25},
+    
+    {"nombre":"Guatavita",
+    "id":25},
+    
+    {"nombre":"Guateque",
+    "id":15},
+    
+    {"nombre":"Guavatá",
+    "id":68},
+    
+    {"nombre":"Guayabal de Siquima",
+    "id":25},
+    
+    {"nombre":"Guayabetal",
+    "id":25},
+    
+    {"nombre":"Guayatá",
+    "id":15},
+    
+    {"nombre":"Guepsa",
+    "id":68},
+    
+    {"nombre":"Guicán",
+    "id":15},
+    
+    {"nombre":"Gutiérrez",
+    "id":25},
+    
+    {"nombre":"Guática",
+    "id":66},
+    
+    {"nombre":"Gámbita",
+    "id":68},
+    
+    {"nombre":"Gámeza",
+    "id":15},
+    
+    {"nombre":"Génova",
+    "id":63},
+    
+    {"nombre":"Gómez Plata",
+    "id":5},
+    
+    {"nombre":"Hacarí",
+    "id":54},
+    
+    {"nombre":"Hatillo de Loba",
+    "id":13},
+    
+    {"nombre":"Hato",
+    "id":68},
+    
+    {"nombre":"Hato Corozal",
+    "id":85},
+    
+    {"nombre":"Hatonuevo",
+    "id":44},
+    
+    {"nombre":"Heliconia",
+    "id":5},
+    
+    {"nombre":"Herrán",
+    "id":54},
+    
+    {"nombre":"Herveo",
+    "id":73},
+    
+    {"nombre":"Hispania",
+    "id":5},
+    
+    {"nombre":"Hobo",
+    "id":41},
+    
+    {"nombre":"Honda",
+    "id":73},
+    
+    {"nombre":"Ibagué",
+    "id":73},
+    
+    {"nombre":"Icononzo",
+    "id":73},
+    
+    {"nombre":"Iles",
+    "id":52},
+    
+    {"nombre":"Imúes",
+    "id":52},
+    
+    {"nombre":"Inzá",
+    "id":19},
+    
+    {"nombre":"Inírida",
+    "id":94},
+    
+    {"nombre":"Ipiales",
+    "id":52},
+    
+    {"nombre":"Isnos",
+    "id":41},
+    
+    {"nombre":"Istmina",
+    "id":27},
+    
+    {"nombre":"Itagüí",
+    "id":5},
+    
+    {"nombre":"Ituango",
+    "id":5},
+    
+    {"nombre":"Izá",
+    "id":15},
+    
+    {"nombre":"Jambaló",
+    "id":19},
+    
+    {"nombre":"Jamundí",
+    "id":76},
+    
+    {"nombre":"Jardín",
+    "id":5},
+    
+    {"nombre":"Jenesano",
+    "id":15},
+    
+    {"nombre":"Jericó",
+    "id":5},
+    
+    {"nombre":"Jericó",
+    "id":15},
+    
+    {"nombre":"Jerusalén",
+    "id":25},
+    
+    {"nombre":"Jesús María",
+    "id":68},
+    
+    {"nombre":"Jordán",
+    "id":68},
+    
+    {"nombre":"Juan de Acosta",
+    "id":8},
+    
+    {"nombre":"Junín",
+    "id":25},
+    
+    {"nombre":"Juradó",
+    "id":27},
+    
+    {"nombre":"La Apartada y La Frontera",
+    "id":23},
+    
+    {"nombre":"La Argentina",
+    "id":41},
+    
+    {"nombre":"La Belleza",
+    "id":68},
+    
+    {"nombre":"La Calera",
+    "id":25},
+    
+    {"nombre":"La Capilla",
+    "id":15},
+    
+    {"nombre":"La Ceja",
+    "id":5},
+    
+    {"nombre":"La Celia",
+    "id":66},
+    
+    {"nombre":"La Cruz",
+    "id":52},
+    
+    {"nombre":"La Cumbre",
+    "id":76},
+    
+    {"nombre":"La Dorada",
+    "id":17},
+    
+    {"nombre":"La Esperanza",
+    "id":54},
+    
+    {"nombre":"La Estrella",
+    "id":5},
+    
+    {"nombre":"La Florida",
+    "id":52},
+    
+    {"nombre":"La Gloria",
+    "id":20},
+    
+    {"nombre":"La Jagua de Ibirico",
+    "id":20},
+    
+    {"nombre":"La Jagua del Pilar",
+    "id":44},
+    
+    {"nombre":"La Llanada",
+    "id":52},
+    
+    {"nombre":"La Macarena",
+    "id":50},
+    
+    {"nombre":"La Merced",
+    "id":17},
+    
+    {"nombre":"La Mesa",
+    "id":25},
+    
+    {"nombre":"La Montañita",
+    "id":18},
+    
+    {"nombre":"La Palma",
+    "id":25},
+    
+    {"nombre":"La Paz",
+    "id":68},
+    
+    {"nombre":"La Paz (Robles)",
+    "id":20},
+    
+    {"nombre":"La Peña",
+    "id":25},
+    
+    {"nombre":"La Pintada",
+    "id":5},
+    
+    {"nombre":"La Plata",
+    "id":41},
+    
+    {"nombre":"La Playa",
+    "id":54},
+    
+    {"nombre":"La Primavera",
+    "id":99},
+    
+    {"nombre":"La Salina",
+    "id":85},
+    
+    {"nombre":"La Sierra",
+    "id":19},
+    
+    {"nombre":"La Tebaida",
+    "id":63},
+    
+    {"nombre":"La Tola",
+    "id":52},
+    
+    {"nombre":"La Unión",
+    "id":5},
+    
+    {"nombre":"La Unión",
+    "id":52},
+    
+    {"nombre":"La Unión",
+    "id":70},
+    
+    {"nombre":"La Unión",
+    "id":76},
+    
+    {"nombre":"La Uvita",
+    "id":15},
+    
+    {"nombre":"La Vega",
+    "id":19},
+    
+    {"nombre":"La Vega",
+    "id":25},
+    
+    {"nombre":"La Victoria",
+    "id":15},
+    
+    {"nombre":"La Victoria",
+    "id":17},
+    
+    {"nombre":"La Victoria",
+    "id":76},
+    
+    {"nombre":"La Virginia",
+    "id":66},
+    
+    {"nombre":"Labateca",
+    "id":54},
+    
+    {"nombre":"Labranzagrande",
+    "id":15},
+    
+    {"nombre":"Landázuri",
+    "id":68},
+    
+    {"nombre":"Lebrija",
+    "id":68},
+    
+    {"nombre":"Leiva",
+    "id":52},
+    
+    {"nombre":"Lejanías",
+    "id":50},
+    
+    {"nombre":"Lenguazaque",
+    "id":25},
+    
+    {"nombre":"Leticia",
+    "id":91},
+    
+    {"nombre":"Liborina",
+    "id":5},
+    
+    {"nombre":"Linares",
+    "id":52},
+    
+    {"nombre":"Lloró",
+    "id":27},
+    
+    {"nombre":"Lorica",
+    "id":23},
+    
+    {"nombre":"Los Córdobas",
+    "id":23},
+    
+    {"nombre":"Los Palmitos",
+    "id":70},
+    
+    {"nombre":"Los Patios",
+    "id":54},
+    
+    {"nombre":"Los Santos",
+    "id":68},
+    
+    {"nombre":"Lourdes",
+    "id":54},
+    
+    {"nombre":"Luruaco",
+    "id":8},
+    
+    {"nombre":"Lérida",
+    "id":73},
+    
+    {"nombre":"Líbano",
+    "id":73},
+    
+    {"nombre":"López (Micay)",
+    "id":19},
+    
+    {"nombre":"Macanal",
+    "id":15},
+    
+    {"nombre":"Macaravita",
+    "id":68},
+    
+    {"nombre":"Maceo",
+    "id":5},
+    
+    {"nombre":"Machetá",
+    "id":25},
+    
+    {"nombre":"Madrid",
+    "id":25},
+    
+    {"nombre":"Magangué",
+    "id":13},
+    
+    {"nombre":"Magüi (Payán)",
+    "id":52},
+    
+    {"nombre":"Mahates",
+    "id":13},
+    
+    {"nombre":"Maicao",
+    "id":44},
+    
+    {"nombre":"Majagual",
+    "id":70},
+    
+    {"nombre":"Malambo",
+    "id":8},
+    
+    {"nombre":"Mallama (Piedrancha)",
+    "id":52},
+    
+    {"nombre":"Manatí",
+    "id":8},
+    
+    {"nombre":"Manaure",
+    "id":44},
+    
+    {"nombre":"Manaure Balcón del Cesar",
+    "id":20},
+    
+    {"nombre":"Manizales",
+    "id":17},
+    
+    {"nombre":"Manta",
+    "id":25},
+    
+    {"nombre":"Manzanares",
+    "id":17},
+    
+    {"nombre":"Maní",
+    "id":85},
+    
+    {"nombre":"Mapiripan",
+    "id":50},
+    
+    {"nombre":"Margarita",
+    "id":13},
+    
+    {"nombre":"Marinilla",
+    "id":5},
+    
+    {"nombre":"Maripí",
+    "id":15},
+    
+    {"nombre":"Mariquita",
+    "id":73},
+    
+    {"nombre":"Marmato",
+    "id":17},
+    
+    {"nombre":"Marquetalia",
+    "id":17},
+    
+    {"nombre":"Marsella",
+    "id":66},
+    
+    {"nombre":"Marulanda",
+    "id":17},
+    
+    {"nombre":"María la Baja",
+    "id":13},
+    
+    {"nombre":"Matanza",
+    "id":68},
+    
+    {"nombre":"Medellín",
+    "id":5},
+    
+    {"nombre":"Medina",
+    "id":25},
+    
+    {"nombre":"Medio Atrato",
+    "id":27},
+    
+    {"nombre":"Medio Baudó",
+    "id":27},
+    
+    {"nombre":"Medio San Juan (ANDAGOYA)",
+    "id":27},
+    
+    {"nombre":"Melgar",
+    "id":73},
+    
+    {"nombre":"Mercaderes",
+    "id":19},
+    
+    {"nombre":"Mesetas",
+    "id":50},
+    
+    {"nombre":"Milán",
+    "id":18},
+    
+    {"nombre":"Miraflores",
+    "id":15},
+    
+    {"nombre":"Miraflores",
+    "id":95},
+    
+    {"nombre":"Miranda",
+    "id":19},
+    
+    {"nombre":"Mistrató",
+    "id":66},
+    
+    {"nombre":"Mitú",
+    "id":97},
+    
+    {"nombre":"Mocoa",
+    "id":86},
+    
+    {"nombre":"Mogotes",
+    "id":68},
+    
+    {"nombre":"Molagavita",
+    "id":68},
+    
+    {"nombre":"Momil",
+    "id":23},
+    
+    {"nombre":"Mompós",
+    "id":13},
+    
+    {"nombre":"Mongua",
+    "id":15},
+    
+    {"nombre":"Monguí",
+    "id":15},
+    
+    {"nombre":"Moniquirá",
+    "id":15},
+    
+    {"nombre":"Montebello",
+    "id":5},
+    
+    {"nombre":"Montecristo",
+    "id":13},
+    
+    {"nombre":"Montelíbano",
+    "id":23},
+    
+    {"nombre":"Montenegro",
+    "id":63},
+    
+    {"nombre":"Monteria",
+    "id":23},
+    
+    {"nombre":"Monterrey",
+    "id":85},
+    
+    {"nombre":"Morales",
+    "id":13},
+    
+    {"nombre":"Morales",
+    "id":19},
+    
+    {"nombre":"Morelia",
+    "id":18},
+    
+    {"nombre":"Morroa",
+    "id":70},
+    
+    {"nombre":"Mosquera",
+    "id":25},
+    
+    {"nombre":"Mosquera",
+    "id":52},
+    
+    {"nombre":"Motavita",
+    "id":15},
+    
+    {"nombre":"Moñitos",
+    "id":23},
+    
+    {"nombre":"Murillo",
+    "id":73},
+    
+    {"nombre":"Murindó",
+    "id":5},
+    
+    {"nombre":"Mutatá",
+    "id":5},
+    
+    {"nombre":"Mutiscua",
+    "id":54},
+    
+    {"nombre":"Muzo",
+    "id":15},
+    
+    {"nombre":"Málaga",
+    "id":68},
+    
+    {"nombre":"Nariño",
+    "id":5},
+    
+    {"nombre":"Nariño",
+    "id":25},
+    
+    {"nombre":"Nariño",
+    "id":52},
+    
+    {"nombre":"Natagaima",
+    "id":73},
+    
+    {"nombre":"Nechí",
+    "id":5},
+    
+    {"nombre":"Necoclí",
+    "id":5},
+    
+    {"nombre":"Neira",
+    "id":17},
+    
+    {"nombre":"Neiva",
+    "id":41},
+    
+    {"nombre":"Nemocón",
+    "id":25},
+    
+    {"nombre":"Nilo",
+    "id":25},
+    
+    {"nombre":"Nimaima",
+    "id":25},
+    
+    {"nombre":"Nobsa",
+    "id":15},
+    
+    {"nombre":"Nocaima",
+    "id":25},
+    
+    {"nombre":"Norcasia",
+    "id":17},
+    
+    {"nombre":"Norosí",
+    "id":13},
+    
+    {"nombre":"Novita",
+    "id":27},
+    
+    {"nombre":"Nueva Granada",
+    "id":47},
+    
+    {"nombre":"Nuevo Colón",
+    "id":15},
+    
+    {"nombre":"Nunchía",
+    "id":85},
+    
+    {"nombre":"Nuquí",
+    "id":27},
+    
+    {"nombre":"Nátaga",
+    "id":41},
+    
+    {"nombre":"Obando",
+    "id":76},
+    
+    {"nombre":"Ocamonte",
+    "id":68},
+    
+    {"nombre":"Ocaña",
+    "id":54},
+    
+    {"nombre":"Oiba",
+    "id":68},
+    
+    {"nombre":"Oicatá",
+    "id":15},
+    
+    {"nombre":"Olaya",
+    "id":5},
+    
+    {"nombre":"Olaya Herrera",
+    "id":52},
+    
+    {"nombre":"Onzaga",
+    "id":68},
+    
+    {"nombre":"Oporapa",
+    "id":41},
+    
+    {"nombre":"Orito",
+    "id":86},
+    
+    {"nombre":"Orocué",
+    "id":85},
+    
+    {"nombre":"Ortega",
+    "id":73},
+    
+    {"nombre":"Ospina",
+    "id":52},
+    
+    {"nombre":"Otanche",
+    "id":15},
+    
+    {"nombre":"Ovejas",
+    "id":70},
+    
+    {"nombre":"Pachavita",
+    "id":15},
+    
+    {"nombre":"Pacho",
+    "id":25},
+    
+    {"nombre":"Padilla",
+    "id":19},
+    
+    {"nombre":"Paicol",
+    "id":41},
+    
+    {"nombre":"Pailitas",
+    "id":20},
+    
+    {"nombre":"Paime",
+    "id":25},
+    
+    {"nombre":"Paipa",
+    "id":15},
+    
+    {"nombre":"Pajarito",
+    "id":15},
+    
+    {"nombre":"Palermo",
+    "id":41},
+    
+    {"nombre":"Palestina",
+    "id":17},
+    
+    {"nombre":"Palestina",
+    "id":41},
+    
+    {"nombre":"Palmar",
+    "id":68},
+    
+    {"nombre":"Palmar de Varela",
+    "id":8},
+    
+    {"nombre":"Palmas del Socorro",
+    "id":68},
+    
+    {"nombre":"Palmira",
+    "id":76},
+    
+    {"nombre":"Palmito",
+    "id":70},
+    
+    {"nombre":"Palocabildo",
+    "id":73},
+    
+    {"nombre":"Pamplona",
+    "id":54},
+    
+    {"nombre":"Pamplonita",
+    "id":54},
+    
+    {"nombre":"Pandi",
+    "id":25},
+    
+    {"nombre":"Panqueba",
+    "id":15},
+    
+    {"nombre":"Paratebueno",
+    "id":25},
+    
+    {"nombre":"Pasca",
+    "id":25},
+    
+    {"nombre":"Patía (El Bordo)",
+    "id":19},
+    
+    {"nombre":"Pauna",
+    "id":15},
+    
+    {"nombre":"Paya",
+    "id":15},
+    
+    {"nombre":"Paz de Ariporo",
+    "id":85},
+    
+    {"nombre":"Paz de Río",
+    "id":15},
+    
+    {"nombre":"Pedraza",
+    "id":47},
+    
+    {"nombre":"Pelaya",
+    "id":20},
+    
+    {"nombre":"Pensilvania",
+    "id":17},
+    
+    {"nombre":"Peque",
+    "id":5},
+    
+    {"nombre":"Pereira",
+    "id":66},
+    
+    {"nombre":"Pesca",
+    "id":15},
+    
+    {"nombre":"Peñol",
+    "id":5},
+    
+    {"nombre":"Piamonte",
+    "id":19},
+    
+    {"nombre":"Pie de Cuesta",
+    "id":68},
+    
+    {"nombre":"Piedras",
+    "id":73},
+    
+    {"nombre":"Piendamó",
+    "id":19},
+    
+    {"nombre":"Pijao",
+    "id":63},
+    
+    {"nombre":"Pijiño",
+    "id":47},
+    
+    {"nombre":"Pinchote",
+    "id":68},
+    
+    {"nombre":"Pinillos",
+    "id":13},
+    
+    {"nombre":"Piojo",
+    "id":8},
+    
+    {"nombre":"Pisva",
+    "id":15},
+    
+    {"nombre":"Pital",
+    "id":41},
+    
+    {"nombre":"Pitalito",
+    "id":41},
+    
+    {"nombre":"Pivijay",
+    "id":47},
+    
+    {"nombre":"Planadas",
+    "id":73},
+    
+    {"nombre":"Planeta Rica",
+    "id":23},
+    
+    {"nombre":"Plato",
+    "id":47},
+    
+    {"nombre":"Policarpa",
+    "id":52},
+    
+    {"nombre":"Polonuevo",
+    "id":8},
+    
+    {"nombre":"Ponedera",
+    "id":8},
+    
+    {"nombre":"Popayán",
+    "id":19},
+    
+    {"nombre":"Pore",
+    "id":85},
+    
+    {"nombre":"Potosí",
+    "id":52},
+    
+    {"nombre":"Pradera",
+    "id":76},
+    
+    {"nombre":"Prado",
+    "id":73},
+    
+    {"nombre":"Providencia",
+    "id":52},
+    
+    {"nombre":"Providencia",
+    "id":88},
+    
+    {"nombre":"Pueblo Bello",
+    "id":20},
+    
+    {"nombre":"Pueblo Nuevo",
+    "id":23},
+    
+    {"nombre":"Pueblo Rico",
+    "id":66},
+    
+    {"nombre":"Pueblorrico",
+    "id":5},
+    
+    {"nombre":"Puebloviejo",
+    "id":47},
+    
+    {"nombre":"Puente Nacional",
+    "id":68},
+    
+    {"nombre":"Puerres",
+    "id":52},
+    
+    {"nombre":"Puerto Asís",
+    "id":86},
+    
+    {"nombre":"Puerto Berrío",
+    "id":5},
+    
+    {"nombre":"Puerto Boyacá",
+    "id":15},
+    
+    {"nombre":"Puerto Caicedo",
+    "id":86},
+    
+    {"nombre":"Puerto Carreño",
+    "id":99},
+    
+    {"nombre":"Puerto Colombia",
+    "id":8},
+    
+    {"nombre":"Puerto Concordia",
+    "id":50},
+    
+    {"nombre":"Puerto Escondido",
+    "id":23},
+    
+    {"nombre":"Puerto Gaitán",
+    "id":50},
+    
+    {"nombre":"Puerto Guzmán",
+    "id":86},
+    
+    {"nombre":"Puerto Leguízamo",
+    "id":86},
+    
+    {"nombre":"Puerto Libertador",
+    "id":23},
+    
+    {"nombre":"Puerto Lleras",
+    "id":50},
+    
+    {"nombre":"Puerto López",
+    "id":50},
+    
+    {"nombre":"Puerto Nare",
+    "id":5},
+    
+    {"nombre":"Puerto Nariño",
+    "id":91},
+    
+    {"nombre":"Puerto Parra",
+    "id":68},
+    
+    {"nombre":"Puerto Rico",
+    "id":18},
+    
+    {"nombre":"Puerto Rico",
+    "id":50},
+    
+    {"nombre":"Puerto Rondón",
+    "id":81},
+    
+    {"nombre":"Puerto Salgar",
+    "id":25},
+    
+    {"nombre":"Puerto Santander",
+    "id":54},
+    
+    {"nombre":"Puerto Tejada",
+    "id":19},
+    
+    {"nombre":"Puerto Triunfo",
+    "id":5},
+    
+    {"nombre":"Puerto Wilches",
+    "id":68},
+    
+    {"nombre":"Pulí",
+    "id":25},
+    
+    {"nombre":"Pupiales",
+    "id":52},
+    
+    {"nombre":"Puracé (Coconuco)",
+    "id":19},
+    
+    {"nombre":"Purificación",
+    "id":73},
+    
+    {"nombre":"Purísima",
+    "id":23},
+    
+    {"nombre":"Pácora",
+    "id":17},
+    
+    {"nombre":"Páez",
+    "id":15},
+    
+    {"nombre":"Páez (Belalcazar)",
+    "id":19},
+    
+    {"nombre":"Páramo",
+    "id":68},
+    
+    {"nombre":"Quebradanegra",
+    "id":25},
+    
+    {"nombre":"Quetame",
+    "id":25},
+    
+    {"nombre":"Quibdó",
+    "id":27},
+    
+    {"nombre":"Quimbaya",
+    "id":63},
+    
+    {"nombre":"Quinchía",
+    "id":66},
+    
+    {"nombre":"Quipama",
+    "id":15},
+    
+    {"nombre":"Quipile",
+    "id":25},
+    
+    {"nombre":"Ragonvalia",
+    "id":54},
+    
+    {"nombre":"Ramiriquí",
+    "id":15},
+    
+    {"nombre":"Recetor",
+    "id":85},
+    
+    {"nombre":"Regidor",
+    "id":13},
+    
+    {"nombre":"Remedios",
+    "id":5},
+    
+    {"nombre":"Remolino",
+    "id":47},
+    
+    {"nombre":"Repelón",
+    "id":8},
+    
+    {"nombre":"Restrepo",
+    "id":50},
+    
+    {"nombre":"Restrepo",
+    "id":76},
+    
+    {"nombre":"Retiro",
+    "id":5},
+    
+    {"nombre":"Ricaurte",
+    "id":25},
+    
+    {"nombre":"Ricaurte",
+    "id":52},
+    
+    {"nombre":"Rio Negro",
+    "id":68},
+    
+    {"nombre":"Rioblanco",
+    "id":73},
+    
+    {"nombre":"Riofrío",
+    "id":76},
+    
+    {"nombre":"Riohacha",
+    "id":44},
+    
+    {"nombre":"Risaralda",
+    "id":17},
+    
+    {"nombre":"Rivera",
+    "id":41},
+    
+    {"nombre":"Roberto Payán (San José)",
+    "id":52},
+    
+    {"nombre":"Roldanillo",
+    "id":76},
+    
+    {"nombre":"Roncesvalles",
+    "id":73},
+    
+    {"nombre":"Rondón",
+    "id":15},
+    
+    {"nombre":"Rosas",
+    "id":19},
+    
+    {"nombre":"Rovira",
+    "id":73},
+    
+    {"nombre":"Ráquira",
+    "id":15},
+    
+    {"nombre":"Río Iró",
+    "id":27},
+    
+    {"nombre":"Río Quito",
+    "id":27},
+    
+    {"nombre":"Río Sucio",
+    "id":17},
+    
+    {"nombre":"Río Viejo",
+    "id":13},
+    
+    {"nombre":"Río de oro",
+    "id":20},
+    
+    {"nombre":"Ríonegro",
+    "id":5},
+    
+    {"nombre":"Ríosucio",
+    "id":27},
+    
+    {"nombre":"Sabana de Torres",
+    "id":68},
+    
+    {"nombre":"Sabanagrande",
+    "id":8},
+    
+    {"nombre":"Sabanalarga",
+    "id":5},
+    
+    {"nombre":"Sabanalarga",
+    "id":8},
+    
+    {"nombre":"Sabanalarga",
+    "id":85},
+    
+    {"nombre":"Sabanas de San Angel (SAN ANGEL)",
+    "id":47},
+    
+    {"nombre":"Sabaneta",
+    "id":5},
+    
+    {"nombre":"Saboyá",
+    "id":15},
+    
+    {"nombre":"Sahagún",
+    "id":23},
+    
+    {"nombre":"Saladoblanco",
+    "id":41},
+    
+    {"nombre":"Salamina",
+    "id":17},
+    
+    {"nombre":"Salamina",
+    "id":47},
+    
+    {"nombre":"Salazar",
+    "id":54},
+    
+    {"nombre":"Saldaña",
+    "id":73},
+    
+    {"nombre":"Salento",
+    "id":63},
+    
+    {"nombre":"Salgar",
+    "id":5},
+    
+    {"nombre":"Samacá",
+    "id":15},
+    
+    {"nombre":"Samaniego",
+    "id":52},
+    
+    {"nombre":"Samaná",
+    "id":17},
+    
+    {"nombre":"Sampués",
+    "id":70},
+    
+    {"nombre":"San Agustín",
+    "id":41},
+    
+    {"nombre":"San Alberto",
+    "id":20},
+    
+    {"nombre":"San Andrés",
+    "id":68},
+    
+    {"nombre":"San Andrés Sotavento",
+    "id":23},
+    
+    {"nombre":"San Andrés de Cuerquía",
+    "id":5},
+    
+    {"nombre":"San Antero",
+    "id":23},
+    
+    {"nombre":"San Antonio",
+    "id":73},
+    
+    {"nombre":"San Antonio de Tequendama",
+    "id":25},
+    
+    {"nombre":"San Benito",
+    "id":68},
+    
+    {"nombre":"San Benito Abad",
+    "id":70},
+    
+    {"nombre":"San Bernardo",
+    "id":25},
+    
+    {"nombre":"San Bernardo",
+    "id":52},
+    
+    {"nombre":"San Bernardo del Viento",
+    "id":23},
+    
+    {"nombre":"San Calixto",
+    "id":54},
+    
+    {"nombre":"San Carlos",
+    "id":5},
+    
+    {"nombre":"San Carlos",
+    "id":23},
+    
+    {"nombre":"San Carlos de Guaroa",
+    "id":50},
+    
+    {"nombre":"San Cayetano",
+    "id":25},
+    
+    {"nombre":"San Cayetano",
+    "id":54},
+    
+    {"nombre":"San Cristobal",
+    "id":13},
+    
+    {"nombre":"San Diego",
+    "id":20},
+    
+    {"nombre":"San Eduardo",
+    "id":15},
+    
+    {"nombre":"San Estanislao",
+    "id":13},
+    
+    {"nombre":"San Fernando",
+    "id":13},
+    
+    {"nombre":"San Francisco",
+    "id":5},
+    
+    {"nombre":"San Francisco",
+    "id":25},
+    
+    {"nombre":"San Francisco",
+    "id":86},
+    
+    {"nombre":"San Gíl",
+    "id":68},
+    
+    {"nombre":"San Jacinto",
+    "id":13},
+    
+    {"nombre":"San Jacinto del Cauca",
+    "id":13},
+    
+    {"nombre":"San Jerónimo",
+    "id":5},
+    
+    {"nombre":"San Joaquín",
+    "id":68},
+    
+    {"nombre":"San José",
+    "id":17},
+    
+    {"nombre":"San José de Miranda",
+    "id":68},
+    
+    {"nombre":"San José de Montaña",
+    "id":5},
+    
+    {"nombre":"San José de Pare",
+    "id":15},
+    
+    {"nombre":"San José de Uré",
+    "id":23},
+    
+    {"nombre":"San José del Fragua",
+    "id":18},
+    
+    {"nombre":"San José del Guaviare",
+    "id":95},
+    
+    {"nombre":"San José del Palmar",
+    "id":27},
+    
+    {"nombre":"San Juan de Arama",
+    "id":50},
+    
+    {"nombre":"San Juan de Betulia",
+    "id":70},
+    
+    {"nombre":"San Juan de Nepomuceno",
+    "id":13},
+    
+    {"nombre":"San Juan de Pasto",
+    "id":52},
+    
+    {"nombre":"San Juan de Río Seco",
+    "id":25},
+    
+    {"nombre":"San Juan de Urabá",
+    "id":5},
+    
+    {"nombre":"San Juan del Cesar",
+    "id":44},
+    
+    {"nombre":"San Juanito",
+    "id":50},
+    
+    {"nombre":"San Lorenzo",
+    "id":52},
+    
+    {"nombre":"San Luis",
+    "id":73},
+    
+    {"nombre":"San Luís",
+    "id":5},
+    
+    {"nombre":"San Luís de Gaceno",
+    "id":15},
+    
+    {"nombre":"San Luís de Palenque",
+    "id":85},
+    
+    {"nombre":"San Marcos",
+    "id":70},
+    
+    {"nombre":"San Martín",
+    "id":20},
+    
+    {"nombre":"San Martín",
+    "id":50},
+    
+    {"nombre":"San Martín de Loba",
+    "id":13},
+    
+    {"nombre":"San Mateo",
+    "id":15},
+    
+    {"nombre":"San Miguel",
+    "id":68},
+    
+    {"nombre":"San Miguel",
+    "id":86},
+    
+    {"nombre":"San Miguel de Sema",
+    "id":15},
+    
+    {"nombre":"San Onofre",
+    "id":70},
+    
+    {"nombre":"San Pablo",
+    "id":13},
+    
+    {"nombre":"San Pablo",
+    "id":52},
+    
+    {"nombre":"San Pablo de Borbur",
+    "id":15},
+    
+    {"nombre":"San Pedro",
+    "id":5},
+    
+    {"nombre":"San Pedro",
+    "id":70},
+    
+    {"nombre":"San Pedro",
+    "id":76},
+    
+    {"nombre":"San Pedro de Cartago",
+    "id":52},
+    
+    {"nombre":"San Pedro de Urabá",
+    "id":5},
+    
+    {"nombre":"San Pelayo",
+    "id":23},
+    
+    {"nombre":"San Rafael",
+    "id":5},
+    
+    {"nombre":"San Roque",
+    "id":5},
+    
+    {"nombre":"San Sebastián",
+    "id":19},
+    
+    {"nombre":"San Sebastián de Buenavista",
+    "id":47},
+    
+    {"nombre":"San Vicente",
+    "id":5},
+    
+    {"nombre":"San Vicente del Caguán",
+    "id":18},
+    
+    {"nombre":"San Vicente del Chucurí",
+    "id":68},
+    
+    {"nombre":"San Zenón",
+    "id":47},
+    
+    {"nombre":"Sandoná",
+    "id":52},
+    
+    {"nombre":"Santa Ana",
+    "id":47},
+    
+    {"nombre":"Santa Bárbara",
+    "id":5},
+    
+    {"nombre":"Santa Bárbara",
+    "id":68},
+    
+    {"nombre":"Santa Bárbara (Iscuandé)",
+    "id":52},
+    
+    {"nombre":"Santa Bárbara de Pinto",
+    "id":47},
+    
+    {"nombre":"Santa Catalina",
+    "id":13},
+    
+    {"nombre":"Santa Fé de Antioquia",
+    "id":5},
+    
+    {"nombre":"Santa Genoveva de Docorodó",
+    "id":27},
+    
+    {"nombre":"Santa Helena del Opón",
+    "id":68},
+    
+    {"nombre":"Santa Isabel",
+    "id":73},
+    
+    {"nombre":"Santa Lucía",
+    "id":8},
+    
+    {"nombre":"Santa Marta",
+    "id":47},
+    
+    {"nombre":"Santa María",
+    "id":15},
+    
+    {"nombre":"Santa María",
+    "id":41},
+    
+    {"nombre":"Santa Rosa",
+    "id":13},
+    
+    {"nombre":"Santa Rosa",
+    "id":19},
+    
+    {"nombre":"Santa Rosa de Cabal",
+    "id":66},
+    
+    {"nombre":"Santa Rosa de Osos",
+    "id":5},
+    
+    {"nombre":"Santa Rosa de Viterbo",
+    "id":15},
+    
+    {"nombre":"Santa Rosa del Sur",
+    "id":13},
+    
+    {"nombre":"Santa Rosalía",
+    "id":99},
+    
+    {"nombre":"Santa Sofía",
+    "id":15},
+    
+    {"nombre":"Santana",
+    "id":15},
+    
+    {"nombre":"Santander de Quilichao",
+    "id":19},
+    
+    {"nombre":"Santiago",
+    "id":54},
+    
+    {"nombre":"Santiago",
+    "id":86},
+    
+    {"nombre":"Santo Domingo",
+    "id":5},
+    
+    {"nombre":"Santo Tomás",
+    "id":8},
+    
+    {"nombre":"Santuario",
+    "id":5},
+    
+    {"nombre":"Santuario",
+    "id":66},
+    
+    {"nombre":"Sapuyes",
+    "id":52},
+    
+    {"nombre":"Saravena",
+    "id":81},
+    
+    {"nombre":"Sardinata",
+    "id":54},
+    
+    {"nombre":"Sasaima",
+    "id":25},
+    
+    {"nombre":"Sativanorte",
+    "id":15},
+    
+    {"nombre":"Sativasur",
+    "id":15},
+    
+    {"nombre":"Segovia",
+    "id":5},
+    
+    {"nombre":"Sesquilé",
+    "id":25},
+    
+    {"nombre":"Sevilla",
+    "id":76},
+    
+    {"nombre":"Siachoque",
+    "id":15},
+    
+    {"nombre":"Sibaté",
+    "id":25},
+    
+    {"nombre":"Sibundoy",
+    "id":86},
+    
+    {"nombre":"Silos",
+    "id":54},
+    
+    {"nombre":"Silvania",
+    "id":25},
+    
+    {"nombre":"Silvia",
+    "id":19},
+    
+    {"nombre":"Simacota",
+    "id":68},
+    
+    {"nombre":"Simijaca",
+    "id":25},
+    
+    {"nombre":"Simití",
+    "id":13},
+    
+    {"nombre":"Sincelejo",
+    "id":70},
+    
+    {"nombre":"Sincé",
+    "id":70},
+    
+    {"nombre":"Sipí",
+    "id":27},
+    
+    {"nombre":"Sitionuevo",
+    "id":47},
+    
+    {"nombre":"Soacha",
+    "id":25},
+    
+    {"nombre":"Soatá",
+    "id":15},
+    
+    {"nombre":"Socha",
+    "id":15},
+    
+    {"nombre":"Socorro",
+    "id":68},
+    
+    {"nombre":"Socotá",
+    "id":15},
+    
+    {"nombre":"Sogamoso",
+    "id":15},
+    
+    {"nombre":"Solano",
+    "id":18},
+    
+    {"nombre":"Soledad",
+    "id":8},
+    
+    {"nombre":"Solita",
+    "id":18},
+    
+    {"nombre":"Somondoco",
+    "id":15},
+    
+    {"nombre":"Sonsón",
+    "id":5},
+    
+    {"nombre":"Sopetrán",
+    "id":5},
+    
+    {"nombre":"Soplaviento",
+    "id":13},
+    
+    {"nombre":"Sopó",
+    "id":25},
+    
+    {"nombre":"Sora",
+    "id":15},
+    
+    {"nombre":"Soracá",
+    "id":15},
+    
+    {"nombre":"Sotaquirá",
+    "id":15},
+    
+    {"nombre":"Sotara (Paispamba)",
+    "id":19},
+    
+    {"nombre":"Sotomayor (Los Andes)",
+    "id":52},
+    
+    {"nombre":"Suaita",
+    "id":68},
+    
+    {"nombre":"Suan",
+    "id":8},
+    
+    {"nombre":"Suaza",
+    "id":41},
+    
+    {"nombre":"Subachoque",
+    "id":25},
+    
+    {"nombre":"Sucre",
+    "id":19},
+    
+    {"nombre":"Sucre",
+    "id":68},
+    
+    {"nombre":"Sucre",
+    "id":70},
+    
+    {"nombre":"Suesca",
+    "id":25},
+    
+    {"nombre":"Supatá",
+    "id":25},
+    
+    {"nombre":"Supía",
+    "id":17},
+    
+    {"nombre":"Suratá",
+    "id":68},
+    
+    {"nombre":"Susa",
+    "id":25},
+    
+    {"nombre":"Susacón",
+    "id":15},
+    
+    {"nombre":"Sutamarchán",
+    "id":15},
+    
+    {"nombre":"Sutatausa",
+    "id":25},
+    
+    {"nombre":"Sutatenza",
+    "id":15},
+    
+    {"nombre":"Suárez",
+    "id":19},
+    
+    {"nombre":"Suárez",
+    "id":73},
+    
+    {"nombre":"Sácama",
+    "id":85},
+    
+    {"nombre":"Sáchica",
+    "id":15},
+    
+    {"nombre":"Tabio",
+    "id":25},
+    
+    {"nombre":"Tadó",
+    "id":27},
+    
+    {"nombre":"Talaigua Nuevo",
+    "id":13},
+    
+    {"nombre":"Tamalameque",
+    "id":20},
+    
+    {"nombre":"Tame",
+    "id":81},
+    
+    {"nombre":"Taminango",
+    "id":52},
+    
+    {"nombre":"Tangua",
+    "id":52},
+    
+    {"nombre":"Taraira",
+    "id":97},
+    
+    {"nombre":"Tarazá",
+    "id":5},
+    
+    {"nombre":"Tarqui",
+    "id":41},
+    
+    {"nombre":"Tarso",
+    "id":5},
+    
+    {"nombre":"Tasco",
+    "id":15},
+    
+    {"nombre":"Tauramena",
+    "id":85},
+    
+    {"nombre":"Tausa",
+    "id":25},
+    
+    {"nombre":"Tello",
+    "id":41},
+    
+    {"nombre":"Tena",
+    "id":25},
+    
+    {"nombre":"Tenerife",
+    "id":47},
+    
+    {"nombre":"Tenjo",
+    "id":25},
+    
+    {"nombre":"Tenza",
+    "id":15},
+    
+    {"nombre":"Teorama",
+    "id":54},
+    
+    {"nombre":"Teruel",
+    "id":41},
+    
+    {"nombre":"Tesalia",
+    "id":41},
+    
+    {"nombre":"Tibacuy",
+    "id":25},
+    
+    {"nombre":"Tibaná",
+    "id":15},
+    
+    {"nombre":"Tibasosa",
+    "id":15},
+    
+    {"nombre":"Tibirita",
+    "id":25},
+    
+    {"nombre":"Tibú",
+    "id":54},
+    
+    {"nombre":"Tierralta",
+    "id":23},
+    
+    {"nombre":"Timaná",
+    "id":41},
+    
+    {"nombre":"Timbiquí",
+    "id":19},
+    
+    {"nombre":"Timbío",
+    "id":19},
+    
+    {"nombre":"Tinjacá",
+    "id":15},
+    
+    {"nombre":"Tipacoque",
+    "id":15},
+    
+    {"nombre":"Tiquisio (Puerto Rico)",
+    "id":13},
+    
+    {"nombre":"Titiribí",
+    "id":5},
+    
+    {"nombre":"Toca",
+    "id":15},
+    
+    {"nombre":"Tocaima",
+    "id":25},
+    
+    {"nombre":"Tocancipá",
+    "id":25},
+    
+    {"nombre":"Toguí",
+    "id":15},
+    
+    {"nombre":"Toledo",
+    "id":5},
+    
+    {"nombre":"Toledo",
+    "id":54},
+    
+    {"nombre":"Tolú",
+    "id":70},
+    
+    {"nombre":"Tolú Viejo",
+    "id":70},
+    
+    {"nombre":"Tona",
+    "id":68},
+    
+    {"nombre":"Topagá",
+    "id":15},
+    
+    {"nombre":"Topaipí",
+    "id":25},
+    
+    {"nombre":"Toribío",
+    "id":19},
+    
+    {"nombre":"Toro",
+    "id":76},
+    
+    {"nombre":"Tota",
+    "id":15},
+    
+    {"nombre":"Totoró",
+    "id":19},
+    
+    {"nombre":"Trinidad",
+    "id":85},
+    
+    {"nombre":"Trujillo",
+    "id":76},
+    
+    {"nombre":"Tubará",
+    "id":8},
+    
+    {"nombre":"Tuchín",
+    "id":23},
+    
+    {"nombre":"Tulúa",
+    "id":76},
+    
+    {"nombre":"Tumaco",
+    "id":52},
+    
+    {"nombre":"Tunja",
+    "id":15},
+    
+    {"nombre":"Tunungua",
+    "id":15},
+    
+    {"nombre":"Turbaco",
+    "id":13},
+    
+    {"nombre":"Turbaná",
+    "id":13},
+    
+    {"nombre":"Turbo",
+    "id":5},
+    
+    {"nombre":"Turmequé",
+    "id":15},
+    
+    {"nombre":"Tuta",
+    "id":15},
+    
+    {"nombre":"Tutasá",
+    "id":15},
+    
+    {"nombre":"Támara",
+    "id":85},
+    
+    {"nombre":"Támesis",
+    "id":5},
+    
+    {"nombre":"Túquerres",
+    "id":52},
+    
+    {"nombre":"Ubalá",
+    "id":25},
+    
+    {"nombre":"Ubaque",
+    "id":25},
+    
+    {"nombre":"Ubaté",
+    "id":25},
+    
+    {"nombre":"Ulloa",
+    "id":76},
+    
+    {"nombre":"Une",
+    "id":25},
+    
+    {"nombre":"Unguía",
+    "id":27},
+    
+    {"nombre":"Unión Panamericana (ÁNIMAS)",
+    "id":27},
+    
+    {"nombre":"Uramita",
+    "id":5},
+    
+    {"nombre":"Uribe",
+    "id":50},
+    
+    {"nombre":"Uribia",
+    "id":44},
+    
+    {"nombre":"Urrao",
+    "id":5},
+    
+    {"nombre":"Urumita",
+    "id":44},
+    
+    {"nombre":"Usiacuri",
+    "id":8},
+    
+    {"nombre":"Valdivia",
+    "id":5},
+    
+    {"nombre":"Valencia",
+    "id":23},
+    
+    {"nombre":"Valle de San José",
+    "id":68},
+    
+    {"nombre":"Valle de San Juan",
+    "id":73},
+    
+    {"nombre":"Valle del Guamuez",
+    "id":86},
+    
+    {"nombre":"Valledupar",
+    "id":20},
+    
+    {"nombre":"Valparaiso",
+    "id":5},
+    
+    {"nombre":"Valparaiso",
+    "id":18},
+    
+    {"nombre":"Vegachí",
+    "id":5},
+    
+    {"nombre":"Venadillo",
+    "id":73},
+    
+    {"nombre":"Venecia",
+    "id":5},
+    
+    {"nombre":"Venecia (Ospina Pérez)",
+    "id":25},
+    
+    {"nombre":"Ventaquemada",
+    "id":15},
+    
+    {"nombre":"Vergara",
+    "id":25},
+    
+    {"nombre":"Versalles",
+    "id":76},
+    
+    {"nombre":"Vetas",
+    "id":68},
+    
+    {"nombre":"Viani",
+    "id":25},
+    
+    {"nombre":"Vigía del Fuerte",
+    "id":5},
+    
+    {"nombre":"Vijes",
+    "id":76},
+    
+    {"nombre":"Villa Caro",
+    "id":54},
+    
+    {"nombre":"Villa Rica",
+    "id":19},
+    
+    {"nombre":"Villa de Leiva",
+    "id":15},
+    
+    {"nombre":"Villa del Rosario",
+    "id":54},
+    
+    {"nombre":"Villagarzón",
+    "id":86},
+    
+    {"nombre":"Villagómez",
+    "id":25},
+    
+    {"nombre":"Villahermosa",
+    "id":73},
+    
+    {"nombre":"Villamaría",
+    "id":17},
+    
+    {"nombre":"Villanueva",
+    "id":13},
+    
+    {"nombre":"Villanueva",
+    "id":44},
+    
+    {"nombre":"Villanueva",
+    "id":68},
+    
+    {"nombre":"Villanueva",
+    "id":85},
+    
+    {"nombre":"Villapinzón",
+    "id":25},
+    
+    {"nombre":"Villarrica",
+    "id":73},
+    
+    {"nombre":"Villavicencio",
+    "id":50},
+    
+    {"nombre":"Villavieja",
+    "id":41},
+    
+    {"nombre":"Villeta",
+    "id":25},
+    
+    {"nombre":"Viotá",
+    "id":25},
+    
+    {"nombre":"Viracachá",
+    "id":15},
+    
+    {"nombre":"Vista Hermosa",
+    "id":50},
+    
+    {"nombre":"Viterbo",
+    "id":17},
+    
+    {"nombre":"Vélez",
+    "id":68},
+    
+    {"nombre":"Yacopí",
+    "id":25},
+    
+    {"nombre":"Yacuanquer",
+    "id":52},
+    
+    {"nombre":"Yaguará",
+    "id":41},
+    
+    {"nombre":"Yalí",
+    "id":5},
+    
+    {"nombre":"Yarumal",
+    "id":5},
+    
+    {"nombre":"Yolombó",
+    "id":5},
+    
+    {"nombre":"Yondó (Casabe)",
+    "id":5},
+    
+    {"nombre":"Yopal",
+    "id":85},
+    
+    {"nombre":"Yotoco",
+    "id":76},
+    
+    {"nombre":"Yumbo",
+    "id":76},
+    
+    {"nombre":"Zambrano",
+    "id":13},
+    
+    {"nombre":"Zapatoca",
+    "id":68},
+    
+    {"nombre":"Zapayán (PUNTA DE PIEDRAS)",
+    "id":47},
+    
+    {"nombre":"Zaragoza",
+    "id":5},
+    
+    {"nombre":"Zarzal",
+    "id":76},
+    
+    {"nombre":"Zetaquirá",
+    "id":15},
+    
+    {"nombre":"Zipacón",
+    "id":25},
+    
+    {"nombre":"Zipaquirá",
+    "id":25},
+    
+    {"nombre":"Zona Bananera (PRADO - SEVILLA)",
+    "id":47},
+    
+    {"nombre":"Ábrego",
+    "id":54},
+    
+    {"nombre":"Íquira",
+    "id":41},
+    
+    {"nombre":"Úmbita",
+    "id":15},
+
+    {"nombre":"Útica",
+    "id":25}
+]
