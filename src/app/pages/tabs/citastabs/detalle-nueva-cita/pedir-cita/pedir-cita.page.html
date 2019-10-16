@@ -71,30 +71,32 @@
 
   <ng-template #template let-showEventDetail="showEventDetail" let-selectedDate="selectedDate"
     let-noEventsLabel="noEventsLabel">
-    <div class="citas" (click)="openalert(item)" *ngFor="let item of selectedDate.events">
-      <div *ngIf="selectedDate.events.length > 0">
-        <ion-grid fixed style="padding-left: 10px;">
-          <ion-row style="margin-top: 3%;">
-            <ion-col size="12">
-              <span style="font-size: 21px;font-weight: bold;color: #556749;">
-                {{medico.especialidad | titlecase}}
-              </span><br>
-              <span style="font-weight: 600;color: #717171; top: 3px; position: relative;">
-                {{item.title | titlecase}}
-              </span>
-              <span>
-                <p style="color: gray">
-                  {{item.desc}} <br>
-                  {{item.desc2}}
-                </p>
-              </span>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
+    <div style="margin-bottom: 3%;">
+      <div class="citas" (click)="openalert(item)" *ngFor="let item of selectedDate.events">
+        <div *ngIf="selectedDate.events.length > 0">
+          <ion-grid fixed style="padding-left: 10px;">
+            <ion-row style="margin-top: 3%;">
+              <ion-col size="12">
+                <span style="font-size: 21px;font-weight: bold;color: #556749;">
+                  {{medico.especialidad | titlecase}}
+                </span><br>
+                <span style="font-weight: 600;color: #717171; top: 3px; position: relative;">
+                  {{item.title | titlecase}}
+                </span>
+                <span>
+                  <p style="color: gray">
+                    {{item.desc}} <br>
+                    {{item.desc2}}
+                  </p>
+                </span>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
       </div>
-    </div>
-    <div *ngIf="selectedDate.events.length == 0" class="citas">
-      <span class="noeventos">No hay cupos libres para este dia</span>
+      <div *ngIf="selectedDate.events.length == 0" class="citas">
+        <span class="noeventos">No hay cupos libres para este dia</span>
+      </div>
     </div>
 
   </ng-template>

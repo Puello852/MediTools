@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Storage } from '@ionic/storage'
@@ -7,11 +7,15 @@ import { Platform } from '@ionic/angular';
   providedIn: 'root'
 })
 export class ApiToolsService {
+
 	
+	@Output() evento = new EventEmitter();
 	token: any = "null"
 	refreshToken: string;
   constructor(private storage:Storage, private _http: HttpClient,public platform:Platform) {}
-
+  emitir(value) {
+    this.evento.emit(value);
+  }
   getQuery( query: string, type: string,  authorization: boolean, body?: any ) {
 		const url = environment.apiUrl+query;
 		let headers:any = new HttpHeaders({ 'Content-Type': 'application/json', 'Accept': 'application/json' });
@@ -166,6 +170,14 @@ export class ApiToolsService {
 
 	nuevacitaCupo(data){
 		return this.getQuery('cupo/nuevacitacupo', 'post',true,data)
+	}
+
+	detallestadocita(id){
+		return this.getQuery('citas/detallecita/'+id, 'get',true)
+	}
+
+	cancelarCita(data){
+		return this.getQuery('citas/cancelarcita', 'post',true,data)
 	}
 
 

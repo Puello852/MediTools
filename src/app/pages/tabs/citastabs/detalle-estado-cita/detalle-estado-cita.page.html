@@ -1,9 +1,94 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>DetalleEstadoCita</ion-title>
+  <ion-toolbar (click)="detalle()">
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+    <ion-title>
+      <ion-chip [ngClass]="{'chip': info.estado == 'Pendiente', 'chip2':info.estado == 'Cancelada' }">
+        <ion-label >Cita {{info.estado}}</ion-label>
+      </ion-chip> 
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <div class="caja">
+    <ion-grid fixed>
+      <ion-row>
+        <ion-col size="3">
+          <img [src]="info.foto" class="foto">
+        </ion-col>
+        <ion-col size="9">
+          <h5 class="name">{{info.profesional | titlecase}}</h5>
+          <p class="especialidad">
+            {{info.especialidad | titlecase}}
+          </p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div class="caja" *ngIf="info.estado == 'Pendiente'">
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col size="3">
+              <ion-icon class="icon" name="calendar"></ion-icon>
+          </ion-col>
+          <ion-col size="9">
+            <h5 class="name2">{{info.fechacita | date:'longDate'}}</h5>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    
+    
+
+    <div class="caja" >
+      <ion-grid fixed>
+          <ion-row>
+            <ion-col size="3">
+                <ion-icon class="icon" name="clock"></ion-icon>
+              </ion-col>
+            <ion-col size="9">
+              <h5 class="name2">{{horaInicial}} - {{horaFinal}}</h5>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+      
+      <div class="cajaCancelada" *ngIf="info.estado == 'Cancelada'">
+          <ion-grid fixed>
+              <ion-row>
+                <ion-col size="3">
+                    <ion-icon class="iconcancel" name="calendar"></ion-icon>
+                </ion-col>
+                <ion-col size="9">
+                  
+                  <h5 class="cancelt">Cancelada el:</h5>
+                  <p class="parrafocancel">
+                      {{info.fechaCancelado | date:'d MMMM y hh:mm a'}}
+                  </p>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+      </div>
+      
+      <div class="caja2">
+        <h2 class="name3">Descripción del servicio</h2>
+
+        <h5 class="tiposervi">{{info.tiposervicio | titlecase}}</h5>
+        <p class="des">
+          {{info.descripcion}}
+        </p>
+      </div>
+      <div *ngIf="info.estado == 'Pendiente'" class="bottom">
+        <div  class="footer" (click)="cancel()">
+          <span class="viewcupos">
+            Cancelar Cita
+          </span>
+        </div>
+      </div>
 
 </ion-content>

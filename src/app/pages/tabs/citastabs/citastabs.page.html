@@ -83,10 +83,10 @@
     <ion-item-sliding *ngFor="let item of citas">
       <ion-item class="list">
         <ion-avatar slot="start">
-          <img src="./assets/img/person1.png" />
+          <img src="{{item.foto}}" />
         </ion-avatar>
         <ion-label>
-          <h2> <strong>{{item.servicio | titlecase}}</strong>
+          <h2> <strong>{{item.especialidad | titlecase}}</strong>
             <ion-chip style="position: absolute; right: 9px;" color="success" *ngIf="item.estado == 'Aceptada'" mode="md">
               <ion-label>Aceptada</ion-label>
             </ion-chip>
