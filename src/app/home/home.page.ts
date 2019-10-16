@@ -87,7 +87,7 @@ export class HomePage implements OnInit {
         loading.dismiss()
         let datauid: any = this.authService.userDetails()
         this.api.recibido(data.token)
-        this.api.guardarToken(data.token, data.Refreshtoken, datauid.uid)
+        this.api.guardarToken(data.token, data.refresh, datauid.uid)
         const toast = await this.toastController.create({
           message: 'Bienvenido.',
           duration: 2000,

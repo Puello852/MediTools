@@ -17,6 +17,8 @@ const routes: Routes = [
   { path: 'edit-profile', loadChildren: './pages/tabs/edit-profile/edit-profile.module#EditProfilePageModule' },
   { path: 'agregar-citas-tabs', loadChildren: './pages/tabs/citastabs/agregar-citas-tabs/agregar-citas-tabs.module#AgregarCitasTabsPageModule' },
   { path: 'detalle-nueva-cita/:id', loadChildren: './pages/tabs/citastabs/detalle-nueva-cita/detalle-nueva-cita.module#DetalleNuevaCitaPageModule' },
+  { path: 'pedir-cita', loadChildren: './pages/tabs/citastabs/detalle-nueva-cita/pedir-cita/pedir-cita.module#PedirCitaPageModule' },
+  { path: 'detalle-estado-cita/:id', loadChildren: './pages/tabs/citastabs/detalle-estado-cita/detalle-estado-cita.module#DetalleEstadoCitaPageModule' },
 ];
 
 @NgModule({

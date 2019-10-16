@@ -28,7 +28,7 @@
 .imghistory{
     border-radius: 50%;
     width: 100px;
-    height: 120px;
+    height: 100px;
 }
 
 .dcenter{
@@ -97,6 +97,10 @@
     --box-shadow: none;
 }
 
+::ng-deep .monthview-container{
+    height: 89% !important;
+}
+
 .save{
     --color: #0074ff;
     --background: transparent;
@@ -121,13 +125,12 @@
 }
 
 .citas{
+    background: linear-gradient(90deg, rgba(74,136,45,1) 2%, rgba(201,221,193,1) 2%);
     margin: auto;
     width: 97%;
-    background-color: white;
-    // height: 135px;
-    border-radius: 15px;
+    border-radius: 7px;
     box-shadow: 0px 0px 5px 0px #c6c6c7;
-    margin-top: 8px;
+    margin-top: 3px;
 }
 .titlemes{
     display: flex;
@@ -179,7 +182,7 @@
 }
 
 ::ng-deep .monthview-primary-with-event {
-    background-color: #27a052bf !important;
+    background-color: #1d882587 !important;
     color: white !important;
     border-radius: 50% !important;
 }
@@ -201,7 +204,7 @@
 }
 
 ::ng-deep .table > tbody > tr > td{
-    padding: 12px !important;
-    line-height: 4vh !important;
+    padding: 0px !important;
+    line-height: 7vh !important;
     vertical-align: top;
 }

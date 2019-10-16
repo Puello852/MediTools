@@ -1,9 +1,10 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone,ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { RecaptchaComponent } from 'ng-recaptcha'
 import moment from 'moment';
 import example from '../../../assets/departamentos.json';
 import municipio from '../../../assets/municipios.json';
@@ -14,6 +15,7 @@ import { ApiToolsService } from 'src/app/services/api-tools.service';
   styleUrls: ['./registrar.page.scss'],
 })
 export class RegistrarPage implements OnInit {
+  @ViewChild(RecaptchaComponent,{static: false}) captcha: RecaptchaComponent;
   nameicon:string = 'eye'
   typeinput:string = 'password'
   nameicon2:string = 'eye'
@@ -49,6 +51,7 @@ export class RegistrarPage implements OnInit {
   
   constructor(private zone: NgZone,public loadingController: LoadingController,private api:ApiToolsService,private statusBar: StatusBar,private authService:AuthenticationService,public alertController: AlertController,public ruta: Router) {
     console.log(example)
+
     this.departamento = example
     this.municipios = municipio
    }
@@ -194,6 +197,7 @@ export class RegistrarPage implements OnInit {
             this.ruta.navigate(['/home'])
           });
        }),async erro=>{
+         this.captcha.reset()
         const alert = await this.alertController.create({
           header: 'Error',
           message: erro.error.message,
@@ -203,6 +207,7 @@ export class RegistrarPage implements OnInit {
         loading.dismiss()
        })
      },async erro=>{
+      this.captcha.reset()
       const alert = await this.alertController.create({
         header: 'Exito',
         message: erro.error.message,

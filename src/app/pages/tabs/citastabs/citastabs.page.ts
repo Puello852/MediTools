@@ -1,6 +1,6 @@
 import { CalendarComponent } from 'ionic2-calendar/calendar';
 import { Component, ViewChild, OnInit, Inject, LOCALE_ID } from '@angular/core';
-import { AlertController,ModalController, ToastController, LoadingController } from '@ionic/angular';
+import { AlertController,ModalController, ToastController, LoadingController, NavParams } from '@ionic/angular';
 import { faChevronLeft, faChevronRight,faNotesMedical } from '@fortawesome/free-solid-svg-icons'
 import { AgregarCitasTabsPage } from './agregar-citas-tabs/agregar-citas-tabs.page';
 import moment from 'moment';
@@ -51,7 +51,6 @@ export class CitastabsPage implements OnInit {
   viewTitle;
  
   calendar = {
- 
     locale: 'es-MX',
     mode: 'month',
     currentDate: new Date(),
@@ -102,6 +101,8 @@ export class CitastabsPage implements OnInit {
       loading.dismiss()
       this.newmedicos = data
       this.medicos = data
+    },erro=>{
+      loading.dismiss()
     })
   }
 
@@ -118,6 +119,8 @@ export class CitastabsPage implements OnInit {
     await loading.present();
     this.api.ListmedicalEspecialidades(e).subscribe((data:any)=>{
       this.medicos = data
+      loading.dismiss()
+    },erro=>{
       loading.dismiss()
     })
   }
@@ -155,21 +158,6 @@ export class CitastabsPage implements OnInit {
 
      console.log(result)
      this.medicos = result
-
-
-    //  await this.api.buscadorMedical(e.detail.value).subscribe((data:any)=>{
-       
-    //   if(data.code == -1){
-    //     this.medicos = []
-    //   }else{
-    //     this.medicos = data
-    //   }
-    //   if(e.detail.value == null || e.detail.value == ''){
-    //     this.lisTMedical()
-    //   }
-    //   },erro=>{
-    //     this.medicos = []
-    //   })
 
     }
   }
@@ -292,10 +280,10 @@ export class CitastabsPage implements OnInit {
   onTimeSelected(e){
    
   }
-  onViewTitleChanged(e){
- 
-    this.mes  = e
-  }
+    onViewTitleChanged(e){
+  
+      this.mes  = e
+    }
 
   onEventSelected(e){
   
@@ -315,17 +303,17 @@ export class CitastabsPage implements OnInit {
   }
 
   unread(e){
-    console.log(e)
+    this.router.navigate(['/detalle-estado-cita/'+e])
   }
 
   async filter(e){
-    if(e){
-      const toast = await this.toastController.create({
-        message: 'Filtros Aplicados.',
-        duration: 2000
-      });
-      toast.present();
-    }
+    // if(e){
+    //   const toast = await this.toastController.create({
+    //     message: 'Filtros Aplicados.',
+    //     duration: 2000
+    //   });
+    //   toast.present();
+    // }
   if(this.filtro){
     console.log("entro aqui :v")
     this.filtro = false
@@ -351,6 +339,8 @@ export class CitastabsPage implements OnInit {
           loading.dismiss()
           this.citas = data
         }
+      },erro=>{
+        loading.dismiss()
       })
   }
 

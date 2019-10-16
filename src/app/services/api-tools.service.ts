@@ -14,7 +14,6 @@ export class ApiToolsService {
 
   getQuery( query: string, type: string,  authorization: boolean, body?: any ) {
 		const url = environment.apiUrl+query;
-		console.log(url)
 		let headers:any = new HttpHeaders({ 'Content-Type': 'application/json', 'Accept': 'application/json' });
 		
 		if (authorization)
@@ -55,6 +54,10 @@ export class ApiToolsService {
 		return this.getQuery( 'persona/ingresarnueva', 'post', false, data )
 	}
 
+	tokenRefresh(data){
+		return this.getQuery( 'auth/refreshToken', 'get', true, data )
+	}
+
 	GetInfoUser(){
 		return	this.getQuery('persona/getProfile', 'get', true)
 	}
@@ -74,6 +77,8 @@ export class ApiToolsService {
 	editsecundtName(data){
 		return	this.getQuery('persona/segundonombre', 'post', true,data)
 	}
+
+
 
 	editPrimerApellido(data){
 		return	this.getQuery('persona/primerapellido', 'post', true,data)
@@ -135,6 +140,34 @@ export class ApiToolsService {
 		return this.getQuery('citas/miscitaspendientes', 'get',true)
 	}
 
+	obtenerhorario(data){
+		return this.getQuery('horario/gethorariodia', 'post',true,data)
+	}
+
+	detallecita(data){
+		return this.getQuery('citas/detallecita/'+data, 'get',true)
+	}
+
+	eventMes(data){
+		return this.getQuery('horario/gethorarioMes', 'post',true,data)
+	}
+
+	cuposlibresFecha(data){
+		return this.getQuery('horario/gethorariodia', 'post',true,data)
+	}
+
+	cuposLibres(data){
+		return this.getQuery('cupo/getcupoMes', 'post',true,data)
+	}
+
+	cuposLibreDias(data){
+		return this.getQuery('cupo/getcupo', 'post',true,data)
+	}
+
+	nuevacitaCupo(data){
+		return this.getQuery('cupo/nuevacitacupo', 'post',true,data)
+	}
+
 
 
 
@@ -148,12 +181,14 @@ export class ApiToolsService {
 		if(this.platform.is('cordova')){
 		
 			this.token = token
+			this.storage.set('refresh', refreshToken)
 			this.storage.set('token', token)
 			this.storage.set('uid', uid)
 			// this.CargarToken()
 		}else{
 			//pc
 			localStorage.setItem("token",token)
+			localStorage.setItem("refresh", refreshToken)
 			localStorage.setItem("uid",uid)
 			// this.CargarToken()
 		}

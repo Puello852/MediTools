@@ -16,13 +16,14 @@ import { DashboardHomePage } from './pages/dashboard-home/dashboard-home.page';
 import { Camera } from '@ionic-native/camera/ngx';
 import {File} from '@ionic-native/file/ngx';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RecaptchaModule } from 'ng-recaptcha';
 import { IonicStorageModule } from '@ionic/storage';
 import { EditProfilePage } from './pages/tabs/edit-profile/edit-profile.page';
 import { HTTP } from '@ionic-native/http/ngx';
 import { FiltroCitasPipe } from './Pipes/filtro-citas.pipe';
+import { RefreshToken } from './interceptor-token.service';
 @NgModule({
   declarations: [AppComponent,DashboardHomePage,EditProfilePage, FiltroCitasPipe],
   entryComponents: [EditProfilePage],
@@ -36,6 +37,7 @@ import { FiltroCitasPipe } from './Pipes/filtro-citas.pipe';
     AngularFirestoreModule,
     BrowserModule, AngularFireAuthModule, IonicModule.forRoot(), AppRoutingModule],
   providers: [
+    {provide: HTTP_INTERCEPTORS,useClass: RefreshToken,multi: true},
     AngularFireStorage,
     File,
     HTTP,

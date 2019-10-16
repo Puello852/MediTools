@@ -1,49 +1,43 @@
-<!-- <ion-header>
-  <ion-toolbar> 
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-    <ion-title>DetalleNuevaCita</ion-title>
-  </ion-toolbar>
-</ion-header> -->
-
 <ion-content>
 
-  <ion-grid fixed>
-
-    <ion-button class="exit" (click)="back()">
-      <ion-icon slot="icon-only" name="close-circle"></ion-icon>
-    </ion-button>
-
-    <!-- <ion-button class="favorite" (click)="onClick()">
-      <ion-icon slot="icon-only" name="bookmark"></ion-icon>
-    </ion-button> -->
+  <ion-grid style="padding: 0;">
     <ion-row>
-      <ion-col size="12">
-        <img class="img" src="{{medico.foto}}" alt="">
-      </ion-col>
-      <ion-col size="12" padding>
-        <h2 style="font-weight: 600;">{{medico.nombre}} {{medico.nombre2}} {{medico.apellido}} {{medico.apellido2}}</h2>
-        <span style="color: gray">{{medico.descripcioncorta}}</span>
-        <div style="margin-top: 3px">
-          <fa-icon style="font-size: 15px;color:#f79312; margin-right: 3px;" [icon]="cog"></fa-icon>
-          <fa-icon style="font-size: 15px;color:#f79312; margin-right: 3px;" [icon]="cog"></fa-icon>
-          <fa-icon style="font-size: 15px;color:#f79312; margin-right: 3px;" [icon]="cog"></fa-icon>
-          <fa-icon style="font-size: 15px;color:#f79312; margin-right: 3px;" [icon]="cog"></fa-icon>
-          <fa-icon style="font-size: 15px;color:#f79312; margin-right: 3px;" [icon]="cog"></fa-icon> <span
-            style="color: gray;font-size: 12px">
-            (15 Opiniones)
-          </span>
-        </div>
+      
+        <ion-col size="12" style="box-shadow: rgba(182, 182, 182, 0.75) 0px 0px 12px">
+          
+        <ion-button class="exit" (click)="back()">
+          <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+        </ion-button>
+          <img class="img" src="{{medico.foto}}" alt="">
+        </ion-col>
+        <div class="start">
+            <span class="dot"></span>
+            <span class="dot" style="position: relative;right: 10px;background-color: #a2a2a2;"></span>
+            <span class="dot" style="position: relative;right: 22px;background-color: #828181;"></span>
+           <span style="bottom: 5px;color: gray;font-size: 19px;font-weight: bold;position: relative;">
+            4.5
+           </span>
+         <fa-icon style="bottom: 5px;font-size: 19px;color: #f79312;margin-right: 3px;position: relative;" [icon]="cog"></fa-icon>
+       </div>
+     
+      <ion-col size="12" style="margin-top: 10px;" padding>
+        
+        <h2 class="namemedical">{{medico.nombre | titlecase}} {{medico.nombre2 | titlecase}} {{medico.apellido | titlecase}} {{medico.apellido2 | titlecase}}</h2>
+        <span class="esp">{{medico.descripcioncorta}}</span>
 
         <div>
           <h5 style="line-height: 0.8; font-size: 16px;font-weight: 600">
-            {{medico.direccion}}, {{medico.ciudad}}
+            <p>
+              {{medico.direccion | titlecase}}
+            </p>
+            <p>
+              {{medico.ciudad}}
+            </p>
           </h5>
-          <h5 style="line-height: 0.8; font-size: 16px;font-weight: 600">
-           {{medico.especialidad}}
+          <h5 class="acercade">
+          Acerca de
           </h5>
-          <span style="color: gray;padding-bottom: 29%;">
+          <span class="deslarga">
             {{medico.descripcionprofesional}}
             </span>
         </div>
@@ -52,7 +46,14 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <div (click)="pedirCita()" class="footer">
+
+  <div class="footer" (click)="pedirCita()">
+    <span class="viewcupos">
+      Ver cupos
+    </span>
+  </div>
+
+  <!-- <div (click)="pedirCita()"  class="footer">
     <ion-grid  fixed style="padding: 0">
       <ion-row>
         
@@ -62,6 +63,6 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-  </div>
+  </div> -->
 
 </ion-content>
