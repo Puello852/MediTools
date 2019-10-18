@@ -3,6 +3,9 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Storage } from '@ionic/storage'
 import { Platform } from '@ionic/angular';
+import { Observable, of } from 'rxjs';
+import { share, map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,7 +15,7 @@ export class ApiToolsService {
 	@Output() evento = new EventEmitter();
 	token: any = "null"
 	refreshToken: string;
-  constructor(private storage:Storage, private _http: HttpClient,public platform:Platform) {}
+  constructor(private ruta: Router,private storage:Storage, private _http: HttpClient,public platform:Platform) {}
   emitir(value) {
     this.evento.emit(value);
   }
@@ -182,6 +185,11 @@ export class ApiToolsService {
 
 
 
+	getToken(): Observable<string> {
+		const token = localStorage.getItem('token');
+		return of(token);
+	  }
+
 
 	recibido(token){
 		
@@ -213,18 +221,25 @@ export class ApiToolsService {
 
 			if(this.platform.is('cordova')){
 				this.storage.ready().then( () => {
+					
 					this.storage.get("token").then(token=>{
-						this.token = token
+						if(token){
+							this.ruta.navigate(['/dashboard/home'])
+							this.token = token
+						}
 					})
 					resolve()
 				})
 			}else{
+				console.log("pc")
 				//pc
 				if(localStorage.getItem('token')){
+					this.ruta.navigate(['/dashboard/home'])
 					this.token = localStorage.getItem('token')
 				}
 			}
 		})
+		
 		return promesa
 	}
 
@@ -234,5 +249,30 @@ export class ApiToolsService {
 			return Promise.resolve(false)
 		}
 	}
+
+
+	refrescarToken(): Observable<string> {
+		const url = environment.apiUrl+'auth/refreshToken';
+	
+		// append refresh token if you have one
+		const refreshToken = localStorage.getItem('refresh');
+		const expiredToken = localStorage.getItem('token');
+	
+		return this._http.get(url, {headers: new HttpHeaders().set('Refresh', refreshToken).set('Auto', expiredToken),observe: 'response'})
+		  .pipe(
+			share(), // <========== YOU HAVE TO SHARE THIS OBSERVABLE TO AVOID MULTIPLE REQUEST BEING SENT SIMULTANEOUSLY
+			map(res => {
+				console.log(res)
+			  const token = res.headers.get('token');
+			  const newRefreshToken = res.headers.get('Refresh');
+	
+			  // store the new tokens
+			  localStorage.setItem('refreshToken', newRefreshToken);
+			  localStorage.setItem('token', token);
+	
+			  return token;
+			})
+		  );
+	  }
 
 }

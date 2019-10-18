@@ -46,9 +46,7 @@
         <ion-col size="12">
           <ion-item lines="none">
             <ion-label style="font-weight: 600;">Fecha de la cita</ion-label>
-            <ion-datetime style="    color: #0c66b5 ;
-                font-weight: 600 ;" [value]="minDate" [monthNames]="monthNames" doneText="Aceptar"
-              cancelText="Cancelar" displayFormat="DD MMMM YYYY"></ion-datetime>
+            <ion-datetime style="color: #0c66b5 ;font-weight: 600 ;" [value]="minDate" [monthNames]="monthNames" doneText="Aceptar" cancelText="Cancelar" displayFormat="DD MMMM YYYY"></ion-datetime>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -73,9 +71,9 @@
   </ion-segment>
 
   <ion-list *ngIf="segemt == 'citas'" lines="none">
-    <div style="margin-bottom: 42px;" *ngIf="citas.length>0">
+    <div style="margin-bottom: 42px;">
      
-      <ion-button *ngIf="!filtro" style="position: absolute;right: 10px;" class="butt" (click)="filter(1)">
+      <ion-button *ngIf="!filtro" style="position: absolute;right: 10px;" class="butt" (click)="filter(0)">
         <ion-icon slot="icon-only" name="options"></ion-icon>
       </ion-button>
     </div>
@@ -109,7 +107,7 @@
       </ion-item-options>
     </ion-item-sliding>
 
-    <h3 *ngIf="citas.length<1" class="nofound">No hay ninguna cita pendiente</h3>
+    <h3 *ngIf="citas.length<1" class="nofound">No hay ninguna cita agendada</h3>
 
   </ion-list>
 

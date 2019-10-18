@@ -26,7 +26,7 @@ export class CitastabsPage implements OnInit {
   citas: any =[];
   newLength: any = 1;
   newmedicos: Array<any> = [];
- 
+  minDate= new Date()
   constructor(private router:Router,public loadingController: LoadingController,private api:ApiToolsService,public toastController: ToastController,public modalController: ModalController,private alertCtrl: AlertController, @Inject(LOCALE_ID) private locale: string) {
      
    }
@@ -150,7 +150,7 @@ export class CitastabsPage implements OnInit {
     await loading.present();
       this.api.listarcitasAceptada().subscribe((data:any)=>{
         this.filter(1)
-        if(data.code == -1){
+        if(data.length == 0){
           loading.dismiss()
           this.citas = []
         }else{
@@ -185,10 +185,12 @@ export class CitastabsPage implements OnInit {
   }
 
   async filter(e){
-  if(this.filtro){
-    console.log("entro aqui :v")
+
+  if(e == 1){
+    console.log("al 1")
     this.filtro = false
   }else{
+    console.log("no es 1")
     this.filtro = true
   }
   
