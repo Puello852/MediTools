@@ -27,7 +27,7 @@
               <ion-label>Todas</ion-label>
             </ion-chip>
             <ion-chip (click)="pendingCites()">
-              <ion-label>Pendientes</ion-label>
+              <ion-label>Agendadas</ion-label>
             </ion-chip>
             <ion-chip (click)="acceptCites()">
               <ion-label>Aceptadas</ion-label>
@@ -88,8 +88,8 @@
             <ion-chip style="position: absolute; right: 9px;" color="success" *ngIf="item.estado == 'Aceptada'" mode="md">
               <ion-label>Aceptada</ion-label>
             </ion-chip>
-            <ion-chip style="position: absolute; right: 9px;" color="secondary" *ngIf="item.estado == 'Pendiente'" mode="md">
-              <ion-label>Pendiente</ion-label>
+            <ion-chip style="position: absolute; right: 9px;" color="secondary" *ngIf="item.estado == 'Agendada'" mode="md">
+              <ion-label>Agendada</ion-label>
             </ion-chip>
             <ion-chip style="position: absolute; right: 9px;" color="danger" *ngIf="item.estado == 'Cancelada'" mode="md">
               <ion-label>Cancelada</ion-label>
@@ -97,8 +97,8 @@
           </h2>
           <h3>Doctor: <strong>{{item.profesional | titlecase}}</strong></h3>
           <p *ngIf="item.estado == 'Aceptada'">Aceptada el: {{item.updateAt  | date:'medium'}}</p>
-          <p *ngIf="item.estado == 'Pendiente'">Enviada el: {{item.createdAt  | date:'medium'}}</p>
-          <p *ngIf="item.estado == 'Cancelada'">Cancelada el: {{item.updateAt  | date:'medium'}}</p>
+          <p *ngIf="item.estado == 'Agendada'">Enviada el: {{item.createdAt  | date:'medium'}}</p>
+          <p *ngIf="item.estado == 'Cancelada'">Cancelada el: {{item.fechaCancelado}}</p>
         </ion-label>
       </ion-item>
       <ion-item-options class="itemOptions" side="end">
@@ -106,6 +106,14 @@
         </ion-item-option>
       </ion-item-options>
     </ion-item-sliding>
+
+    
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="circles"
+      loadingText="Cargando por favor espere...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
     <h3 *ngIf="citas.length<1" class="nofound">No hay ninguna cita agendada</h3>
 

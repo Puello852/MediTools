@@ -66,11 +66,14 @@ export class DetalleEstadoCitaPage implements OnInit {
       loading.dismiss()
       this.info = data
       let hora:string = data.horacita
-      this.horaInicial = hora.slice(0,5)
-      this.horaFinal = hora.slice(6)
-      console.log(this.info)
-      console.log(this.horaInicial)
-      console.log(this.horaFinal)
+      if(data.tipoatencion == 1){
+        this.horaInicial = hora.slice(0,5)
+        this.horaFinal = hora.slice(6)
+      }
+
+      // console.log(this.info)
+      // console.log(this.horaInicial)
+      // console.log(this.horaFinal)
     },erro=>{
       loading.dismiss()
     })

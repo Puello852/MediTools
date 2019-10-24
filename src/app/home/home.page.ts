@@ -83,11 +83,12 @@ export class HomePage implements OnInit {
          });
          await loading.present();
       this.api.login(data).subscribe(async (data: any) => {
+        console.log(data)
         this.navCtrl.navigateRoot('/dashboard/home')
         loading.dismiss()
         let datauid: any = this.authService.userDetails()
         this.api.recibido(data.token)
-        this.api.guardarToken(data.token, data.refresh, datauid.uid)
+        this.api.guardarToken(data.token, data.Refresh, datauid.uid)
         const toast = await this.toastController.create({
           message: 'Bienvenido.',
           duration: 2000,

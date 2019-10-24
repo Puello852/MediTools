@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { DashboardHomePage } from './dashboard-home.page';
+import { EditProfilePage } from '../tabs/edit-profile/edit-profile.page';
 
 const routes: Routes = [
   {
@@ -19,8 +20,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
   ],
-  declarations: []
+  declarations: [EditProfilePage]
 })
 export class DashboardHomePageModule {}

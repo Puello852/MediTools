@@ -45,14 +45,17 @@
     
     
 
-    <div class="caja" >
+    <div class="caja"  *ngIf="info.estado != 'Cancelada'" >
       <ion-grid fixed>
           <ion-row>
             <ion-col size="3">
                 <ion-icon class="icon" name="clock"></ion-icon>
               </ion-col>
-            <ion-col size="9">
+            <ion-col size="9" *ngIf="info.tipoatencion == 1">
               <h5 class="name2">{{horaInicial}} - {{horaFinal}}</h5>
+            </ion-col>
+            <ion-col size="9" *ngIf="info.tipoatencion == 2">
+              <h5 class="name2">{{info.horaatencion}}</h5>
             </ion-col>
           </ion-row>
         </ion-grid>
@@ -66,7 +69,7 @@
                 </ion-col>
                 <ion-col size="9">
                   
-                  <h5 class="cancelt">Cancelada el:</h5>
+                  <h5 class="cancelt">Cita cancelada el:</h5>
                   <p class="parrafocancel">
                       {{info.fechaCancelado | date:'d MMMM y hh:mm a'}}
                   </p>
@@ -83,7 +86,7 @@
           {{info.descripcion}}
         </p>
       </div>
-      <div *ngIf="info.estado == 'Pendiente'" class="bottom">
+      <div *ngIf="info.estado == 'Agendada'" class="bottom">
         <div  class="footer" (click)="cancel()">
           <span class="viewcupos">
             Cancelar Cita

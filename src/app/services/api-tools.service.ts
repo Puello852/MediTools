@@ -19,6 +19,7 @@ export class ApiToolsService {
   emitir(value) {
     this.evento.emit(value);
   }
+  
   getQuery( query: string, type: string,  authorization: boolean, body?: any ) {
 		const url = environment.apiUrl+query;
 		let headers:any = new HttpHeaders({ 'Content-Type': 'application/json', 'Accept': 'application/json' });
@@ -27,9 +28,19 @@ export class ApiToolsService {
 		{
 			if(this.token != undefined && this.token != null)
 			{
+				if(this.platform.is('cordova')){
+				this.storage.get("token").then(token=>{
+					if(token){
+						headers =  headers.append('Authorization',token);
+						this.token = token
+					}
+				})
+			}else{
+				headers =  headers.append('Authorization',localStorage.getItem('token'));
+			}
 			
 				// let to = this.storage.get('token') || null
-				headers =  headers.append('Authorization',this.token);
+				// console.log(this.token)
 			}
 		}
 		if (type == 'get'){
@@ -131,8 +142,8 @@ export class ApiToolsService {
 		return this.getQuery('profesional/getmedicoEspecialidad/'+data, 'get',true)
 	}
 
-	listarcitas(){
-		return this.getQuery('citas/miscitas', 'get',true)
+	listarcitas(numero){
+		return this.getQuery('citas/miscitas/'+numero, 'get',true)
 	}
 
 	listarcitasAceptada(){
@@ -159,6 +170,10 @@ export class ApiToolsService {
 		return this.getQuery('horario/gethorarioMes', 'post',true,data)
 	}
 
+	eventMes2(data){
+		return this.getQuery('cupo/getcupoMes', 'post',true,data)
+	}
+
 	cuposlibresFecha(data){
 		return this.getQuery('horario/gethorariodia', 'post',true,data)
 	}
@@ -181,6 +196,18 @@ export class ApiToolsService {
 
 	cancelarCita(data){
 		return this.getQuery('citas/cancelarcita', 'post',true,data)
+	}
+
+	sendMsj(data){
+		return this.getQuery('auth/enviarverificacion', 'post',true,data)
+	}
+
+	verificarSmj(data){
+		return this.getQuery('auth/verificacionmsg', 'post',true,data)
+	}
+
+	editCelular(data){
+		return	this.getQuery('persona/updatecelular', 'post', true,data)
 	}
 
 
@@ -236,6 +263,8 @@ export class ApiToolsService {
 				if(localStorage.getItem('token')){
 					this.ruta.navigate(['/dashboard/home'])
 					this.token = localStorage.getItem('token')
+				}else{
+					this.ruta.navigate(['/home'])
 				}
 			}
 		})

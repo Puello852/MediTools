@@ -57,96 +57,16 @@ export class DetalleNuevaCitaPage implements OnInit {
 
   async pedirCita(){
 
-
-
-      const modal = await this.modalController.create({
+    const modal = await this.modalController.create({
         component: PedirCitaPage,
-        cssClass: 'modals',
+        // cssClass: 'modals',
         componentProps: {
           'idDoctor': this.idDoctor,
           'tipoAtencion': this.medico.tipoatencion
         }
-      });
+      })
       return await modal.present();
-    
-
-
-  //   let opts:PickerOptions = {
-  //     buttons:[
-  //       {
-  //         text:'Cancelar',
-  //         role:'cancel',
-  //         handler: () => {
-  //           console.log('Confirm Cancel');
-  //         }
-  //       },
-  //       {
-  //         text:'Enviar',
-  //         handler:  (e) => {
-  //           let dato = {
-  //             idDoctor: this.idDoctor,
-  //             fechaCita:e['Escoje una fecha'].value
-  //           }
-  //           this.api.obtenerhorario(dato).subscribe(async (data:any)=>{
-  //             let input={data:[]};
-  //             for (let i = 0; i < data.length; i++) {
-  //              input.data.push({name:data[i],type:'radio',label:data[i],value: data[i]})
-  //             }
-  //             const alert = await this.alertController.create({
-  //               header: 'Elige el dia para el cual quieres la cita',
-  //               inputs: input.data,
-  //               buttons: [
-  //                 {
-  //                   text: 'Cancel',
-  //                   role: 'cancel',
-  //                   cssClass: 'secondary',
-  //                   handler: () => {
-  //                     console.log('Confirm Cancel');
-  //                   }
-  //                 }, {
-  //                   text: 'Ok',
-  //                   handler: (e) => {
-  //                     console.log(e)
-  //                     this.pedirCita2()
-  //                     this.horaCita = e
-  //                   }
-  //                 }
-  //               ]
-  //             });
-            
-  //             await alert.present();
-  //           },async erro=>{
-  //             const alert = await this.alertController.create({
-  //               header: 'Ups',
-  //               message: erro.error.message,
-  //               buttons: ['OK']
-  //             });
-         
-  //             await alert.present();
-  //           })
-  //            this.fechaCita = e['Escoje una fecha'].value
-  //            console.log(this.fechaCita)
-  //         }
-  //       }
-  //     ],columns:[
-  //       {
-  //         name:'Escoje una fecha',
-  //         options: [
-  //           { text: moment().locale('es').format('(dddd) DD-MM-YYYY'), value: moment().format('YYYY-MM-DD')},
-  //           { text: moment().locale('es').add(1,'d').format('(dddd) DD-MM-YYYY'), value: moment().add(1,'d').format('YYYY-MM-DD') },
-  //           { text:  moment().locale('es').add(2,'d').format('(dddd) DD-MM-YYYY'), value: moment().add(2,'d').format('YYYY-MM-DD') },
-  //           { text: moment().locale('es').add(3,'d').format('(dddd) DD-MM-YYYY'), value: moment().add(3,'d').format('YYYY-MM-DD') },
-  //           { text:  moment().locale('es').add(4,'d').format('(dddd) DD-MM-YYYY'), value: moment().add(4,'d').format('YYYY-MM-DD') },
-  //           { text:  moment().locale('es').add(5,'d').format('(dddd) DD-MM-YYYY'), value: moment().add(5,'d').format('YYYY-MM-DD') },
-  //           { text:  moment().locale('es').add(6,'d').format('(dddd) DD-MM-YYYY'), value: moment().add(6,'d').format('YYYY-MM-DD') },
-  //         ]
-  //       }
-  //     ]
-
-      
-  //   }
-  // let picker = await this.picker.create(opts)
-  // picker.present()
+  
   }
 
   async pedirCita2(){

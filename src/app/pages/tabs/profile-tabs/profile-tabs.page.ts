@@ -431,6 +431,7 @@ export class ProfileTabsPage implements OnInit {
           text: 'OK',
           handler: async () => {
             // this.auth.logoutUser()
+            localStorage.clear()
             this.navctrl.navigateRoot('/home')
            
           }

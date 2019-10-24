@@ -51,7 +51,7 @@
         </span>
       </ion-col>
       <ion-col size="3" text-right>
-        <ion-button fill="clear" (click)="next($event)">
+        <ion-button fill="clear" (click)="next(DateCalendar)">
           <fa-icon style="font-size: 20px" [icon]="faChevronRight"></fa-icon>
         </ion-button>
       </ion-col>
@@ -60,6 +60,7 @@
 
   <calendar 
   [lockSwipeToPrev]="mesActual == DateCalendar"
+
    [monthviewEventDetailTemplate]="template" noEventsLabel="No hay citas pendientes"
     [eventSource]="eventSource" [calendarMode]="calendar.mode" [currentDate]="calendar.currentDate"
     (onEventSelected)="onEventSelected($event)" (onTitleChanged)="onViewTitleChanged($event)"
@@ -76,26 +77,29 @@
         <div *ngIf="selectedDate.events.length > 0">
           <ion-grid fixed style="padding-left: 10px;">
             <ion-row style="margin-top: 3%;">
-              <ion-col size="12">
-                <span style="font-size: 21px;font-weight: bold;color: #556749;">
+              <ion-col size="10">
+                <span style="font-size: 21px;font-weight: bold;color: white;">
                   {{medico.especialidad | titlecase}}
                 </span><br>
-                <span style="font-weight: 600;color: #717171; top: 3px; position: relative;">
+                <span style="font-weight: 600;color: white; top: 3px; position: relative;">
                   {{item.title | titlecase}}
                 </span>
                 <span>
-                  <p style="color: gray">
+                  <p style="color: white">
                     {{item.desc}} <br>
                     {{item.desc2}}
                   </p>
                 </span>
               </ion-col>
+              <ion-col size="2">
+                <ion-icon class="nex" name="arrow-round-forward"></ion-icon>
+              </ion-col>
             </ion-row>
           </ion-grid>
         </div>
       </div>
-      <div *ngIf="selectedDate.events.length == 0" class="citas">
-        <span class="noeventos">No hay cupos libres para este dia</span>
+      <div *ngIf="selectedDate.events.length == 0" class="notcitas">
+        <span class="noeventos" style="color: white;">No hay cupos libres para este dia</span>
       </div>
     </div>
 

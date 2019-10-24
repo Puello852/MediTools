@@ -4,11 +4,13 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { RecaptchaComponent } from 'ng-recaptcha'
+import { RecaptchaComponent, OnExecuteData, ReCaptchaV3Service } from 'ng-recaptcha'
 import moment from 'moment';
 import example from '../../../assets/departamentos.json';
 import municipio from '../../../assets/municipios.json';
 import { ApiToolsService } from 'src/app/services/api-tools.service';
+import { Subscription } from 'rxjs/Rx';
+
 @Component({
   selector: 'app-registrar',
   templateUrl: './registrar.page.html',
@@ -31,6 +33,7 @@ export class RegistrarPage implements OnInit {
     segundoapellido: new FormControl('', [Validators.required,Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*$/)]),
     tipodocumento: new FormControl('', Validators.required),
     departamento: new FormControl('', Validators.required),
+    direccion: new FormControl('', Validators.required),
     municipio: new FormControl('', Validators.required),
     confirmardocumento: new FormControl('', Validators.required),
     documento: new FormControl('', [Validators.required,Validators.min(5)]),
@@ -47,14 +50,51 @@ export class RegistrarPage implements OnInit {
   municipios: any;
   newmuni: any;
   captchaPassed: boolean;
+  public recentToken: string = '';
+  public readonly executionLog: OnExecuteData[] = [];
+
+  private allExecutionsSubscription: Subscription;
+  private singleExecutionSubscription: Subscription;
   captchaResponse: string;
   
-  constructor(private zone: NgZone,public loadingController: LoadingController,private api:ApiToolsService,private statusBar: StatusBar,private authService:AuthenticationService,public alertController: AlertController,public ruta: Router) {
+  constructor(private recaptchaV3Service: ReCaptchaV3Service,private zone: NgZone,public loadingController: LoadingController,private api:ApiToolsService,private statusBar: StatusBar,private authService:AuthenticationService,public alertController: AlertController,public ruta: Router) {
     console.log(example)
 
     this.departamento = example
     this.municipios = municipio
    }
+
+   public executeAction(action: string): void {
+    if (this.singleExecutionSubscription) {
+      this.singleExecutionSubscription.unsubscribe();
+    }
+    this.singleExecutionSubscription = this.recaptchaV3Service.execute(action)
+      .subscribe((token) => {
+        this.recentToken = token
+        console.log(token)
+        this.register(token)
+      } );
+  }
+
+
+  public ngOnDestroy() {
+    if (this.allExecutionsSubscription) {
+      this.allExecutionsSubscription.unsubscribe();
+    }
+    if (this.singleExecutionSubscription) {
+      this.singleExecutionSubscription.unsubscribe();
+    }
+  }
+
+  public formatToken(token: string): string {
+    if (!token) {
+      return '(empty)';
+    }
+
+    console.log(token)
+
+    return `${token.substr(0, 7)}...${token.substr(-7)}`;
+  }
 
    captchaResolved(response: string): void {
 
@@ -128,6 +168,8 @@ export class RegistrarPage implements OnInit {
   return pass === confirmPass && doc === confdoc ? null : { notSame: true }     
 }
   ngOnInit() {
+    this.allExecutionsSubscription = this.recaptchaV3Service.onExecute
+    .subscribe((data) => this.executionLog.push(data));
     // let status bar overlay webview
     this.statusBar.styleLightContent()
     // set status bar to white
@@ -153,7 +195,7 @@ export class RegistrarPage implements OnInit {
     
     
   }
-  async register(){
+  async register(token){
     const loading = await this.loadingController.create({
       message: 'Por favor espere...',
       mode: 'md'
@@ -162,7 +204,7 @@ export class RegistrarPage implements OnInit {
     let data = {
       email : this.form.controls.email.value,
       password: this.form.controls.password.value,
-      captcha: this.captchaResponse
+      captcha: token
     }
     let datos = {
       primerNombre: this.form.controls.nombre.value,
@@ -177,6 +219,7 @@ export class RegistrarPage implements OnInit {
       fechaNacimiento: moment(this.form.controls.fechanacimiento.value).format('DD-MM-YYYY'),
       estadoCivil: this.form.controls.estadocivil.value,
       genero:  this.form.controls.genero.value, 
+      direccion:  this.form.controls.direccion.value, 
       celular: this.form.controls.celular.value,
       verificado: false,
       rol:{
@@ -185,9 +228,9 @@ export class RegistrarPage implements OnInit {
       }
     }
      this.api.registerStart(data).subscribe((data:any)=>{
-       loading.dismiss()
        this.api.guardarToken(data.Acesstoken,data.Refreshtoken,null )
        this.api.nuevapersonaNatural(datos).subscribe((async a => {
+        loading.dismiss()
          const alert = await this.alertController.create({
            header: 'Exito',
            message: 'Usuario creado exitosamente',
@@ -197,7 +240,7 @@ export class RegistrarPage implements OnInit {
             this.ruta.navigate(['/home'])
           });
        }),async erro=>{
-         this.captcha.reset()
+        //  this.captcha.reset()
         const alert = await this.alertController.create({
           header: 'Error',
           message: erro.error.message,
@@ -207,9 +250,9 @@ export class RegistrarPage implements OnInit {
         loading.dismiss()
        })
      },async erro=>{
-      this.captcha.reset()
+      // this.captcha.reset()
       const alert = await this.alertController.create({
-        header: 'Exito',
+        header: 'Error',
         message: erro.error.message,
         buttons: ['OK']
       })

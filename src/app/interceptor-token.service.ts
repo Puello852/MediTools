@@ -1,6 +1,6 @@
 import { Injectable, Injector } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse, HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable } from 'rxjs/Rx';
 import { catchError,map,flatMap, switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
@@ -19,29 +19,42 @@ export class RefreshToken implements HttpInterceptor {
   constructor( private injector : Injector, private router : Router,public api: ApiToolsService,private http : HttpClient ){}
 
   intercept( request : HttpRequest<any>, next : HttpHandler) : Observable < HttpEvent<any> > {
-
-    this.next = next
-    return next.handle(request).pipe(catchError(err => {
-      if (err.status === 401) {
-        console.log("vamos a refrescar")
-        let oldtoken = localStorage.getItem("refresh")
-        let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Accept': 'application/json' })
-        headers = headers.append('Refresh', oldtoken)
-        const http = this.injector.get(HttpClient);
-        return http.get(environment.apiUrl+'auth/refreshToken',{headers:headers}).pipe
+    return next.handle(request).catch( (errorResponse: HttpErrorResponse) => {
+        const error = (typeof errorResponse.error !== 'object') ? JSON.parse(errorResponse.error) : errorResponse;
+        if( errorResponse.status == 401 ){
+            console.log("a refrescar")
+                let oldtoken = localStorage.getItem("refresh")
+                let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Accept': 'application/json' })
+                headers = headers.append('Refresh', oldtoken)
+                const http = this.injector.get(HttpClient);
+                return http.get(environment.apiUrl+'auth/refreshToken',{ headers: headers })
+                .catch( error => { 
+                    if(error.status == 400){
+                        if(error.error.code < 0){
+                            // this.ref.closeAll()
+                            localStorage.clear()
+                            this.router.navigate(["/home"])
+                        }
+                    }
+                    return Observable.throw(errorResponse)
+                })
+                .flatMap( 
+                    ( data : any) => {
+                        localStorage.setItem('token', data.token );
+                        console.log(data)
+                        localStorage.setItem('refresh', data.Refresh );
+                        let token  = localStorage.getItem("token")
+                        let newheaders = new HttpHeaders({ 'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': token })
+                        const cloneRequest = request.clone({headers: newheaders});
+                        return next.handle(cloneRequest)
+                    },
+                )
+            
         
-        // return http.get(environment.apiUrl+'auth/refreshToken', { headers: headers }).map()
-        
-        // return http.get(environment.apiUrl+'auth/refreshToken', { headers: headers }).
-          // auto logout if 401 response returned from api
-
-          // location.reload(true);
-      }
-      return Observable.throw(err)
-      // const error = err.error.message || err.statusText;
-      // return throwError(error);
-  }))
-  }
+        }
+        return Observable.throw(errorResponse)
+    })
+}
 
 
 

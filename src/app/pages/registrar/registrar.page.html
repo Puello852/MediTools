@@ -105,6 +105,17 @@
                 *ngIf="form.controls['municipio'].hasError('required') && (form.controls['municipio'].dirty || form.controls['municipio'].touched)">
                 Municipio requerido</ion-label> 
         </div>
+
+        <div class="wrap-input100">
+          <ion-item>
+            <ion-label position="floating">Dirección</ion-label>
+            <ion-input type="text"placeholder="ingresa tu dirección" formControlName="direccion"></ion-input>
+            <ion-icon class="icon" name="pin" color="primary" slot="end"></ion-icon>
+          </ion-item>
+          <ion-label color="danger" class="novalid"
+            *ngIf="form.controls['direccion'].hasError('required') && (form.controls['direccion'].dirty || form.controls['direccion'].touched)">
+            direccion requerido</ion-label>
+      </div>
     
             <div class="wrap-input100">
                 <ion-item>
@@ -119,6 +130,8 @@
                   *ngIf="form.controls['tipodocumento'].hasError('required') && (form.controls['tipodocumento'].dirty || form.controls['tipodocumento'].touched)">
                   Tipo documento requerido</ion-label>
             </div>
+
+           
     
             <div class="wrap-input100">
                 <ion-item>
@@ -248,7 +261,7 @@
             </div>
 
  <div class="wrap-input100">
-   <re-captcha (resolved)="captchaResolved($event)" siteKey="6LeIG7sUAAAAAJ8wa8GF9vge0jAjd2sXegFDj-Sa"></re-captcha>
+  
   </div>
   
           </div>
@@ -256,7 +269,7 @@
           <div class="container-login100-form-btn">
             <div class="wrap-login100-form-btn">
               <div class="login100-form-bgbtn"></div>
-              <ion-button [disabled]="!form.controls['municipio'].valid || !form.controls['departamento'].valid || !form.controls['nombre'].valid || !form.controls['seugnonombre'].valid || !form.controls['apellido'].valid || !form.controls['segundoapellido'].valid || !form.controls['tipodocumento'].valid || !form.controls['documento'].valid || !form.controls['confirmardocumento'].valid || form.hasError('notSame')" (click)="nextCase()" expand="block" class="login">
+              <ion-button [disabled]="!form.controls['municipio'].valid  || !form.controls['direccion'].valid  || !form.controls['departamento'].valid || !form.controls['nombre'].valid || !form.controls['seugnonombre'].valid || !form.controls['apellido'].valid || !form.controls['segundoapellido'].valid || !form.controls['tipodocumento'].valid || !form.controls['documento'].valid || !form.controls['confirmardocumento'].valid || form.hasError('notSame')" (click)="nextCase()" expand="block" class="login">
                 <ion-icon [name]="nameIcons"></ion-icon>
               </ion-button>
             </div>
@@ -267,10 +280,12 @@
         <div class="container-login100-form-btn">
           <div class="wrap-login100-form-btn">
             <div class="login100-form-bgbtn"></div>
-            <ion-button *ngIf="case2" [disabled]="!captchaPassed || !form.valid" class="login" (click)="register()" expand="block">Registrarse</ion-button>
+            <ion-button *ngIf="case2" [disabled]="!form.valid" class="login" (click)="executeAction('register')" expand="block">Registrarse</ion-button>
           </div>
         </div>
       </form>
+      <!-- <button (click)="">Execute "homepage" action</button> -->
+ 
     </div>
   </div>
 

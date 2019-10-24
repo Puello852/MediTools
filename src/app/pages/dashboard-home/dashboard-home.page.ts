@@ -41,6 +41,8 @@ export class DashboardHomePage implements OnInit {
       cssClass: 'modals1',
       componentProps: {
         'email': this.data.email,
+        'celular': this.data.celular,
+        'celularverificado': this.data.CelularVerificado
       }
     });
     return await modal.present();

@@ -13,6 +13,7 @@
   },
   "private": true,
   "dependencies": {
+    "rxjs": "^6.3.3",
     "@angular/common": "~8.1.2",
     "@angular/compiler": "~8.1.2",
     "@angular/core": "~8.1.2",
@@ -44,7 +45,6 @@
     "ionic-native-http-connection-backend": "^6.0.0",
     "moment": "^2.24.0",
     "ng-recaptcha": "^5.0.0",
-    "rxjs": "~6.5.1",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"
   },

@@ -8,7 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { RegistrarPage } from './registrar.page';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { RecaptchaModule,RecaptchaComponent } from 'ng-recaptcha';
+import { RecaptchaModule,RecaptchaComponent, RecaptchaV3Module, RECAPTCHA_V3_SITE_KEY } from 'ng-recaptcha';
 
 const routes: Routes = [
   {
@@ -19,6 +19,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
+    RecaptchaV3Module,
     AngularFireAuthModule,
     CommonModule,
     RecaptchaModule.forRoot(),
@@ -28,6 +29,7 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   providers:[
+    { provide: RECAPTCHA_V3_SITE_KEY, useValue: '6Ldk7b4UAAAAAEo9h5a6p_7m9Mg1E7pA_G1PUrPp' },
     RecaptchaComponent,
     AuthenticationService
   ],

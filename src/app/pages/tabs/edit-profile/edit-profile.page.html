@@ -1,8 +1,51 @@
-<ion-content>
 
-<ion-grid style="margin-top: 6%">
+<ion-content>
+    <ion-grid *ngIf="verifcMsj">
+        <ion-row>
+            <ion-col size="12">
+              <h1 style="text-align: center;">Paso 1/2</h1>
+              <img class="imgemail" src="./assets/img/msjtexto.png" alt="">
+              <h3 style="text-align: center">
+              Confirmacion de celular
+            </h3>
+            <span class="text1">Hemos enviado un mensaje de texto al <span style="color: #0074FF;    text-decoration: underline;">+57 {{celulars}}</span> <br> Si no has introduccido el codigo recibiras una llamada</span>
+           
+              <ion-item class="itemcel">
+                  <ion-label class="textv" position="stacked">Codigo de verificación</ion-label>
+                  <ion-input  class="input1" maxlength="6" (ionInput)="runTimeChange($event)"></ion-input>
+              </ion-item>
+           
+
+            <ion-item-divider>
+            </ion-item-divider>
+            <span style="margin-top: 6px" class="text1">
+                <span style="font-size: 18px;font-weight: bold;" *ngIf="textsegundos">{{segundos}} segundos para reenviar el código</span> <br>
+                <ion-button [disabled]="resend" (click)="sendText()">
+                  Reenviar código
+                </ion-button>
+            </span>
+            <span (click)="changecelular()" style="margin-top: 10px" class="text1">
+                Si perdiste el número de celular
+                <span style="color: #0074FF">
+                    Cambiar número de celular 
+                  </span>
+            </span> 
+    
+            <span (click)="chagecoubnt()" style="margin-top: 10px" class="text1">
+              
+              <span style="color: #0074FF">
+                  Cambiar de cuenta
+                </span>
+          </span> 
+          </ion-col>
+          </ion-row>
+          
+    </ion-grid>
+
+<ion-grid *ngIf="verifEmail" style="margin-top: 6%">
     <ion-row>
         <ion-col size="12">
+            <h1 style="text-align: center;">Paso 2/2</h1>
           <img class="imgemail" src="./assets/img/email.png" alt="">
           <h3 style="text-align: center">
           Confirmacion de correo
@@ -12,16 +55,24 @@
         </ion-item-divider>
         <span (click)="resendCode()" style="margin-top: 6px" class="text1">
             Si no recibiste ningún correo
+           
             <span style="color: #0074FF">
                 Reenviar confirmación de correo
             </span>
         </span>
-        <span (click)="changeMail()" style="margin-top: 10px" class="text1">
+        <span (click)="changecelular()" style="margin-top: 10px" class="text1">
             Si no tienes acceso a ese correo
             <span style="color: #0074FF">
                 Cambiar correo electronico 
               </span>
         </span> 
+
+        <span (click)="chagecoubnt()" style="margin-top: 10px" class="text1">
+          
+          <span style="color: #0074FF">
+              Cambiar de cuenta
+            </span>
+      </span> 
       </ion-col>
       </ion-row>
 </ion-grid>
