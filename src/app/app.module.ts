@@ -32,7 +32,6 @@ import { RefreshToken } from './interceptor-token.service';
     IonicStorageModule.forRoot(),
     FontAwesomeModule,
     HttpClientModule,
-    
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     BrowserModule, AngularFireAuthModule, IonicModule.forRoot(), AppRoutingModule],

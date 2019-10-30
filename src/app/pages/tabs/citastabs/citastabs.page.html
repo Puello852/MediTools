@@ -61,7 +61,7 @@
 
   </div>
 
-  <ion-segment scrollable (ionChange)="segmentChanged($event)">
+  <ion-segment scrollable (ionChange)="segmentChanged($event)" #segmets>
     <ion-segment-button value="citas" checked>
       <ion-label style="text-transform: initial;    border-radius: 9px; ">Mis citas</ion-label>
     </ion-segment-button>
@@ -70,7 +70,7 @@
     </ion-segment-button>
   </ion-segment>
 
-  <ion-list *ngIf="segemt == 'citas'" lines="none">
+  <ion-list *ngIf="segemt == 'citas'" lines="none" #lista>
     <div style="margin-bottom: 42px;">
      
       <ion-button *ngIf="!filtro" style="position: absolute;right: 10px;" class="butt" (click)="filter(0)">
@@ -78,7 +78,9 @@
       </ion-button>
     </div>
 
-    <ion-item-sliding *ngFor="let item of citas">
+    
+
+    <ion-item-sliding *ngFor="let item of citas" (click)="unread(item.id)">
       <ion-item class="list">
         <ion-avatar slot="start">
           <img src="{{item.foto}}" />
@@ -97,7 +99,7 @@
           </h2>
           <h3>Doctor: <strong>{{item.profesional | titlecase}}</strong></h3>
           <p *ngIf="item.estado == 'Aceptada'">Aceptada el: {{item.updateAt  | date:'medium'}}</p>
-          <p *ngIf="item.estado == 'Agendada'">Enviada el: {{item.createdAt  | date:'medium'}}</p>
+          <p *ngIf="item.estado == 'Agendada'">Fecha: {{item.fechacita}} {{item.horacita}}</p>
           <p *ngIf="item.estado == 'Cancelada'">Cancelada el: {{item.fechaCancelado}}</p>
         </ion-label>
       </ion-item>

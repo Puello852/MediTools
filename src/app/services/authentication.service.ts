@@ -104,9 +104,9 @@ export class AuthenticationService {
    forgotPassword(email){
      firebase.auth().sendPasswordResetEmail(email).then(async ()=>{
       const alert = await this.alertController.create({
-        header: 'Instrucciones enviadas',
+        header: 'Proceso de restablecimiento de contraseña',
         mode: "md",
-        message: 'Hemos enviado instrucciones para cambiar tu contraseña a <strong>'+ email + '.</strong> Revisa la bandeja de entrada y la de spam',
+        message: 'Hemos enviado un correo con la información necesaria para restablecer su contraseña',
         buttons: ['OK']
       });
       await alert.present();

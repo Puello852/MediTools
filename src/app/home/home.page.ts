@@ -43,8 +43,8 @@ export class HomePage implements OnInit {
   async forgotpassword(){
     if(this.form.controls.email.valid){
       const alert = await this.alertController.create({
-        header: '¿Estas seguro?',
-        message: 'Deseas enviar una serie de instrucciones para restablecer la contraseña',
+        header: 'Restablecer contraseña',
+        message: 'A continuación le enviaremos un correo para iniciar su proceso de restablecimiento de contraseña',
         buttons: [
           {
             text: 'Cancelar',
@@ -88,7 +88,7 @@ export class HomePage implements OnInit {
         loading.dismiss()
         let datauid: any = this.authService.userDetails()
         this.api.recibido(data.token)
-        this.api.guardarToken(data.token, data.Refresh, datauid.uid)
+        this.api.guardarToken(data.token, data.refresh, datauid.uid)
         const toast = await this.toastController.create({
           message: 'Bienvenido.',
           duration: 2000,

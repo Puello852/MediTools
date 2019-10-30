@@ -5,6 +5,8 @@ import { catchError,map,flatMap, switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { ApiToolsService } from './services/api-tools.service';
+import { Platform } from '@ionic/angular';
+import { Storage } from '@ionic/storage'
 
 const TOKEN_KEY = 'auth-token';
 @Injectable()
@@ -14,18 +16,25 @@ export class RefreshToken implements HttpInterceptor {
   newheaders: HttpHeaders;
   cloneRequest: HttpRequest<any>;
   next: HttpHandler;
+    oldtoken: string;
 
 
-  constructor( private injector : Injector, private router : Router,public api: ApiToolsService,private http : HttpClient ){}
+  constructor(public storage:Storage,public platform:Platform, private injector : Injector, private router : Router,public api: ApiToolsService,private http : HttpClient ){}
 
   intercept( request : HttpRequest<any>, next : HttpHandler) : Observable < HttpEvent<any> > {
     return next.handle(request).catch( (errorResponse: HttpErrorResponse) => {
         const error = (typeof errorResponse.error !== 'object') ? JSON.parse(errorResponse.error) : errorResponse;
         if( errorResponse.status == 401 ){
             console.log("a refrescar")
-                let oldtoken = localStorage.getItem("refresh")
+            if(this.platform.is('cordova')){
+                this.storage.get("refresh").then(refresh=>{
+                    this.oldtoken = refresh
+                })
+            }else{
+                this.oldtoken = localStorage.getItem("refresh")
+            }
                 let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Accept': 'application/json' })
-                headers = headers.append('Refresh', oldtoken)
+                headers = headers.append('Refresh', this.oldtoken)
                 const http = this.injector.get(HttpClient);
                 return http.get(environment.apiUrl+'auth/refreshToken',{ headers: headers })
                 .catch( error => { 
@@ -40,13 +49,25 @@ export class RefreshToken implements HttpInterceptor {
                 })
                 .flatMap( 
                     ( data : any) => {
-                        localStorage.setItem('token', data.token );
-                        console.log(data)
-                        localStorage.setItem('refresh', data.Refresh );
-                        let token  = localStorage.getItem("token")
-                        let newheaders = new HttpHeaders({ 'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': token })
-                        const cloneRequest = request.clone({headers: newheaders});
-                        return next.handle(cloneRequest)
+                        if(this.platform.is('cordova')){
+                            // alert("celular")
+                            this.token = data.token
+                            this.storage.set('refresh', data.refreshToken)
+                            this.storage.set('token', data.token)
+                            this.storage.get("token").then(()=>{
+                                let token  = localStorage.getItem("token")
+                                let newheaders = new HttpHeaders({ 'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': token })
+                                const cloneRequest = request.clone({headers: newheaders});
+                                return next.handle(cloneRequest)
+                            })
+                        }else{
+                            localStorage.setItem('token', data.token );
+                            localStorage.setItem('refresh', data.Refresh );
+                            let token  = localStorage.getItem("token")
+                            let newheaders = new HttpHeaders({ 'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': token })
+                            const cloneRequest = request.clone({headers: newheaders});
+                            return next.handle(cloneRequest)
+                        }                 
                     },
                 )
             

@@ -1,24 +1,28 @@
 import { CalendarComponent } from 'ionic2-calendar/calendar';
-import { Component, ViewChild, OnInit, Inject, LOCALE_ID } from '@angular/core';
-import { AlertController,ModalController, ToastController, LoadingController, NavParams, IonInfiniteScroll } from '@ionic/angular';
+import { Component, ViewChild, OnInit, Inject, LOCALE_ID, OnDestroy } from '@angular/core';
+import { AlertController,ModalController, ToastController, LoadingController, NavParams, IonInfiniteScroll, IonItemSliding, IonList, IonSegmentButton   } from '@ionic/angular';
 import { faChevronLeft, faChevronRight,faNotesMedical } from '@fortawesome/free-solid-svg-icons'
 import { AgregarCitasTabsPage } from './agregar-citas-tabs/agregar-citas-tabs.page';
 import moment from 'moment';
 import { ApiToolsService } from 'src/app/services/api-tools.service';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-citastabs',
   templateUrl: './citastabs.page.html',
   styleUrls: ['./citastabs.page.scss'],
 })
-export class CitastabsPage implements OnInit {
+export class CitastabsPage implements OnInit, OnDestroy {
   @ViewChild(IonInfiniteScroll,{static:true}) infiniteScroll: IonInfiniteScroll;
+  @ViewChild('lista',{static:false}) lista: IonList;
+  @ViewChild('segmets',{static:false}) segments: IonSegmentButton;
+  
   monthNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre' ]
   faChevronLeft = faChevronLeft
   faChevronRight = faChevronRight
   faNotesMedical = faNotesMedical
-
+  eventoBack:boolean = false
   mes: any;
   filtro: boolean;
   segemt: any;
@@ -29,9 +33,12 @@ export class CitastabsPage implements OnInit {
   newmedicos: Array<any> = [];
   minDate= new Date()
   limit: number = 10;
+  Eventosegment: Subscription;
   constructor(private router:Router,public loadingController: LoadingController,private api:ApiToolsService,public toastController: ToastController,public modalController: ModalController,private alertCtrl: AlertController, @Inject(LOCALE_ID) private locale: string) {
      
    }
+
+   
 
   async lisTMedical(){
     const loading = await this.loadingController.create({
@@ -46,6 +53,13 @@ export class CitastabsPage implements OnInit {
     },erro=>{
       loading.dismiss()
     })
+  }
+
+  ngOnDestroy(){
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    console.log("destrui")
+    this.Eventosegment.unsubscribe()
   }
 
   listEspecialidad(){
@@ -106,12 +120,20 @@ export class CitastabsPage implements OnInit {
   
 
   ngOnInit() {
+    this.Eventosegment = this.api.cambiarSegmento.subscribe(()=>{
+      console.log("carge primero")
+        this.segemt = "citas"
+        this.segments.value = "citas"
+        this.limit = 10
+        this.eventoBack = true
+    })
     this.api.evento.subscribe((data:any)=>{
       this.limit = 10
       this.citas = []
       console.log("cancele la cita")
       this.listCitas()
     })
+
   }
 
   async all(){
@@ -187,8 +209,11 @@ export class CitastabsPage implements OnInit {
 
 
   unread(e){
+    this.lista.closeSlidingItems()
     this.router.navigate(['/detalle-estado-cita/'+e])
   }
+
+
 
   async filter(e){
 
@@ -204,6 +229,7 @@ export class CitastabsPage implements OnInit {
 
 
   async listCitas(){
+    console.log("llame con msj")
     const loading = await this.loadingController.create({
       message: 'Por favor espere...',
     });
@@ -225,6 +251,10 @@ export class CitastabsPage implements OnInit {
         }else{
           loading.dismiss()
           data.forEach(element => {
+            if(this.eventoBack){
+              this.citas = []
+              this.eventoBack = false
+            }
             this.citas.push(element)
           });
           console.log(this.citas)
@@ -235,6 +265,7 @@ export class CitastabsPage implements OnInit {
   }
 
   listCitasnot(){
+    console.log("llame sin msj")
       this.api.listarcitas(this.limit).subscribe(async (data:any)=>{
         if(data.Code == -1){
           this.citas = []
@@ -247,6 +278,10 @@ export class CitastabsPage implements OnInit {
           this.limit -=10
         }else{
           data.forEach(element => {
+            if(this.eventoBack){
+              this.citas = []
+              this.eventoBack = false
+            }
             this.citas.push(element)
           })
         }
@@ -256,17 +291,20 @@ export class CitastabsPage implements OnInit {
   }
 
   loadData(event) {
-    this.limit += 10
-    this.listCitasnot()
-    setTimeout(() => {
-      console.log('Done');
-      console.log(this.limit)
-      event.target.complete();
+  
+      if(this.eventoBack){
+        this.limit = 10
+        this.eventoBack = false
+      }else{
+        this.limit += 10
+        this.listCitasnot()
+      }
+      setTimeout(() => {
+        console.log('Done');
+        console.log(this.limit)
+        event.target.complete();
+      }, 2500);
 
-      // App logic to determine if all data is loaded
-      // and disable the infinite scroll
-      
-    }, 2500);
   }
 
   segmentChanged(e){
@@ -276,7 +314,7 @@ export class CitastabsPage implements OnInit {
    }else{
      this.limit = 10
      this.citas = []
-      this.listCitas()
+     this.listCitas()
    }
     this.segemt  = e.detail.value
   }

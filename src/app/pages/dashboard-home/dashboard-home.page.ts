@@ -48,4 +48,8 @@ export class DashboardHomePage implements OnInit {
     return await modal.present();
   }
 
+  onClick(){
+    this.api.emitircarga()
+  }
+
 }

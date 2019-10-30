@@ -244,8 +244,7 @@ export class EditProfilePage implements OnInit,OnDestroy {
     this.auth.resendCodeEmail().subscribe(async ()=>{
       loading.dismiss()
       const alert = await this.alert.create({
-        header: 'Exito',
-        message: 'Correo enviado exitosamente a ('+ this.emails + ') por favor verifica tu bandeja de entrada, una vez verifiques tu correo se cerrara esta ventana' ,
+        message: 'Hemos un link para verificación a tu cuenta de correo registrada, una vez verifiques tu correo se cerrara esta ventana' ,
         buttons: ['OK']
       });
       await alert.present();

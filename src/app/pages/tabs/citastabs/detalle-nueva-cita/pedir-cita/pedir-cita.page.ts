@@ -317,7 +317,9 @@ export class PedirCitaPage implements OnInit {
   }
 
 
-  async openalert(e) {
+
+
+async openalert(e) {
     console.log(e)
 
     const alert = await this.alertController.create({
@@ -356,9 +358,10 @@ export class PedirCitaPage implements OnInit {
                  toast.present();
                  this.dismiss()
                  this.ruta.navigate(['/dashboard/citas'])
+                 this.api.emitirsegmento()
                },async erro=>{
                  const alert = await this.alertController.create({
-                   header: 'Error',
+                   header: 'Agendar cupo',
                    message: erro.error.message,
                    buttons: ['OK']
                  });
@@ -381,6 +384,7 @@ export class PedirCitaPage implements OnInit {
                 });
                 toast.present();
                 this.dismiss()
+                this.api.emitirsegmento()
                 this.ruta.navigate(['/dashboard/citas'])
               },async erro=>{
                 const alert = await this.alertController.create({

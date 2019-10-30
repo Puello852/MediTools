@@ -43,6 +43,52 @@ export class ProfileTabsPage implements OnInit {
     return await modal.present();
   }
 
+  async changecelular(e){
+   
+    const alert = await this.alertController.create({
+      header: 'Escribe tu celular',
+      inputs: [
+        {name: 'celular',type: 'number',value: e,placeholder:'Numero de celular',label: 'celular',max:10},
+      ],
+      buttons: [
+        {
+          text: 'CANCELAR',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            
+          }
+        }, {
+          text: 'GUARDAR',
+          handler: (e) => {
+            let data = {
+              celular: e.celular,
+            }
+            this.api.editCelular(data).subscribe(async ()=>{
+              // this.loadPerfil()
+              e = e.celular
+              const toast = await this.toastController.create({
+                message: 'Celular actualizado exitosamente',
+                duration: 2000
+              });
+              this.loadPerfil()
+              toast.present();
+            },async erro=>{
+              const toast = await this.toastController.create({
+                message: erro.error.message,
+                duration: 2000
+              });
+              toast.present();
+            })
+           
+          }
+        }
+      ]
+    })
+    await alert.present();
+  
+}
+
   async editName(e){
     const alert = await this.alertController.create({
       header: 'Escribe tu nombre',
@@ -363,6 +409,7 @@ export class ProfileTabsPage implements OnInit {
       }, {
         text: 'Editar primer apellido',
         handler: () => {
+          console.log(this.datos.apellido1)
           this.editApellido(this.datos.apellido1)
         }
       }, {

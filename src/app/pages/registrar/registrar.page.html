@@ -158,6 +158,8 @@
                   Los documentos no coinciden</ion-label>
             </div>
   
+            
+          
           </div>
   
           <div *ngIf="case2" class="animated bounceInRight">
@@ -259,7 +261,7 @@
                 *ngIf="form.hasError('notSame')">
                 Las contraseñas no son iguales</ion-label>
             </div>
-
+            <re-captcha size="compact" (resolved)="captchaResolved($event)" siteKey="6LeIG7sUAAAAAJ8wa8GF9vge0jAjd2sXegFDj-Sa"></re-captcha>
  <div class="wrap-input100">
   
   </div>
@@ -280,13 +282,14 @@
         <div class="container-login100-form-btn">
           <div class="wrap-login100-form-btn">
             <div class="login100-form-bgbtn"></div>
-            <ion-button *ngIf="case2" [disabled]="!form.valid" class="login" (click)="executeAction('register')" expand="block">Registrarse</ion-button>
+            <ion-button *ngIf="case2" [disabled]="!form.valid || !captchaPassed" class="login" (click)="register()" expand="block">Registrarse</ion-button>
           </div>
         </div>
       </form>
       <!-- <button (click)="">Execute "homepage" action</button> -->
- 
+      
     </div>
+    
   </div>
 
 </ion-content>

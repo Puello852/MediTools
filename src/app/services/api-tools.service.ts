@@ -12,32 +12,46 @@ import { Router } from '@angular/router';
 export class ApiToolsService {
 
 	
-	@Output() evento = new EventEmitter();
+@Output() evento = new EventEmitter();
+@Output() cargar = new EventEmitter()
+@Output() cambiarSegmento = new EventEmitter()
 	token: any = "null"
 	refreshToken: string;
   constructor(private ruta: Router,private storage:Storage, private _http: HttpClient,public platform:Platform) {}
   emitir(value) {
     this.evento.emit(value);
   }
-  
+
+  emitircarga(){
+	  this.cargar.emit()
+  }
+
+  emitirsegmento(){
+	  this.cambiarSegmento.emit()
+  }
+
+
   getQuery( query: string, type: string,  authorization: boolean, body?: any ) {
 		const url = environment.apiUrl+query;
 		let headers:any = new HttpHeaders({ 'Content-Type': 'application/json', 'Accept': 'application/json' });
-		
 		if (authorization)
 		{
 			if(this.token != undefined && this.token != null)
 			{
-				if(this.platform.is('cordova')){
-				this.storage.get("token").then(token=>{
-					if(token){
-						headers =  headers.append('Authorization',token);
-						this.token = token
-					}
-				})
-			}else{
-				headers =  headers.append('Authorization',localStorage.getItem('token'));
-			}
+				// headers =  headers.append('Authorization',this.token);
+			 	if(this.platform.is('cordova')){
+			 	this.storage.get("token").then(token=>{
+			 	// alert("añadiendo token headers")
+			 		if(token){
+			 			// alert(this.token)
+			// 			// alert("token añadido al headers: "+this.token)
+			 			// this.token = token
+			 			headers =  headers.append('Authorization',this.token);
+			 		}
+			 	})
+			 }else{
+			 	headers =  headers.append('Authorization',localStorage.getItem('token'));
+			 }
 			
 				// let to = this.storage.get('token') || null
 				// console.log(this.token)
@@ -225,8 +239,9 @@ export class ApiToolsService {
 
 	guardarToken(token:string,refreshToken:string,uid:string){
 	
+		// this.token = token
 		if(this.platform.is('cordova')){
-		
+			// alert("celular")
 			this.token = token
 			this.storage.set('refresh', refreshToken)
 			this.storage.set('token', token)
@@ -244,15 +259,20 @@ export class ApiToolsService {
 	}
 
 	CargarToken(){
+		this.storage.set('name','edwin')
 		let promesa = new Promise((resolve,reject)=>{
 
 			if(this.platform.is('cordova')){
 				this.storage.ready().then( () => {
-					
+					// alert("se cargo la plataforma")
 					this.storage.get("token").then(token=>{
 						if(token){
-							this.ruta.navigate(['/dashboard/home'])
+							// alert("encontre un token")
 							this.token = token
+							// alert(this.token)
+							this.ruta.navigate(['/dashboard/home'])
+						}else{
+							this.ruta.navigate(['/home'])
 						}
 					})
 					resolve()

@@ -4,7 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { RecaptchaComponent, OnExecuteData, ReCaptchaV3Service } from 'ng-recaptcha'
+import { RecaptchaComponent, OnExecuteData } from 'ng-recaptcha'
 import moment from 'moment';
 import example from '../../../assets/departamentos.json';
 import municipio from '../../../assets/municipios.json';
@@ -53,48 +53,33 @@ export class RegistrarPage implements OnInit {
   public recentToken: string = '';
   public readonly executionLog: OnExecuteData[] = [];
 
-  private allExecutionsSubscription: Subscription;
-  private singleExecutionSubscription: Subscription;
   captchaResponse: string;
+  captchatoken: any;
   
-  constructor(private recaptchaV3Service: ReCaptchaV3Service,private zone: NgZone,public loadingController: LoadingController,private api:ApiToolsService,private statusBar: StatusBar,private authService:AuthenticationService,public alertController: AlertController,public ruta: Router) {
+  constructor(private zone: NgZone,public loadingController: LoadingController,private api:ApiToolsService,private statusBar: StatusBar,private authService:AuthenticationService,public alertController: AlertController,public ruta: Router) {
     console.log(example)
 
     this.departamento = example
     this.municipios = municipio
    }
 
-   public executeAction(action: string): void {
-    if (this.singleExecutionSubscription) {
-      this.singleExecutionSubscription.unsubscribe();
-    }
-    this.singleExecutionSubscription = this.recaptchaV3Service.execute(action)
-      .subscribe((token) => {
-        this.recentToken = token
-        console.log(token)
-        this.register(token)
-      } );
-  }
+  //  public executeAction(action: string): void {
+  //   if (this.singleExecutionSubscription) {
+  //     this.singleExecutionSubscription.unsubscribe();
+  //   }
+  //   this.singleExecutionSubscription = this.recaptchaV3Service.execute(action).subscribe((token) => {
+  //       this.recentToken = token
+  //       console.log(token)
+  //       this.register(token)
+  //     } );
+  // }
 
 
   public ngOnDestroy() {
-    if (this.allExecutionsSubscription) {
-      this.allExecutionsSubscription.unsubscribe();
-    }
-    if (this.singleExecutionSubscription) {
-      this.singleExecutionSubscription.unsubscribe();
-    }
+    console.log("cerre :v")
+
   }
 
-  public formatToken(token: string): string {
-    if (!token) {
-      return '(empty)';
-    }
-
-    console.log(token)
-
-    return `${token.substr(0, 7)}...${token.substr(-7)}`;
-  }
 
    captchaResolved(response: string): void {
 
@@ -168,8 +153,6 @@ export class RegistrarPage implements OnInit {
   return pass === confirmPass && doc === confdoc ? null : { notSame: true }     
 }
   ngOnInit() {
-    this.allExecutionsSubscription = this.recaptchaV3Service.onExecute
-    .subscribe((data) => this.executionLog.push(data));
     // let status bar overlay webview
     this.statusBar.styleLightContent()
     // set status bar to white
@@ -195,7 +178,7 @@ export class RegistrarPage implements OnInit {
     
     
   }
-  async register(token){
+  async register(){
     const loading = await this.loadingController.create({
       message: 'Por favor espere...',
       mode: 'md'
@@ -204,7 +187,7 @@ export class RegistrarPage implements OnInit {
     let data = {
       email : this.form.controls.email.value,
       password: this.form.controls.password.value,
-      captcha: token
+      captcha: this.captchaResponse
     }
     let datos = {
       primerNombre: this.form.controls.nombre.value,

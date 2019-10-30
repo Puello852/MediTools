@@ -41,13 +41,25 @@ export class DetalleEstadoCitaPage implements OnInit {
           }
         }, {
           text: 'Si, cancelar',
-          handler: () => {
+          handler: async () => {
             let data = {
               idcita: this.info.id,
             }
+            const loading = await this.loadingController.create({
+              message: 'Por favor espere...',
+            });
+            await loading.present();
             this.api.cancelarCita(data).subscribe((data:any)=>{
+              loading.dismiss()
               this.api.emitir(1)
               this.ruta.back()
+            },async erro=>{
+              const alert = await this.alertController.create({
+                message: erro.error.message,
+                buttons: ['OK']
+              });
+              loading.dismiss()
+              await alert.present();
             })
           }
         }
@@ -71,10 +83,8 @@ export class DetalleEstadoCitaPage implements OnInit {
         this.horaFinal = hora.slice(6)
       }
 
-      // console.log(this.info)
-      // console.log(this.horaInicial)
-      // console.log(this.horaFinal)
     },erro=>{
+
       loading.dismiss()
     })
   }

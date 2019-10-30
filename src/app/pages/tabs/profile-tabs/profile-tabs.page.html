@@ -109,7 +109,7 @@
               <ion-col size="12">
                 <span style="color:gray">Número de télefono</span>
               </ion-col>
-              <ion-col size="12">
+              <ion-col (click)="changecelular(datos.celular)" size="12">
                   <span style="font-weight: 600;font-size: 17px">(+57) {{datos.celular}} <ion-icon style="color: #393f464d;" slot="icon-only" name="create" mode="md"></ion-icon></span>
               </ion-col>
             </ion-row>
@@ -121,7 +121,7 @@
                 <span style="color:gray">Dirección</span>
               </ion-col>
               <ion-col size="12">
-                  <span style="font-weight: 600;font-size: 17px"> calee 94# 6 </span>
+                  <span style="font-weight: 600;font-size: 17px"> {{datos.direccion}} </span>
               </ion-col>
             </ion-row>
           </ion-col>
@@ -238,10 +238,10 @@
 
   </ion-list> -->
 
-
+<!-- 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="onClick()">
       <ion-icon name="exit"></ion-icon>
     </ion-fab-button>
-  </ion-fab>
+  </ion-fab> -->
 </ion-content>
