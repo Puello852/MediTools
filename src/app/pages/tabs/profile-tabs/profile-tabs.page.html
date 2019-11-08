@@ -2,7 +2,7 @@
 
 
   <div class="header">
-      <ion-icon style="color: #393f464d;" slot="icon-only" name="create" mode="md"></ion-icon>
+     
   </div>
 
   <div class="container">
@@ -139,109 +139,11 @@
 
           <ion-col size="12">
             <ion-row>
-              <ion-button (click)="onClick()" style="font-style: initial" color="primary">Cerrar sesión</ion-button>
+              <ion-button (click)="closeSetcion()" style="font-style: initial" color="primary">Cerrar sesión</ion-button>
             </ion-row>
         </ion-col>
 
       </ion-row>
     </ion-grid>
   </div>
-
-  <!-- <div class="img">
-    <img class="im" src="{{base64Image}}" alt="">
-  </div>
-  <div class="buttonEdit">
-    <ion-button class="edit" (click)="editPhoto()">
-      <ion-icon style="color:white" slot="icon-only" name="camera" mode="md"></ion-icon>
-    </ion-button>
-  </div>
-
-  <ion-list>
-
-    <ion-item class="pad10" (click)="editName(datos.nombre1)">
-      <ion-icon style="color:#3880ff" slot="start" name="md-person"></ion-icon>
-      <ion-label>
-        <h2 style="color: gray">Primer nombre</h2>
-        <h3> <span style="font-weight: 500">{{datos.nombre1}}</span></h3>
-      </ion-label>
-      <ion-button class="buttonEdit1">
-        <ion-icon style="color:gray" slot="end" name="md-create"></ion-icon>
-      </ion-button>
-    </ion-item>
-
-    <ion-item class="pad10" (click)="editName2(datos.nombre2)">
-        <ion-icon style="color:#3880ff" slot="start" name="md-person"></ion-icon>
-        <ion-label>
-          <h2 style="color: gray">Segundo nombre</h2>
-          <h3> <span style="font-weight: 500"> <span *ngIf="datos.nombre2 == ''">No tiene</span> <span *ngIf="datos.nombre2">{{datos.nombre2}}</span></span></h3>
-        </ion-label>
-        <ion-button class="buttonEdit1">
-          <ion-icon style="color:gray" slot="end" name="md-create"></ion-icon>
-        </ion-button>
-      </ion-item>
-
-    <ion-item class="pad10" (click)="editApellido(datos.apellido1)">
-        <ion-icon style="color:#3880ff" slot="start" name="md-person"></ion-icon>
-        <ion-label>
-          <h2 style="color: gray">Primer apellido</h2>
-          <h3> <span style="font-weight: 500">{{datos.apellido1}}</span></h3>
-        </ion-label>
-        <ion-button class="buttonEdit1" >
-          <ion-icon style="color:gray" slot="end" name="md-create"></ion-icon>
-        </ion-button>
-      </ion-item>
-
-      <ion-item class="pad10" (click)="editApellido2(datos.apellido2)">
-          <ion-icon style="color:#3880ff" slot="start" name="md-person"></ion-icon>
-          <ion-label>
-            <h2 style="color: gray">Segundo apellido</h2>
-            <h3> <span style="font-weight: 500">{{datos.apellido2}}</span></h3>
-          </ion-label>
-          <ion-button class="buttonEdit1" >
-            <ion-icon style="color:gray" slot="end" name="md-create"></ion-icon>
-          </ion-button>
-        </ion-item>
-
-    <ion-item class="pad10" (click)="editDocumento(datos.cc)">
-        <ion-icon style="color:#3880ff" slot="start" name="md-list-box"></ion-icon>
-      <ion-label>
-        <h2  style="color: gray">Documento</h2>
-        <h3 style="font-weight: 500">{{datos.cc}}</h3>
-      </ion-label>
-      <ion-button class="buttonEdit1" >
-          <ion-icon style="color:gray" slot="end" name="md-create"></ion-icon>
-        </ion-button>
-    </ion-item>
-
-    <ion-item class="pad10" (click)="editMail(datos.email)">
-        <ion-icon style="color:#3880ff" slot="start" name="md-at" ></ion-icon>
-      <ion-label>
-        <h2  style="color: gray">Correo</h2>
-        <h3 style="font-weight: 500">{{datos.email}}</h3>
-      </ion-label>
-      <ion-button class="buttonEdit1" >
-          <ion-icon style="color:gray" slot="end" name="md-create"></ion-icon>
-        </ion-button>
-    </ion-item>
-
-    
-    <ion-item class="pad10" (click)="editKey(datos.email)">
-        <ion-icon style="color:#3880ff" slot="start" name="md-key" ></ion-icon>
-      <ion-label>
-        <h2  style="color: gray">Restablecer contraseña</h2>
-        <h3 style="font-weight: 500">***********</h3>
-      </ion-label>
-      <ion-button class="buttonEdit1" >
-          <ion-icon style="color:gray" slot="end" name="md-create"></ion-icon>
-        </ion-button>
-    </ion-item>
-
-  </ion-list> -->
-
-<!-- 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="onClick()">
-      <ion-icon name="exit"></ion-icon>
-    </ion-fab-button>
-  </ion-fab> -->
 </ion-content>

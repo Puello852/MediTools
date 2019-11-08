@@ -50,27 +50,27 @@ export class PedirCitaPage implements OnInit {
     this.tipoAtencions = navParams.get('tipoAtencion')
     this.mesNumber = moment().format('MM')
     this.FechaNumber = moment().format('YYYY-MM-DD')
-    console.log(this.eventSource)
     this.obtenerMedico()
   }
-
+  //Al inciar la vista verifico primero el tipo de atencion de ese doctor y obtengo los enventos del mes y del dia
   async ngOnInit() {
     const loading = await this.loadingController.create({
       message: 'Por favor espere...',
     });
     await loading.present();
-
+    //Aqui le creo un json con el id deldoctor el mes y el año
     let data = {
       idDoctor: this.idDoctors,
       mes: this.mesNumber,
       anio: this.anio
     }
+    //si tipo atencion es 1 sigifnica que por cupos con hora incial y una final y solo se puede atender a la persona que escojio ese cupo a esa hora
     if(this.tipoAtencions == 1){
+      //Aqui obtengo todo los eventos del mes para marcarle con un verde los dias que tiene cupos libres ese medico
        this.api.eventMes(data).subscribe((data: any) => {
         this.eventSource.forEach(element => {
           let pos = this.eventSource.map(function(a) { return moment(a.startTime).format('YYYY-MM-DD'); }).indexOf(this.mes);
           if(pos>=0){
-            console.log("borrado")
             this.eventSource.splice(pos,1)
           }
         });
@@ -85,19 +85,18 @@ export class PedirCitaPage implements OnInit {
              }
            )
          });
-         console.log(this.eventSource)
          loading.dismiss()
          this.myCal.loadEvents()
        },erro=>{
         loading.dismiss()
        })
     }else{
-      console.log("tipo atencion otra")
+       //si tipo atencion es 2 sigifnica que por cupos pero puede atender a X personas en un rango de tiempo estimado por el doctor
+       //Aqui obtengo todo los eventos del mes para marcarle con un verde los dias que tiene cupos libres ese medico
       this.api.cuposLibres(data).subscribe((data: any) => {
         this.eventSource.forEach(element => {
           let pos = this.eventSource.map(function(a) { return moment(a.startTime).format('YYYY-MM-DD'); }).indexOf(this.mes);
           if(pos>=0){
-            console.log("borrado")
             this.eventSource.splice(pos,1)
           }
         });
@@ -112,7 +111,6 @@ export class PedirCitaPage implements OnInit {
              }
            )
          });
-         console.log(this.eventSource)
          loading.dismiss()
          this.myCal.loadEvents()
        },erro=>{
@@ -120,23 +118,21 @@ export class PedirCitaPage implements OnInit {
        })
     }
   }
-
+  
+  //Funcion para avanzar al siguiente mes
   async next(e) {
-    // console.log(e)
+    //Guardo el mes en la variable
     this.mesNumber = moment().add(this.mesx,'months').format('MM')
-    // console.log("boton next va por el mes: "+this.mesNumber)
     
+    //Valido que sea el ultimo mes del año
     if(parseInt(this.mesNumber) == 12){
       this.year = true
-      
     }else{
       if(this.year){
         this.anio = moment().add(1,'years').format('YYYY')
-        // console.log() 
       }else{
         this.year = false
         this.anio = moment().format('YYYY')
-        // console.log(moment().format('YYYY'))
       }
     }
     this.mesx++
@@ -144,22 +140,22 @@ export class PedirCitaPage implements OnInit {
       message: 'Por favor espere...',
     });
     await loading.present();
-
+    //en base a todo obtengo toda la informacion y la armo en json
     let data = {
       idDoctor: this.idDoctors,
       mes: this.mesNumber.toString(),
       anio: this.anio.toString()
     }
     let poss = 0
-
+    //si tipo atencion es 1 sigifnica que por cupos con hora incial y una final y solo se puede atender a la persona que escojio ese cupo a esa hora
     if(this.tipoAtencions == 1){
       this.api.eventMes(data).subscribe((data: any) => {
       
         if(data.code == -4){
           loading.dismiss()
         }else{
+          //Aqui obtengo todo los eventos del mes para marcarle con un verde los dias que tiene cupos libres ese medico
           data.forEach(element => {
-           // console.log(moment(this.mesNumber, 'MM').add(poss,'day').format('YYYY-MM-DD'))
            let pos = this.eventSource.map(function(a) { return moment(a.startTime).format('YYYY-MM-DD')}).indexOf(moment(this.mesNumber, 'MM').add(poss,'day').format('YYYY-MM-DD'));
            if(pos<0){
              this.eventSource.push(
@@ -174,9 +170,7 @@ export class PedirCitaPage implements OnInit {
            }
            poss++
            });
-        }
-        
-       console.log(this.eventSource)
+        }   
         loading.dismiss()
         this.myCal.loadEvents()
       },erro=>{
@@ -185,9 +179,10 @@ export class PedirCitaPage implements OnInit {
      var swiper = document.querySelector('.swiper-container')['swiper'];
      swiper.slideNext();
     }else{
+      //si tipo atencion es 2 sigifnica que por cupos pero puede atender a X personas en un rango de tiempo estimado por el doctor
+      //Aqui obtengo todo los eventos del mes para marcarle con un verde los dias que tiene cupos libres ese medico
       this.api.eventMes2(data).subscribe((data: any) => {
         data.forEach(element => {
-       // console.log(moment(this.mesNumber, 'MM').add(poss,'day').format('YYYY-MM-DD'))
        let pos = this.eventSource.map(function(a) { return moment(a.startTime).format('YYYY-MM-DD')}).indexOf(moment(this.mesNumber, 'MM').add(poss,'day').format('YYYY-MM-DD'));
        if(pos<0){
          this.eventSource.push(
@@ -202,7 +197,6 @@ export class PedirCitaPage implements OnInit {
        }
        poss++
        })
-       console.log(this.eventSource)
         loading.dismiss()
         this.myCal.loadEvents()
       },erro=>{
@@ -210,40 +204,34 @@ export class PedirCitaPage implements OnInit {
       })
      var swiper = document.querySelector('.swiper-container')['swiper'];
      swiper.slideNext();
-      console.log("otro tipo de atencion que deje mocho :v")
     }
 
-    // console.log(this.mesNumber)
-    // console.log(this.myCal._currentDate())
   }
 
+  //Metodo para echar pa atras en los meses
   back() {
     this.mesx--
     var swiper = document.querySelector('.swiper-container')['swiper'];
     swiper.slidePrev();
   }
 
+  //Guardo el titulo del mes en el que estmamos moviendonos
   onViewTitleChanged(e) {
-    // this.mesNumber = moment(e).format('MM')
     this.mes = e
-    // this.ngOnInit()
   }
+
+  //Metodo que devuelve el detalle del evento seleccionado
   onEventSelected(e) {
-    console.log(e)
   }
+
+  //Metodo que devuelve la fecha del evento seleccionado
   async onTimeSelected(e) {
-    // console.log(moment(e.selectedTime).format('YYYY-MM-DD'))
-    this.DateCalendar = moment(e.selectedTime).format('MM')
-    // console.log(this.DateCalendar)
-    
+    this.DateCalendar = moment(e.selectedTime).format('MM')  
   }
 
+  //Metodo que devuelve la fecha apenas cambia
   async onCurrentDateChanged(e){
-
-
-
     this.mesNumber = moment(e).format("MM")
-    console.log("el mes en que estamos es: "+ moment(e).format("MM"))
     const loading = await this.loadingController.create({
       message: 'Por favor espere...',
     });
@@ -287,7 +275,6 @@ export class PedirCitaPage implements OnInit {
               this.eventSource.splice(pos,1)
             }
           });
-            console.log(data)
             this.eventSource.push({
               title: "Cupos disponibles: "+data.CuposDisponibles ,
               startTime: moment(e).toDate(),
@@ -306,7 +293,7 @@ export class PedirCitaPage implements OnInit {
     }
     
   }
-
+  //Obtengo el detalle del medico
   obtenerMedico(){
     let data = {
       idDoctor: this.idDoctors
@@ -316,11 +303,8 @@ export class PedirCitaPage implements OnInit {
     })
   }
 
-
-
-
-async openalert(e) {
-    console.log(e)
+  //Alerta de seguridad para saber si esa persona esta segura de agendar la cita
+  async openalert(e) {
 
     const alert = await this.alertController.create({
       header: 'Agendar cita',
@@ -401,12 +385,10 @@ async openalert(e) {
         }
       ]
     });
-
     await alert.present();
-    
-
   }
 
+  //Meotodo para cerrar el modal
   dismiss() {
     this.modalController.dismiss()
   }

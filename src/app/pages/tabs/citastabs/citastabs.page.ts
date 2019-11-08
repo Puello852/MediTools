@@ -34,19 +34,17 @@ export class CitastabsPage implements OnInit, OnDestroy {
   minDate= new Date()
   limit: number = 10;
   Eventosegment: Subscription;
-  constructor(private router:Router,public loadingController: LoadingController,private api:ApiToolsService,public toastController: ToastController,public modalController: ModalController,private alertCtrl: AlertController, @Inject(LOCALE_ID) private locale: string) {
+  constructor(public alert:AlertController,private router:Router,public loadingController: LoadingController,private api:ApiToolsService,public toastController: ToastController,public modalController: ModalController,private alertCtrl: AlertController, @Inject(LOCALE_ID) private locale: string) {
      
    }
 
-   
-
+  //Metodo para lisar los medicos
   async lisTMedical(){
     const loading = await this.loadingController.create({
       message: 'Por favor espere...',
     });
     await loading.present();
     this.api.ListMedical().subscribe((data:any)=>{
-      
       loading.dismiss()
       this.newmedicos = data
       this.medicos = data
@@ -56,18 +54,17 @@ export class CitastabsPage implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(){
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
-    console.log("destrui")
     this.Eventosegment.unsubscribe()
   }
 
+  //Obtener y listar todas las especialidades
   listEspecialidad(){
     this.api.ListEspecialidades().subscribe((data:any)=>{
       this.categorias = data
     })
   }
 
+  //obtener los medicos por especialidad
   async goMedicalEspecialidad(e){
     const loading = await this.loadingController.create({
       message: 'Por favor espere...',
@@ -81,47 +78,42 @@ export class CitastabsPage implements OnInit, OnDestroy {
     })
   }
 
+  //Ir al detale de la nueva cita contatenadole el id del cliente
   godetail(e){
     this.router.navigate(['detalle-nueva-cita/'+e])
   }
 
-
+  //Metodo del buscador validaciones para verificar si saber si escribio o no
   async buscador(e){
-    let lengthfirst = e.detail.value.length
+    //aqui se valida que lo que haya o no escrito nada 
     if(this.newLength == e.detail.value.length){
       this.newLength++
-      console.log("es igual")
     }else if(this.newLength != e.detail.value.length){
       this.newLength--
       this.api.ListMedical().subscribe((data:any)=>{
         this.newmedicos = data
       })
-      console.log("no es igual")
     }
-
-    console.log(lengthfirst)
+    //paso todo lo que escribe a minuscula
     let busqueda = e.detail.value.toLowerCase()
-    // console.log(busqueda)
+    
     if(e.detail.value == null || e.detail.value == ''){
+      //valido si borro todo le listo todos los medicos
       this.newLength = 1
       this.lisTMedical()
     }else{
 
+    // funcion de javascript para filtar por especialidad,nombre,apellido
      let result = this.newmedicos.filter((data:any)=>{
-        console.log(data)
        return data ? data.especialidad.includes(busqueda) || data.nombre.includes(busqueda) || data.apellido.includes(busqueda) : ""
      })
-
-     console.log(result)
      this.medicos = result
-
     }
   }
-  
 
+  // al iniciar la app le establezco que el segmento principal sera citas con un limite de 10 citas 
   ngOnInit() {
     this.Eventosegment = this.api.cambiarSegmento.subscribe(()=>{
-      console.log("carge primero")
         this.segemt = "citas"
         this.segments.value = "citas"
         this.limit = 10
@@ -130,12 +122,12 @@ export class CitastabsPage implements OnInit, OnDestroy {
     this.api.evento.subscribe((data:any)=>{
       this.limit = 10
       this.citas = []
-      console.log("cancele la cita")
       this.listCitas()
     })
 
   }
 
+  //Metodo para obtener todos los medicos 
   async all(){
     this.limit = 10
     this.citas = []
@@ -148,6 +140,7 @@ export class CitastabsPage implements OnInit, OnDestroy {
     })
   }
 
+  //Obtener las citas pendientes
   async pendingCites(){
     this.limit = 10
     this.citas = []
@@ -164,9 +157,18 @@ export class CitastabsPage implements OnInit, OnDestroy {
           loading.dismiss()
           this.citas = data
         }
+      },async erro=>{
+        const alert = await this.alert.create({
+          message: erro.error.message,
+          buttons: ['OK']
+        });
+        
+        await alert.present();
+        loading.dismiss()
       })
   }
 
+  //Meotodo para obtener las citas aceptadas
   async acceptCites(){
     this.limit = 10
     this.citas = []
@@ -183,9 +185,18 @@ export class CitastabsPage implements OnInit, OnDestroy {
           loading.dismiss()
           this.citas = data
         }
+      },async erro=>{
+        const alert = await this.alert.create({
+          message: erro.error.message,
+          buttons: ['OK']
+        });
+        
+        await alert.present();
+        loading.dismiss()
       })
   }
 
+  //Metodo para obtener las citas Canceladas
   async cancelCites(){
     this.limit = 10
     this.citas = []
@@ -203,39 +214,40 @@ export class CitastabsPage implements OnInit, OnDestroy {
           loading.dismiss()
           this.citas = data
         }
+      },async erro=>{
+        const alert = await this.alert.create({
+          message: erro.error.message,
+          buttons: ['OK']
+        });
+        
+        await alert.present();
+        loading.dismiss()
       })
   }
 
-
-
-  unread(e){
+  //Metodo para redigirir la vista de detalles de la cita
+  detailCita(e){
     this.lista.closeSlidingItems()
     this.router.navigate(['/detalle-estado-cita/'+e])
   }
 
-
-
+  //utilizado para ocultar y mostrar el boton de filtro
   async filter(e){
-
   if(e == 1){
-    console.log("al 1")
     this.filtro = false
   }else{
-    console.log("no es 1")
     this.filtro = true
   }
   
   }
 
-
+  //Obtener todas la citas y listarla por orden de fecha a la cita mas reciente
   async listCitas(){
-    console.log("llame con msj")
     const loading = await this.loadingController.create({
       message: 'Por favor espere...',
     });
     await loading.present();
       this.api.listarcitas(this.limit).subscribe(async (data:any)=>{
-        // console.log(data)
         if(data.Code == -1){
           loading.dismiss()
           this.citas = []
@@ -250,22 +262,28 @@ export class CitastabsPage implements OnInit, OnDestroy {
           this.limit -=10
         }else{
           loading.dismiss()
-          data.forEach(element => {
-            if(this.eventoBack){
-              this.citas = []
-              this.eventoBack = false
-            }
-            this.citas.push(element)
-          });
-          console.log(this.citas)
+          if(data.length > 0){
+            data.forEach(element => {
+              if(this.eventoBack){
+                this.citas = []
+                this.eventoBack = false
+              }
+              this.citas.push(element)
+            });
+          }
         }
-      },erro=>{
+      },async erro=>{
+        const alert = await this.alert.create({
+          message: erro.error.message,
+          buttons: ['OK']
+        });
+        
+        await alert.present();
         loading.dismiss()
       })
   }
-
+  // lo mismo pero sin el msj de.. espere porfavor..
   listCitasnot(){
-    console.log("llame sin msj")
       this.api.listarcitas(this.limit).subscribe(async (data:any)=>{
         if(data.Code == -1){
           this.citas = []
@@ -285,11 +303,18 @@ export class CitastabsPage implements OnInit, OnDestroy {
             this.citas.push(element)
           })
         }
-      },erro=>{
-      
+      },async erro=>{
+        const alert = await this.alert.create({
+          message: erro.error.message,
+          buttons: ['OK']
+        });
+        
+        await alert.present();
+     
       })
   }
 
+  //Metodo del infiniti scroll para obtener mas citas siempre y cuando tenga mas 10
   loadData(event) {
   
       if(this.eventoBack){
@@ -300,13 +325,12 @@ export class CitastabsPage implements OnInit, OnDestroy {
         this.listCitasnot()
       }
       setTimeout(() => {
-        console.log('Done');
-        console.log(this.limit)
         event.target.complete();
       }, 2500);
 
   }
 
+  //Metodo para cambiar de segmento
   segmentChanged(e){
    if(e.detail.value == 'newcita'){
      this.lisTMedical()

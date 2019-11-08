@@ -18,8 +18,6 @@ export class HomeTabsPage implements  OnInit, OnDestroy {
   loading: HTMLIonLoadingElement;
 
   constructor( private router: Router,private auth:ApiToolsService,public alert:AlertController,public loadingController :LoadingController,private api :ApiToolsService) {
-    console.log(this.router.url)
-
   }
 
   ngOnInit() {
@@ -35,7 +33,7 @@ export class HomeTabsPage implements  OnInit, OnDestroy {
     this.cargar.unsubscribe()
   }
 
-
+  //Obtener información del usuario
   async getinfo(e){
     if(e){
       this.loading = await this.loadingController.create({
@@ -55,10 +53,8 @@ export class HomeTabsPage implements  OnInit, OnDestroy {
        this.foto = await data.foto
      }
     },erro=>{
-      if(e) this.loading.dismiss()
+      this.loading.dismiss()
     })
   }
-
-
 
 }

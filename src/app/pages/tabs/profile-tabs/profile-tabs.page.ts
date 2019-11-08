@@ -5,9 +5,9 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { File } from "@ionic-native/file/ngx";
 import { AngularFireStorage } from '@angular/fire/storage';
 import * as firebase from 'firebase/app';
+import { Storage } from '@ionic/storage'
 import { FormGroup, FormControl } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
-import { EditProfilePage } from '../edit-profile/edit-profile.page';
 import { ApiToolsService } from 'src/app/services/api-tools.service';
 @Component({
   selector: 'app-profile-tabs',
@@ -25,26 +25,15 @@ export class ProfileTabsPage implements OnInit {
   })
   datos: any = {};
   datosProfile: any = {};
-  constructor(public navctrl: NavController,private api: ApiToolsService, public toastController: ToastController,public alertController: AlertController,public modalController: ModalController,public loadingController: LoadingController, private afsStorage: AngularFireStorage, public platform: Platform, public auth: AuthenticationService, public actionSheetController: ActionSheetController, private camera: Camera, private file: File) {
+  constructor(private storage:Storage,public navctrl: NavController,private api: ApiToolsService, public toastController: ToastController,public alertController: AlertController,public modalController: ModalController,public loadingController: LoadingController, private afsStorage: AngularFireStorage, public platform: Platform, public auth: AuthenticationService, public actionSheetController: ActionSheetController, private camera: Camera, private file: File) {
   }
 
   ngOnInit() {
     this.loadPerfil()
   }
 
-  async edit(){
-    const modal = await this.modalController.create({
-      component: EditProfilePage,
-      componentProps:{
-        datosProfile: this.datosProfile,
-        datos: this.datos
-      }
-    });
-    return await modal.present();
-  }
-
+  //Metodo utilizado para cambiar un celular
   async changecelular(e){
-   
     const alert = await this.alertController.create({
       header: 'Escribe tu celular',
       inputs: [
@@ -65,7 +54,6 @@ export class ProfileTabsPage implements OnInit {
               celular: e.celular,
             }
             this.api.editCelular(data).subscribe(async ()=>{
-              // this.loadPerfil()
               e = e.celular
               const toast = await this.toastController.create({
                 message: 'Celular actualizado exitosamente',
@@ -87,8 +75,9 @@ export class ProfileTabsPage implements OnInit {
     })
     await alert.present();
   
-}
+  }
 
+  //Metodo para editar nombre
   async editName(e){
     const alert = await this.alertController.create({
       header: 'Escribe tu nombre',
@@ -132,6 +121,7 @@ export class ProfileTabsPage implements OnInit {
     await alert.present();
   }
 
+  //Editar segundo nombre
   async editName2(e){
     const alert = await this.alertController.create({
       header: 'Escribe tu segundo nombre',
@@ -175,6 +165,7 @@ export class ProfileTabsPage implements OnInit {
     await alert.present();
   }
   
+  //Editar primer apellido
   async editApellido(e){
     const alert = await this.alertController.create({
       header: 'Escribe tu apellido',
@@ -217,7 +208,8 @@ export class ProfileTabsPage implements OnInit {
     await alert.present();
   }
 
-   async editApellido2(e){
+  //Editar segundo apellido
+  async editApellido2(e){
     const alert = await this.alertController.create({
       header: 'Escribe tu segundo apellido',
       inputs: [
@@ -259,6 +251,7 @@ export class ProfileTabsPage implements OnInit {
     await alert.present();
   }
 
+  //Editar correo electronico
   async editDocumento(e){
     const alert = await this.alertController.create({
       header: 'Escribe tu documento',
@@ -301,8 +294,7 @@ export class ProfileTabsPage implements OnInit {
     await alert.present();
   }
 
-
-
+  //Editar correo electronido
   async editMail(e){
     const alert = await this.alertController.create({
       header: 'Escribe tu correo',
@@ -353,6 +345,7 @@ export class ProfileTabsPage implements OnInit {
     await alert.present();
   }
 
+  //Editar contraseña
   async editKey(e){
     const alert = await this.alertController.create({
       header: '¿Estas seguro?',
@@ -393,6 +386,7 @@ export class ProfileTabsPage implements OnInit {
 
   }
 
+  //metodo para abrir alerta de que quiere editar la persona si nombre, segundo nombre, apellido, segundo apellido
   async editNames(){
     const actionSheet = await this.actionSheetController.create({
       header: 'Editar',
@@ -409,7 +403,6 @@ export class ProfileTabsPage implements OnInit {
       }, {
         text: 'Editar primer apellido',
         handler: () => {
-          console.log(this.datos.apellido1)
           this.editApellido(this.datos.apellido1)
         }
       }, {
@@ -428,7 +421,7 @@ export class ProfileTabsPage implements OnInit {
     await actionSheet.present();
   
   }
-  
+  //Metodo para cagar el perfil y verifico si tiene o no tiene foto
   async loadPerfil() {
     const loading = await this.loadingController.create({
       message: 'Por favor espere...',
@@ -437,7 +430,6 @@ export class ProfileTabsPage implements OnInit {
     await loading.present();
     this.api.GetInfoUser().subscribe(((data:any)=>{
       this.datos = data
-      console.log(this.datos)
       if(data.foto== 'None'){
         this.base64Image = "./assets/img/person1.png"
       }else{
@@ -447,22 +439,9 @@ export class ProfileTabsPage implements OnInit {
     }),erro=>{
       loading.dismiss()
     })
-    // let dato: any = this.auth.userDetails()
-
-    // this.datosProfile = dato
-  
-
-    // let data: any = this.auth.userDetails()
-    // this.base64Image = data.photoURL
-    // if (data.photoURL == null || !data.photoURL) {
-    //   this.base64Image = './assets/img/person.png'
-    // } else {
-    //   this.base64Image = data.photoURL
-    //   this.downloadUrl = data.photoURL
-    // }
   }
-
-  async onClick() {
+  //Para cerrar sesión y limpiar localStorage tanto cmo web y movil
+  async closeSetcion() {
     const alert = await this.alertController.create({
       header: '¿Estas seguro?',
       message: 'Deseas cerrar sesión',
@@ -477,8 +456,15 @@ export class ProfileTabsPage implements OnInit {
         }, {
           text: 'OK',
           handler: async () => {
-            // this.auth.logoutUser()
-            localStorage.clear()
+           //Al aceptar que cerraste la sesión verifico si estoy en un dispositivo movil y elimino el localstorage
+            if(this.platform.is('cordova')){
+              await this.storage.remove("token");
+              await this.storage.remove("refresh");
+              await this.storage.remove("uid");
+            }else{
+              localStorage.clear()
+            }
+            //Y le seteo la ruta Home como root
             this.navctrl.navigateRoot('/home')
            
           }
@@ -489,32 +475,32 @@ export class ProfileTabsPage implements OnInit {
     
   }
 
-  onClick1() {
-    let data: any = this.auth.userDetails()
-
-    // this.auth.updatePhotoProfile(this.form.controls.url.value)
-    // this.auth.userDetails()
-  }
-
-
+  //Metodo utilizado para tomar una fotografia abro el loading
   async uploadPicture(blob: Blob) {
     const loading = await this.loadingController.create({
       message: 'Por favor espere...',
     });
     await loading.present();
+    //Utilizado para regenerarlo un nombre random inrepetible a la iamgen que se subira a firebase
     const filePath = 'images/' + (Math.floor(1000 + Math.random() * 9000) + 1);
     const ref = this.afsStorage.ref(filePath)
     const task = ref.put(blob);
 
     task.then(() => {
+      //Si la tarea es exitosa utilizo el metodo para obtener la URl de la imagen
       ref.getDownloadURL().subscribe((e) => {
         this.base64Image = e
         let data = {
           url : e
         }
-     
-        this.api.UploadPhoto(data).subscribe((a)=>{
-          alert("Subida con exito")
+     // MEtodo utilizado para subir lña foto
+        this.api.UploadPhoto(data).subscribe(async (a)=>{
+          const alert = await this.alertController.create({
+            message: 'Actualizado con exito.',
+            buttons: ['OK']
+          });
+      
+          await alert.present();
         },erro=>{
           // alert(erro.error.message)
         })
@@ -524,8 +510,8 @@ export class ProfileTabsPage implements OnInit {
     }).catch(() => { loading.dismiss() })
   }
 
+  //Metodo para abrir el acitonSheet, para preguntar que quieres abrir si camara o galeria
   async editPhoto() {
-
     const actionSheet = await this.actionSheetController.create({
       mode: 'md',
       header: 'Escoje una opción',
@@ -547,6 +533,7 @@ export class ProfileTabsPage implements OnInit {
     await actionSheet.present();
   }
 
+  //Metodo para abrir la camara con ciertas opciones
   async camaraOpen() {
     const options: CameraOptions = {
       correctOrientation: true,
@@ -560,13 +547,9 @@ export class ProfileTabsPage implements OnInit {
     let cameraInfo = await this.camera.getPicture(options);
     let blobInfo = await this.makeFileIntoBlob(cameraInfo);
     const uploadInfo = this.uploadToFirebase(blobInfo);
-
-
-   
-    // this.loadingController.dismiss()
-
   }
 
+  //Metodo para abrir la galeria
   async galeriaOpen() {
     const options: CameraOptions = {
       correctOrientation: true,
@@ -576,8 +559,6 @@ export class ProfileTabsPage implements OnInit {
     }
 
     try {
-
-
       const fileUri: string = await this.camera.getPicture(options)
       let file: string
       if (this.platform.is('ios')) {
@@ -585,8 +566,6 @@ export class ProfileTabsPage implements OnInit {
       } else {
         file = fileUri.substring(fileUri.lastIndexOf('/') + 1, fileUri.indexOf('?'))
       }
-
-
       const path: string = fileUri.substring(0, fileUri.lastIndexOf('/'))
       const buffer: ArrayBuffer = await this.file.readAsArrayBuffer(path, file)
       const blob: Blob = new Blob([buffer], { type: 'image/jpeg' })
@@ -596,9 +575,8 @@ export class ProfileTabsPage implements OnInit {
     }
   }
 
+  // INSTALL PLUGIN - cordova plugin add cordova-plugin-file
   async makeFileIntoBlob(_imagePath) {
-
-    // INSTALL PLUGIN - cordova plugin add cordova-plugin-file
     return new Promise((resolve, reject) => {
       let fileName = "";
       this.file
@@ -631,8 +609,8 @@ export class ProfileTabsPage implements OnInit {
     });
   }
 
+  //Metodo para subir a firebase la imagen
   async uploadToFirebase(_imageBlobInfo) {
-
     const loading = await this.loadingController.create({
       message: 'Por favor espere...',
     });
@@ -649,8 +627,13 @@ export class ProfileTabsPage implements OnInit {
           }
           // alert(e)
           // this.auth.updatePhotoProfile(e)
-          this.api.UploadPhoto(data).subscribe((a)=>{
-                alert("foto subida")
+          this.api.UploadPhoto(data).subscribe(async (a)=>{
+            const alert = await this.alertController.create({
+              message: 'Actualizado con exito.',
+              buttons: ['OK']
+            });
+        
+            await alert.present();
           },erro=>{
             // alert(erro.error.message)
           })
@@ -676,6 +659,5 @@ export class ProfileTabsPage implements OnInit {
       );
     });
   }
-
 
 }

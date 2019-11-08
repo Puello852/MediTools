@@ -6,7 +6,7 @@ import { AlertController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { RecaptchaComponent, OnExecuteData } from 'ng-recaptcha'
 import moment from 'moment';
-import example from '../../../assets/departamentos.json';
+import departamento from '../../../assets/departamentos.json';
 import municipio from '../../../assets/municipios.json';
 import { ApiToolsService } from 'src/app/services/api-tools.service';
 import { Subscription } from 'rxjs/Rx';
@@ -57,40 +57,29 @@ export class RegistrarPage implements OnInit {
   captchatoken: any;
   
   constructor(private zone: NgZone,public loadingController: LoadingController,private api:ApiToolsService,private statusBar: StatusBar,private authService:AuthenticationService,public alertController: AlertController,public ruta: Router) {
-    console.log(example)
-
-    this.departamento = example
+    // como el contrustor es lo primero que se ejecuta le asigno el departamento y el municpio a las variables
+    this.departamento = departamento
     this.municipios = municipio
    }
 
-  //  public executeAction(action: string): void {
-  //   if (this.singleExecutionSubscription) {
-  //     this.singleExecutionSubscription.unsubscribe();
-  //   }
-  //   this.singleExecutionSubscription = this.recaptchaV3Service.execute(action).subscribe((token) => {
-  //       this.recentToken = token
-  //       console.log(token)
-  //       this.register(token)
-  //     } );
-  // }
-
-
   public ngOnDestroy() {
-    console.log("cerre :v")
-
+    // se utiliza cuando se destruye la página
   }
 
 
-   captchaResolved(response: string): void {
-
+  // este metodo es para el capchat recibe la respuesta
+  captchaResolved(response: string): void {
     this.zone.run(() => {
+      //si todo es exitoso le asigno a captchaPassed true que despues me servira para activar o desactivar el boton de registrate
         this.captchaPassed = true;
+        //captchaResponse le asigno el token o la respuesta que viene de google
         this.captchaResponse = response;
-        console.log(response)
     });
 
-}
-   nextCase(){
+  }
+  
+  //esta funcion se utiliza para pasar a la siguiente lista de registro siempre y cuando se encuentren validadas
+  nextCase(){
      if(this.nameIcons == "arrow-round-back"){
        this.case1 = true
        this.case2 = false
@@ -103,10 +92,10 @@ export class RegistrarPage implements OnInit {
      }else if(this.case1){
        this.nameIcons = "arrow-round-forward"
      }
-   }
+  }
 
-    numberOnly(event){
-
+  //funcion utilizada para prevenir que la persona escriba letras
+  numberOnly(event){
         const charCode = (event.which) ? event.which : event.keyCode;
         //  alert(charCode)
         if (charCode > 47 && charCode < 58) {
@@ -114,6 +103,7 @@ export class RegistrarPage implements OnInit {
         }
    }
 
+   //funcion utilizada para prevenir que la persona escriba letras
    numberOnlys(event): boolean {
     const charCode = (event.which) ? event.which : event.keyCode;
     if (charCode > 31 && (charCode < 48 || charCode > 57)) {
@@ -123,7 +113,8 @@ export class RegistrarPage implements OnInit {
 
   }
 
-   password1(){  
+  //funcion utilizada para Mostrar la primera contraseña
+   password1(){ 
     if(this.nameicon == 'eye'){
       this.nameicon = 'eye-off'
       this.typeinput = 'text'
@@ -133,6 +124,7 @@ export class RegistrarPage implements OnInit {
     }
   }
 
+  //funcion utilizada para Mostrar la tercera contraseña
   password2(){
     if(this.nameicon2 == 'eye'){
       this.nameicon2 = 'eye-off'
@@ -141,43 +133,37 @@ export class RegistrarPage implements OnInit {
       this.nameicon2 = 'eye'
       this.typeinput2 = 'password'
     }
+
   }
 
-  
+  //Aqui valido que ambas contraseñas sean iguales
+  checkPasswords(group: FormGroup) { // here we have the 'passwords' group
+    let pass = group.controls.password.value;
+    let confirmPass = group.controls.confpassword.value;
+    let doc = group.controls.documento.value;
+    let confdoc = group.controls.confirmardocumento.value;
+    return pass === confirmPass && doc === confdoc ? null : { notSame: true }     
+  }
 
-   checkPasswords(group: FormGroup) { // here we have the 'passwords' group
-  let pass = group.controls.password.value;
-  let confirmPass = group.controls.confpassword.value;
-  let doc = group.controls.documento.value;
-  let confdoc = group.controls.confirmardocumento.value;
-  return pass === confirmPass && doc === confdoc ? null : { notSame: true }     
-}
+  // let status bar overlay webview
   ngOnInit() {
-    // let status bar overlay webview
     this.statusBar.styleLightContent()
     // set status bar to white
     this.statusBar.backgroundColorByHexString('#003c8f');
   }
 
-
+  //Aqui le asigno el departamento al input
   setDepartamento(e){
-    console.log(e.detail.value)
-
     let found:any = this.departamento.find((data:any)=>{
-    //  console.log(data)
      return data ? data.nombre == e.detail.value : ''
     })
 
-    console.log(found)
-
     this.newmuni = this.municipios.filter((data:any)=>{
       return data ? data.id == found.id : []
-    })
-
-    console.log(this.newmuni)
-    
-    
+    })    
   }
+
+  // metodo para registrar cabe recalcar que primero registro email, password, y capchat 
   async register(){
     const loading = await this.loadingController.create({
       message: 'Por favor espere...',
@@ -210,8 +196,14 @@ export class RegistrarPage implements OnInit {
         entidadDeSalud: false
       }
     }
+
+    //Aqui inicio el registro de usuario solo password y correo y capchat
      this.api.registerStart(data).subscribe((data:any)=>{
-       this.api.guardarToken(data.Acesstoken,data.Refreshtoken,null )
+       // un vez se cree el usuario en el sistema le guardo el token y refehs token que me devuelve el api
+       this.api.guardarToken(data.Acesstoken,data.RefreshToken,null )
+      //  alert(data.Acesstoken)
+      // this.api.CargarToken()
+       // despues de haber sido creado el usario a esa persona se le asigna toda todo el json con la info (datos)
        this.api.nuevapersonaNatural(datos).subscribe((async a => {
         loading.dismiss()
          const alert = await this.alertController.create({
@@ -220,12 +212,13 @@ export class RegistrarPage implements OnInit {
            buttons: ['OK']
          })
          await alert.present().then(res=>{
+           //Si el usuario se creo exitosamente cierro el loagin y lo redirigo a la vista del login llamada HOME
             this.ruta.navigate(['/home'])
           });
        }),async erro=>{
-        //  this.captcha.reset()
+        //Valido el error al moemnto de asignarle los datos
+       this.captcha.reset()
         const alert = await this.alertController.create({
-          header: 'Error',
           message: erro.error.message,
           buttons: ['OK']
         })
@@ -233,33 +226,15 @@ export class RegistrarPage implements OnInit {
         loading.dismiss()
        })
      },async erro=>{
-      // this.captcha.reset()
+       //valido el error al moemtno de crear el usario en firebase
+      this.captcha.reset()
       const alert = await this.alertController.create({
-        header: 'Error',
         message: erro.error.message,
         buttons: ['OK']
       })
       await alert.present()
       loading.dismiss()
      })
-    //  this.authService.registerUser(data,datos).then(async res=>{
-    //    const alert = await this.alertController.create({
-    //      header: 'Exito',
-    //      message: 'Usuario creado exitosamente',
-    //      buttons: ['OK']
-    //    })
-    //    await alert.present().then(res=>{
-    //      this.ruta.navigate(['/home'])
-    //    });
-    // //   // this.authService.sendVerificacion()
-    //  },async err=>{
-    //    const alert = await this.alertController.create({
-    //      header: 'Error',
-    //      message: 'Ocurrio un error',
-    //      buttons: ['OK']
-    //    })
-    //    alert.present()
-    //  })
   }
 
 }

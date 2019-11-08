@@ -58,7 +58,6 @@
 
 
   <div *ngIf="filtro" class="oscuro">
-
   </div>
 
   <ion-segment scrollable (ionChange)="segmentChanged($event)" #segmets>
@@ -80,7 +79,7 @@
 
     
 
-    <ion-item-sliding *ngFor="let item of citas" (click)="unread(item.id)">
+    <ion-item-sliding *ngFor="let item of citas" (click)="detailCita(item.id)">
       <ion-item class="list">
         <ion-avatar slot="start">
           <img src="{{item.foto}}" />
@@ -98,13 +97,13 @@
             </ion-chip>
           </h2>
           <h3>Doctor: <strong>{{item.profesional | titlecase}}</strong></h3>
-          <p *ngIf="item.estado == 'Aceptada'">Aceptada el: {{item.updateAt  | date:'medium'}}</p>
+          <p *ngIf="item.estado == 'Aceptada'">Aceptada el: {{item.fechacitaaceptada}} {{item.horacitaaceptada}}</p>
           <p *ngIf="item.estado == 'Agendada'">Fecha: {{item.fechacita}} {{item.horacita}}</p>
           <p *ngIf="item.estado == 'Cancelada'">Cancelada el: {{item.fechaCancelado}}</p>
         </ion-label>
       </ion-item>
       <ion-item-options class="itemOptions" side="end">
-        <ion-item-option style="text-transform: initial;    border-radius: 9px;" (click)="unread(item.id)">Detalles
+        <ion-item-option style="text-transform: initial;    border-radius: 9px;" (click)="detailCita(item.id)">Detalles
         </ion-item-option>
       </ion-item-options>
     </ion-item-sliding>

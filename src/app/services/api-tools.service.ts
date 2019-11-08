@@ -4,8 +4,10 @@ import { environment } from 'src/environments/environment';
 import { Storage } from '@ionic/storage'
 import { Platform } from '@ionic/angular';
 import { Observable, of } from 'rxjs';
-import { share, map } from 'rxjs/operators';
+import { share, map, flatMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/observable/fromPromise';
 @Injectable({
   providedIn: 'root'
 })
@@ -30,6 +32,10 @@ export class ApiToolsService {
 	  this.cambiarSegmento.emit()
   }
 
+  private getAuthHeaders() {
+	return Observable.fromPromise(this.storage.get('token'));
+ }
+
 
   getQuery( query: string, type: string,  authorization: boolean, body?: any ) {
 		const url = environment.apiUrl+query;
@@ -38,23 +44,8 @@ export class ApiToolsService {
 		{
 			if(this.token != undefined && this.token != null)
 			{
-				// headers =  headers.append('Authorization',this.token);
-			 	if(this.platform.is('cordova')){
-			 	this.storage.get("token").then(token=>{
-			 	// alert("añadiendo token headers")
-			 		if(token){
-			 			// alert(this.token)
-			// 			// alert("token añadido al headers: "+this.token)
-			 			// this.token = token
-			 			headers =  headers.append('Authorization',this.token);
-			 		}
-			 	})
-			 }else{
-			 	headers =  headers.append('Authorization',localStorage.getItem('token'));
-			 }
-			
-				// let to = this.storage.get('token') || null
-				// console.log(this.token)
+				// alert("el token del header es: " +this.token)
+				headers = headers.append('Authorization',this.token);
 			}
 		}
 		if (type == 'get'){
@@ -79,6 +70,7 @@ export class ApiToolsService {
 	}
 
 	nuevapersonaNatural(data){
+		
 		return this.getQuery( 'persona/nuevapersonanatural', 'post', true, data )
 	}
 
@@ -224,6 +216,11 @@ export class ApiToolsService {
 		return	this.getQuery('persona/updatecelular', 'post', true,data)
 	}
 
+	ReagendarCita(data){
+		return	this.getQuery('citas/reagendarcita', 'post', true,data)
+	}
+
+
 
 
 	getToken(): Observable<string> {
@@ -236,54 +233,55 @@ export class ApiToolsService {
 		
 		this.token = token
 	}
-
-	guardarToken(token:string,refreshToken:string,uid:string){
-	
-		// this.token = token
+	async guardarToken(token:string,refreshToken:string,uid:string){
+		
 		if(this.platform.is('cordova')){
-			// alert("celular")
 			this.token = token
-			this.storage.set('refresh', refreshToken)
-			this.storage.set('token', token)
-			this.storage.set('uid', uid)
-			// this.CargarToken()
+			await this.storage.set('refresh', refreshToken)
+			await this.storage.set('token', token)
+			await this.storage.set('uid', uid)
 		}else{
 			//pc
 			localStorage.setItem("token",token)
 			localStorage.setItem("refresh", refreshToken)
 			localStorage.setItem("uid",uid)
-			// this.CargarToken()
 		}
 		
 		this.token = token
+		// alert("el token que recibi es:"+ this.token)
 	}
 
 	CargarToken(){
-		this.storage.set('name','edwin')
 		let promesa = new Promise((resolve,reject)=>{
 
 			if(this.platform.is('cordova')){
-				this.storage.ready().then( () => {
+				this.storage.ready().then( async () => {
 					// alert("se cargo la plataforma")
-					this.storage.get("token").then(token=>{
-						if(token){
-							// alert("encontre un token")
-							this.token = token
-							// alert(this.token)
-							this.ruta.navigate(['/dashboard/home'])
-						}else{
-							this.ruta.navigate(['/home'])
-						}
+					// await this.storage.get("refresh").then(async refresh=>{
+					// 	alert(refresh)
+					// })
+				 	await this.storage.get("token").then(async token=>{
+							 if(token){
+								 this.token = token
+								 this.ruta.navigate(['/dashboard/home'])
+							 }else{
+								await this.storage.remove("token");
+								await this.storage.remove("refresh");
+								await this.storage.remove("uid");
+								this.ruta.navigate(['/home'])
+							 }
+						
 					})
 					resolve()
 				})
 			}else{
 				console.log("pc")
 				//pc
-				if(localStorage.getItem('token')){
+				if(localStorage.getItem('token') && localStorage.getItem('refresh') !== 'undefined'){
 					this.ruta.navigate(['/dashboard/home'])
 					this.token = localStorage.getItem('token')
 				}else{
+					localStorage.clear()
 					this.ruta.navigate(['/home'])
 				}
 			}
@@ -291,37 +289,5 @@ export class ApiToolsService {
 		
 		return promesa
 	}
-
-	async validaToke(){
-		this.CargarToken()
-		if(!this.token){
-			return Promise.resolve(false)
-		}
-	}
-
-
-	refrescarToken(): Observable<string> {
-		const url = environment.apiUrl+'auth/refreshToken';
-	
-		// append refresh token if you have one
-		const refreshToken = localStorage.getItem('refresh');
-		const expiredToken = localStorage.getItem('token');
-	
-		return this._http.get(url, {headers: new HttpHeaders().set('Refresh', refreshToken).set('Auto', expiredToken),observe: 'response'})
-		  .pipe(
-			share(), // <========== YOU HAVE TO SHARE THIS OBSERVABLE TO AVOID MULTIPLE REQUEST BEING SENT SIMULTANEOUSLY
-			map(res => {
-				console.log(res)
-			  const token = res.headers.get('token');
-			  const newRefreshToken = res.headers.get('Refresh');
-	
-			  // store the new tokens
-			  localStorage.setItem('refreshToken', newRefreshToken);
-			  localStorage.setItem('token', token);
-	
-			  return token;
-			})
-		  );
-	  }
 
 }

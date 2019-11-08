@@ -25,14 +25,20 @@ export class RefreshToken implements HttpInterceptor {
     return next.handle(request).catch( (errorResponse: HttpErrorResponse) => {
         const error = (typeof errorResponse.error !== 'object') ? JSON.parse(errorResponse.error) : errorResponse;
         if( errorResponse.status == 401 ){
-            console.log("a refrescar")
-            if(this.platform.is('cordova')){
-                this.storage.get("refresh").then(refresh=>{
-                    this.oldtoken = refresh
-                })
-            }else{
-                this.oldtoken = localStorage.getItem("refresh")
-            }
+        
+                if(this.platform.is('cordova')){
+                    this.storage.ready().then( async () => {
+                      await this.storage.get("refresh").then(refresh=>{
+                            this.oldtoken = refresh
+                        })
+                       
+                    })
+                }else{
+                    this.oldtoken = localStorage.getItem("refresh")
+                }
+         
+         
+
                 let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Accept': 'application/json' })
                 headers = headers.append('Refresh', this.oldtoken)
                 const http = this.injector.get(HttpClient);
@@ -50,22 +56,20 @@ export class RefreshToken implements HttpInterceptor {
                 .flatMap( 
                     ( data : any) => {
                         if(this.platform.is('cordova')){
-                            // alert("celular")
                             this.token = data.token
                             this.storage.set('refresh', data.refreshToken)
                             this.storage.set('token', data.token)
-                            this.storage.get("token").then(()=>{
-                                let token  = localStorage.getItem("token")
-                                let newheaders = new HttpHeaders({ 'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': token })
-                                const cloneRequest = request.clone({headers: newheaders});
-                                return next.handle(cloneRequest)
-                            })
+                            let newheaders = new HttpHeaders({ 'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': data.token })
+                            const cloneRequest = request.clone({headers: newheaders});
+                            this.api.recibido(data.token)
+                            return next.handle(cloneRequest)
                         }else{
                             localStorage.setItem('token', data.token );
                             localStorage.setItem('refresh', data.Refresh );
                             let token  = localStorage.getItem("token")
                             let newheaders = new HttpHeaders({ 'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': token })
                             const cloneRequest = request.clone({headers: newheaders});
+                            this.api.recibido(data.token)
                             return next.handle(cloneRequest)
                         }                 
                     },

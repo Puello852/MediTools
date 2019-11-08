@@ -88,6 +88,15 @@
         </p>
       </div>
       <div *ngIf="info.estado == 'Agendada'" class="bottom">
+          <div style="margin-bottom: 5px;"  class="footerreagendar" (click)="reagendar()">
+              <ion-item style="display: none;">
+                  <ion-label>D MMM YYYY H:mm</ion-label>
+                  <ion-datetime #datetime displayFormat="D MMM YYYY HH:mm" cancelText="Cancelar" (ionChange)="changedate($event)" doneText="Aceptar" [min]="fechahoy"></ion-datetime>
+                </ion-item>
+              <span class="viewcupos">
+                Reagendar Cita
+              </span>
+            </div>
         <div  class="footer" (click)="cancel()">
           <span class="viewcupos">
             Cancelar Cita

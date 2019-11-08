@@ -11,6 +11,8 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
   styleUrls: ['./edit-profile.page.scss'],
 })
 export class EditProfilePage implements OnInit,OnDestroy {
+
+  // aqui recibo por medio de los decoradores input el correo celular y se ha verifacado el celular
   @Input() email: any;
   @Input() celular: any;
   @Input() celularverificado: any;
@@ -28,11 +30,14 @@ export class EditProfilePage implements OnInit,OnDestroy {
   resend = true
   textsegundos = true
   constructor(public alertController: AlertController,public navctrl: NavController,public loadingController: LoadingController,public toastController: ToastController,private modal:ModalController,navParams: NavParams,private auth:ApiToolsService,public alert:AlertController,private auth2:AuthenticationService) { 
+    // guardo el correo y todo la info en las varibales las pude guardar en un array pero aja :v cabeza DE POLLO
     this.emails = navParams.get('email')
     this.celulars = navParams.get('celular')
     this.verifcMsj = navParams.get('celularverificado')
     if(this.verifcMsj){
+      // aqui valido si esta por cual paso quedo esa persona
       this.verifEmail = true
+      this.verifcMsj = false
       this.procesoVerificacion()
       this.resendCode()
     }else{
@@ -44,9 +49,9 @@ export class EditProfilePage implements OnInit,OnDestroy {
  }
  
   ngOnInit() {
-  
   }
 
+  // metodo para enviar msj de texto
   sendText(){
     let data = {
       celular: this.celulars
@@ -58,14 +63,15 @@ export class EditProfilePage implements OnInit,OnDestroy {
     })
   }
 
+  // metodo  para cerrar el modal
   dismissModal() {
     this.modal.dismiss({
       'dismissed': true
     });
   }
 
+  // metodo para vlidar el codigo del celular recibido
   runTimeChange(e){
-   
     if(e.detail.data){
       this.number += e.detail.data
     }else{
@@ -73,9 +79,9 @@ export class EditProfilePage implements OnInit,OnDestroy {
       this.segundos = 500
       this.resend = true  
     }
-    console.log(this.number)
+    // si el length es == 6 enseguida envio a la api el codigo
     if(this.number.length == 6){
-      console.log("a verificar")
+    
       let data = {
         token: !this.requestID ? localStorage.getItem('requesID') : this.requestID,
         codigo: this.number
@@ -97,6 +103,7 @@ export class EditProfilePage implements OnInit,OnDestroy {
     }
   }
 
+  // este se interval sirve para hacer un conteo regresivo casa 1 segundo le quito uno a la variable segundos
   conteoRegresivo(){
     let intervalId = setInterval(() => {
       this.textsegundos = true
@@ -118,8 +125,8 @@ export class EditProfilePage implements OnInit,OnDestroy {
 
   }
 
+  // metodo para cambiar de celular 
   async changecelular(){
-   
       const alert = await this.alertController.create({
         header: 'Escribe tu celular',
         inputs: [
@@ -165,8 +172,8 @@ export class EditProfilePage implements OnInit,OnDestroy {
     
   }
 
+  // metodo para cambiar de correo
   async changeMail(){
-  
       const alert = await this.alert.create({
         header: 'Escribe tu nuevo correo',
         inputs: [
@@ -215,11 +222,13 @@ export class EditProfilePage implements OnInit,OnDestroy {
       await alert.present();
   }
 
+  // este metdo va a estar preguntado cada 3 segundo a la api si el usuario termino su proceso y asi automaticamente cerrarle el modal
   procesoVerificacion(){
    this.interval = setInterval(() => {
       
    this.privatedatos = this.auth.GetInfoUser().subscribe(async (data:any)=>{
        if(data.verificado){
+         // si los datos estan verificados
         const toast = await this.toastController.create({
           message: 'has completado todo el proceso de verificación de manera exitosa',
           duration: 5000
@@ -231,11 +240,13 @@ export class EditProfilePage implements OnInit,OnDestroy {
     },3000)
   }
 
+  // metodo que no utlizo :v pero aun asi cierra el modal y te dirige a home
   chagecoubnt(){
     this.dismissModal()
     this.navctrl.navigateRoot('/home')
   }
 
+  // metodo para renviar codigo de confirmacion
   async resendCode(){
     const loading = await this.loadingController.create({
       message: 'Por favor espere...',

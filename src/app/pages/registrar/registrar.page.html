@@ -11,20 +11,6 @@
   <div class="container-login100">
     <div class="wrap-login100">
       <form [formGroup]="form" class="login100-form">
-
-        <!-- <div>
-          <ion-grid fixed>
-            <ion-row>
-              <ion-col size="6" class="d-flexcenter">
-                <img src="./assets/img/person1.png">
-              </ion-col>
-              <ion-col size="6" class="d-flexcenter">
-                  <img class="medical" src="./assets/img/medical.png">
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </div> -->
-
       
           <div *ngIf="case1" class="animated bounceInLeft">
   
@@ -157,7 +143,6 @@
                   *ngIf="form.hasError('notSame')">
                   Los documentos no coinciden</ion-label>
             </div>
-  
             
           
           </div>
